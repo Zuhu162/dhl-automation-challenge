@@ -1,0 +1,111 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "DownloadLink&Sequence_1",
+        "LatestExcelFilePath&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "responseData&Sequence_1",
+        "userInputURL&Sequence_1",
+        "spreadsheetID&Sequence_1",
+        "sheetGID&Sequence_1",
+        "downloadableURL&Sequence_1",
+        "fileContent&Sequence_1",
+        "latestExcelFilePath&Sequence_1",
+        "excelLeaveRecordsDT&Sequence_1",
+        "sheetName&Sequence_1",
+        "jsonLeaveRecords&Sequence_1",
+        "ErrorImage&Sequence_13",
+        "screenshotFolder&Sequence_13",
+        "screenshotFilePath&Sequence_13"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TransactionItem",
+        "in_Config",
+        "in_csvUrl"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "ValidateExcelFile.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "SheetName&Sequence_1",
+        "ExcelLeaveRecordsDT&Sequence_1",
+        "ErrorImage&Sequence_1",
+        "ScreenshotFilePath&Sequence_1",
+        "ScreenshotFolder&Sequence_1",
+        "UniqueRows&Sequence_1",
+        "InvalidRowsDT&Sequence_1",
+        "ValidRowsDT&Sequence_1",
+        "TableText&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_excelFilePath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "DownloadExcel.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "LatestExcelFilePath&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "Link",
+        "out_LatestExcelFilePath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "TakeScreenshot.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Screenshot&Sequence_1",
+        "ScreenshotFileInfo&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Folder",
+        "io_FilePath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "GetUserInput.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "SpreadSheetLink&Sequence_1",
+        "SpreadSheetID&Sequence_1",
+        "SheetGID&Sequence_1",
+        "DownloadableLink&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "DownloadableURL"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}
