@@ -1,0 +1,25 @@
+{
+  "name": "dhl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix lms-frontend\" \"npm run dev --prefix lms-backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zuhu162/dhl-automation-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Zuhu162/dhl-automation-challenge/issues"
+  },
+  "homepage": "https://github.com/Zuhu162/dhl-automation-challenge#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

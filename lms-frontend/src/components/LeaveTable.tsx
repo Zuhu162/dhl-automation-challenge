@@ -43,6 +43,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { format, parseISO } from "date-fns";
 
 interface LeaveTableProps {
   onRefresh: () => void;
@@ -149,6 +150,20 @@ export default function LeaveTable({
     setIsEditDialogOpen(false);
     loadApplications();
     onRefresh();
+  };
+
+  // Format date function
+  const formatDate = (dateString: string) => {
+    try {
+      // Try to parse the date string
+      const date = parseISO(dateString);
+      // Format to DD/MM/YYYY
+      return format(date, "dd/MM/yyyy");
+    } catch (error) {
+      // Return the original string if parsing fails
+      console.error("Date parsing error:", error);
+      return dateString;
+    }
   };
 
   // Status badge styling
@@ -304,8 +319,8 @@ export default function LeaveTable({
                   <TableCell>{application.employeeId}</TableCell>
                   <TableCell>{application.employeeName}</TableCell>
                   <TableCell>{application.leaveType}</TableCell>
-                  <TableCell>{application.startDate}</TableCell>
-                  <TableCell>{application.endDate}</TableCell>
+                  <TableCell>{formatDate(application.startDate)}</TableCell>
+                  <TableCell>{formatDate(application.endDate)}</TableCell>
                   <TableCell>
                     <span className={getStatusBadgeClass(application.status)}>
                       {application.status}
