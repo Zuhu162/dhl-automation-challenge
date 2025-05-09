@@ -22,6 +22,8 @@ mongoose
 // Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/leaves", require("./routes/leaves"));
+app.use("/api/automation-logs", require("./routes/automationLogs"));
+app.use("/api/automation", require("./routes/automation"));
 
 // Error handling middleware
 app.use((err, req, res, next) => {

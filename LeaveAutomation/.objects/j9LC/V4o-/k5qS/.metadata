@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Chrome leave-sync-automator(2)",
+  "Type": "Screen",
+  "Id": "k5qSBGkCtUaMgrt4wmRf0w",
+  "Reference": "QjS7MUzdXEWdtnxKhJV7XA/k5qSBGkCtUaMgrt4wmRf0w",
+  "ParentRef": "QjS7MUzdXEWdtnxKhJV7XA/V4o-ABxSQESY6nyq5DJKIg",
+  "Created": "2025-05-09T09:56:06.3647179Z",
+  "Updated": "2025-05-09T09:56:06.3647179Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

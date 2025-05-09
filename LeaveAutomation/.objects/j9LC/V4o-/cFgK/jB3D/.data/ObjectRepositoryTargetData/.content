@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="g74PTkparkOleiBvEA5IbA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" CVScreenId="b8d0ea54-432c-4ba5-9de2-e1516c28424d" CvElementArea="1331, 922, 81, 43" CvTextArea="1348, 936, 48, 13" CvTextArgument="Submit" CvType="Button" DesignTimeRectangle="1333, 923, 78, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='submit-leave-button' tag='BUTTON' type='submit' class='inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 bg-dhl-red hover:bg-red-700' aaname='Submit' check:innerText='Submit' /&gt;" Guid="2545622f-9465-43c2-82d9-639d6706a7fd" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="631894a2b7aa4019665ba9a25964b9fc.png" xmlns="">0jp_M3h1I9k6KItclpaonNg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

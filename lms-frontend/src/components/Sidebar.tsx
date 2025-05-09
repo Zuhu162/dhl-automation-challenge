@@ -3,9 +3,8 @@ import {
   LayoutDashboard,
   BarChart,
   FileText,
-  Logs,
-  FileSpreadsheet,
   ClipboardPlus,
+  Timer,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -34,14 +33,9 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
       path: "/input-leave",
     },
     {
-      name: "Spreadsheet Link",
-      icon: <FileSpreadsheet className="h-5 w-5" />,
-      path: "/upload",
-    },
-    {
-      name: "Logs",
-      icon: <Logs className="h-5 w-5" />,
-      path: "/logs",
+      name: "Automation Logs",
+      icon: <Timer className="h-5 w-5" />,
+      path: "/automation-logs",
     },
     {
       name: "API Documentation",

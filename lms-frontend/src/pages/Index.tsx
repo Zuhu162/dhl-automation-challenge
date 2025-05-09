@@ -6,20 +6,43 @@ import LeaveTable from "@/components/LeaveTable";
 import FloatingActionButton from "@/components/FloatingActionButton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, FileText, LayoutDashboard, Users } from "lucide-react";
+import {
+  Calendar,
+  FileText,
+  LayoutDashboard,
+  Users,
+  CheckCircle,
+  XCircle,
+} from "lucide-react";
 import { leaveService } from "@/services/leaveService";
+import { runAutomation } from "@/services/automationService";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
+import AutomationDialog from "../components/AutomationDialog";
+import EmployeeModal from "@/components/EmployeeModal";
+import { LeaveApplication } from "@/types";
+import StatsSection from "@/components/StatsSection";
+import useEmployeeFilter from "@/hooks/useEmployeeFilter";
 
 const Index = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [stats, setStats] = useState({
-    total: 0,
+    onLeave: 0,
     pending: 0,
     approved: 0,
     rejected: 0,
   });
+  const [isRunningAutomation, setIsRunningAutomation] = useState(false);
+  const [isAutomationDialogOpen, setIsAutomationDialogOpen] = useState(false);
+
+  const {
+    filteredEmployees,
+    isModalOpen,
+    handleCardClick,
+    closeModal,
+    getModalTitle,
+  } = useEmployeeFilter();
 
   const navigate = useNavigate();
 
@@ -31,31 +54,37 @@ const Index = () => {
     try {
       setIsLoading(true);
       const applications = await leaveService.getAll();
+      const currentDate = new Date();
 
-      // Calculate stats from the applications array
-      const stats = {
-        total: applications.length,
-        pending: applications.filter((app) => app.status === "Pending").length,
-        approved: applications.filter((app) => app.status === "Approved")
-          .length,
-        rejected: applications.filter((app) => app.status === "Rejected")
-          .length,
-      };
+      // Calculate current on leave count
+      const onLeave = applications.filter((app) => {
+        const startDate = new Date(app.startDate);
+        const endDate = new Date(app.endDate);
+        return (
+          app.status === "Approved" &&
+          startDate <= currentDate &&
+          endDate >= currentDate
+        );
+      }).length;
 
-      // Calculate percentages
-      const pendingPercentage =
-        stats.total > 0 ? Math.round((stats.pending / stats.total) * 100) : 0;
+      // Calculate status counts
+      const statusCounts = applications.reduce((acc, app) => {
+        acc[app.status] = (acc[app.status] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
 
-      const approvedPercentage =
-        stats.total > 0 ? Math.round((stats.approved / stats.total) * 100) : 0;
-
-      setStats(stats);
+      setStats({
+        onLeave,
+        pending: statusCounts.Pending || 0,
+        approved: statusCounts.Approved || 0,
+        rejected: statusCounts.Rejected || 0,
+      });
     } catch (error) {
       console.error("Error fetching data:", error);
       toast.error("Failed to fetch leave applications");
       // Set default stats on error
       setStats({
-        total: 0,
+        onLeave: 0,
         pending: 0,
         approved: 0,
         rejected: 0,
@@ -69,12 +98,26 @@ const Index = () => {
     setRefreshKey((prev) => prev + 1);
   };
 
-  // Calculate percentages for display
-  const pendingPercentage =
-    stats.total > 0 ? Math.round((stats.pending / stats.total) * 100) : 0;
+  const openAutomationDialog = () => {
+    setIsAutomationDialogOpen(true);
+  };
 
-  const approvedPercentage =
-    stats.total > 0 ? Math.round((stats.approved / stats.total) * 100) : 0;
+  const handleTriggerAutomation = async () => {
+    if (isRunningAutomation) return;
+
+    setIsAutomationDialogOpen(false);
+    setIsRunningAutomation(true);
+
+    try {
+      await runAutomation();
+      // After automation completes, refresh the data
+      setTimeout(() => {
+        handleRefresh();
+      }, 5000); // Give some time for the automation to finish and update data
+    } finally {
+      setIsRunningAutomation(false);
+    }
+  };
 
   return (
     <>
@@ -90,95 +133,13 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid gap-4 md:grid-cols-4 mb-8">
-            <Card className="bg-gradient-to-br from-dhl-red to-red-500 text-white">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Total Applications</span>
-                  <LayoutDashboard className="h-5 w-5" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold">
-                    {isLoading ? "..." : stats.total}
-                  </span>
-                  <p className="text-sm opacity-80 mt-1">
-                    Leave requests this month
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Pending</span>
-                  <Calendar className="h-5 w-5 text-yellow-500" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-yellow-600">
-                    {isLoading ? "..." : stats.pending}
-                  </span>
-                  <div className="mt-2">
-                    <Progress
-                      value={pendingPercentage}
-                      className="h-2 bg-yellow-100"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {pendingPercentage}% of total
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Approved</span>
-                  <Users className="h-5 w-5 text-green-500" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-green-600">
-                    {isLoading ? "..." : stats.approved}
-                  </span>
-                  <div className="mt-2">
-                    <Progress
-                      value={approvedPercentage}
-                      className="h-2 bg-green-100"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {approvedPercentage}% of total
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Rejected</span>
-                  <FileText className="h-5 w-5 text-red-500" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-red-600">
-                    {isLoading ? "..." : stats.rejected}
-                  </span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Last updated today
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Stats Cards - Enhanced with Colors */}
+          <div className="animate-fadeIn">
+            <StatsSection
+              stats={stats}
+              isLoading={isLoading}
+              onCardClick={handleCardClick}
+            />
           </div>
 
           <Tabs defaultValue="applications" className="w-full">
@@ -221,22 +182,59 @@ const Index = () => {
                       records
                     </li>
                     <li>
+                      Track automation processes via automation-logs endpoint
+                    </li>
+                    <li>
                       Generate reports on successful and failed submissions
                     </li>
                     <li>
                       Handle errors with screenshots and email notifications
                     </li>
                   </ul>
+
+                  <div className="mt-4 bg-slate-50 p-4 rounded-md border border-slate-200">
+                    <h4 className="font-semibold mb-2">
+                      API Documentation Highlights
+                    </h4>
+                    <p className="text-sm mb-2">Key endpoints:</p>
+                    <ul className="list-disc pl-6 space-y-1 text-sm">
+                      <li>
+                        <span className="font-mono bg-slate-100 px-1">
+                          GET /api/leaves
+                        </span>{" "}
+                        - Retrieve all leave applications
+                      </li>
+                      <li>
+                        <span className="font-mono bg-slate-100 px-1">
+                          POST /api/leaves
+                        </span>{" "}
+                        - Create a new leave application
+                      </li>
+                      <li>
+                        <span className="font-mono bg-slate-100 px-1">
+                          GET /api/automation-logs
+                        </span>{" "}
+                        - Retrieve automation process logs
+                      </li>
+                      <li>
+                        <span className="font-mono bg-slate-100 px-1">
+                          POST /api/automation-logs
+                        </span>{" "}
+                        - Create automation log entries (used by UiPath bot)
+                      </li>
+                    </ul>
+                  </div>
+
                   <div className="pt-4 flex gap-4">
                     <button
                       onClick={() => navigate("/api-docs")}
                       className="bg-dhl-yellow hover:bg-yellow-500 text-black px-4 py-2 rounded">
-                      View API Documentation
+                      View Full API Documentation
                     </button>
                     <button
-                      onClick={() => navigate("/upload")}
+                      onClick={() => navigate("/automation-logs")}
                       className="bg-dhl-red hover:bg-red-700 text-white px-4 py-2 rounded">
-                      Upload Excel File
+                      View Automation Logs
                     </button>
                   </div>
                 </CardContent>
@@ -245,9 +243,29 @@ const Index = () => {
           </Tabs>
 
           <FloatingActionButton
-            to="/upload"
-            label="Automate Input with Spreadsheet Link"
+            onClick={openAutomationDialog}
+            label={
+              isRunningAutomation
+                ? "Running Automation..."
+                : "Run Leave Automation"
+            }
           />
+
+          <AutomationDialog
+            isOpen={isAutomationDialogOpen}
+            setIsOpen={setIsAutomationDialogOpen}
+            isRunningAutomation={isRunningAutomation}
+            onRunAutomation={handleTriggerAutomation}
+          />
+
+          {isModalOpen && (
+            <EmployeeModal
+              isOpen={isModalOpen}
+              onClose={closeModal}
+              employees={filteredEmployees}
+              title={getModalTitle()}
+            />
+          )}
         </main>
       </div>
     </>

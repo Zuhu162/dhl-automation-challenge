@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="OxkrntfZwkq6YmwYu41RcQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" CVScreenId="c04e9e0d-76f5-4b04-bf53-c913a34246da" CvElementArea="796, 658, 623, 42" CvType="InputBox" DesignTimeRectangle="796, 659, 622, 40" DesignTimeScaleFactor="1" ElementType="DropDown" FuzzySelectorArgument="&lt;webctrl id='leave-type-select' tag='SELECT' type='' class='w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' aaname='Leave Type' /&gt;" Guid="46db5228-0a05-4096-8d13-45c8f97dc6c6" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="c04e9e0d-76f5-4b04-bf53-c913a34246da" CvTextArea="795, 633, 72, 16" CvTextArgument="Leave Type" CvType="Text" DesignTimeRectangle="796, 630, 70, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Leave Type' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Leave Type' /&gt;" Guid="a3cb27db-8471-4b8b-8633-2381a24ccb33" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="db6ae11e2ea9731e14a2efdfd74056c2.png" xmlns="">06IESQ0INWE-fESvD17B5ew</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

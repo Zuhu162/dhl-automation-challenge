@@ -40,7 +40,8 @@ import { cn } from "@/lib/utils";
 
 interface LeaveFormProps {
   onSuccess: () => void;
-  defaultValues?: LeaveApplication;
+  application?: LeaveApplication;
+  readOnly?: boolean;
 }
 
 const formSchema = z
@@ -72,18 +73,19 @@ const formSchema = z
 
 export default function LeaveForm({
   onSuccess,
-  defaultValues,
+  application,
+  readOnly = false,
 }: LeaveFormProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues
+    defaultValues: application
       ? {
-          ...defaultValues,
-          startDate: new Date(defaultValues.startDate),
-          endDate: new Date(defaultValues.endDate),
+          ...application,
+          startDate: new Date(application.startDate),
+          endDate: new Date(application.endDate),
         }
       : {
           employeeId: "",
@@ -96,6 +98,8 @@ export default function LeaveForm({
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (readOnly) return;
+
     setIsSubmitting(true);
 
     try {
@@ -108,8 +112,8 @@ export default function LeaveForm({
         status: values.status as LeaveStatus,
       };
 
-      if (defaultValues?._id) {
-        await leaveService.update(defaultValues._id, leaveData);
+      if (application?._id) {
+        await leaveService.update(application._id, leaveData);
         toast({
           title: "Leave application updated",
           description: "The leave application has been updated successfully.",
@@ -147,7 +151,11 @@ export default function LeaveForm({
               <FormItem>
                 <FormLabel>Employee ID</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g. EMP001" {...field} />
+                  <Input
+                    placeholder="e.g. EMP001"
+                    {...field}
+                    disabled={readOnly}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -161,7 +169,11 @@ export default function LeaveForm({
               <FormItem>
                 <FormLabel>Employee Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g. John Doe" {...field} />
+                  <Input
+                    placeholder="e.g. John Doe"
+                    {...field}
+                    disabled={readOnly}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -175,7 +187,10 @@ export default function LeaveForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Leave Type</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                disabled={readOnly}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select leave type" />
@@ -201,10 +216,11 @@ export default function LeaveForm({
               <FormItem className="flex flex-col">
                 <FormLabel>Start Date</FormLabel>
                 <Popover>
-                  <PopoverTrigger asChild>
+                  <PopoverTrigger asChild disabled={readOnly}>
                     <FormControl>
                       <Button
                         variant={"outline"}
+                        disabled={readOnly}
                         className={cn(
                           "pl-3 text-left font-normal",
                           !field.value && "text-muted-foreground"
@@ -224,6 +240,7 @@ export default function LeaveForm({
                       selected={field.value}
                       onSelect={field.onChange}
                       initialFocus
+                      disabled={readOnly}
                       className="pointer-events-auto"
                     />
                   </PopoverContent>
@@ -240,10 +257,11 @@ export default function LeaveForm({
               <FormItem className="flex flex-col">
                 <FormLabel>End Date</FormLabel>
                 <Popover>
-                  <PopoverTrigger asChild>
+                  <PopoverTrigger asChild disabled={readOnly}>
                     <FormControl>
                       <Button
                         variant={"outline"}
+                        disabled={readOnly}
                         className={cn(
                           "pl-3 text-left font-normal",
                           !field.value && "text-muted-foreground"
@@ -263,6 +281,7 @@ export default function LeaveForm({
                       selected={field.value}
                       onSelect={field.onChange}
                       initialFocus
+                      disabled={readOnly}
                       className="pointer-events-auto"
                     />
                   </PopoverContent>
@@ -279,7 +298,10 @@ export default function LeaveForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Status</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                disabled={readOnly}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select status" />
@@ -296,18 +318,25 @@ export default function LeaveForm({
           )}
         />
 
-        <div className="flex justify-end">
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-dhl-red hover:bg-red-700 text-white">
-            {isSubmitting
-              ? "Submitting..."
-              : defaultValues
-              ? "Update Leave"
-              : "Submit Leave"}
-          </Button>
-        </div>
+        {!readOnly && (
+          <div className="flex justify-end">
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting
+                ? "Saving..."
+                : application?._id
+                ? "Update"
+                : "Submit"}
+            </Button>
+          </div>
+        )}
+
+        {readOnly && (
+          <div className="flex justify-end">
+            <Button type="button" onClick={onSuccess} variant="outline">
+              Close
+            </Button>
+          </div>
+        )}
       </form>
     </Form>
   );

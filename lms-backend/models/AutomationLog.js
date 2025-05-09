@@ -1,0 +1,33 @@
+const mongoose = require("mongoose");
+
+const AutomationLogSchema = new mongoose.Schema(
+  {
+    status: {
+      type: String,
+      default: "false",
+    },
+    timeStart: {
+      type: String,
+      required: true,
+    },
+    timeEnd: {
+      type: String,
+      required: true,
+    },
+    successfulRows: {
+      type: String,
+      required: true,
+      default: 0,
+    },
+    failedRows: {
+      type: String,
+      required: true,
+      default: 0,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model("AutomationLog", AutomationLogSchema);

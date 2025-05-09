@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="5nBQx6VA30imS5pjBh_FJA" Reference="QjS7MUzdXEWdtnxKhJV7XA/ooakhjmTe0W-acoL7QdtSA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/login" CVScreenId="ce3d4f9b-7af9-4834-96e8-c0e37167cde7" CvElementArea="784, 673, 367, 42" CvType="InputBox" DesignTimeRectangle="785, 648, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBoxPassword" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='••••••••' aaname='Password' /&gt;" Guid="29fe3382-c4b9-4cd8-9800-ac92474bde4b" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="ce3d4f9b-7af9-4834-96e8-c0e37167cde7" CvTextArea="784, 649, 60, 13" CvTextArgument="Password" CvType="Text" DesignTimeRectangle="785, 620, 60, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Password' tag='LABEL' type='' class='block text-sm font-medium text-gray-700' check:innerText='Password' /&gt;" Guid="edaa8473-0f8c-45f0-a302-51304812ec62" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="74cbd80cb5bc7dafba680bc9c5fd0caa.png" xmlns="">0GdgfHoDyN02IOxnXVkgxsg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

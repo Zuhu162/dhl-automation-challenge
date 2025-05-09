@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="tIt1KUlok0SPR39-kCDg6A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" CVScreenId="c04e9e0d-76f5-4b04-bf53-c913a34246da" CvElementArea="797, 864, 621, 41" CvType="InputBox" DesignTimeRectangle="796, 865, 622, 40" DesignTimeScaleFactor="1" ElementType="DropDown" FuzzySelectorArgument="&lt;webctrl id='status-select' tag='SELECT' type='' class='w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' aaname='Status' /&gt;" Guid="c17b3f9d-d956-4adf-bb5c-994c11e6e39e" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="c04e9e0d-76f5-4b04-bf53-c913a34246da" CvTextArea="795, 839, 40, 13" CvTextArgument="Status" CvType="Text" DesignTimeRectangle="796, 836, 39, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Status' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Status' /&gt;" Guid="7ebe054b-691c-4ac2-8e44-523266e24a62" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="65003359cdb0cd4587dea52eb0c35c9f.png" xmlns="">0Yrv7Mq_inkOpuN0z02Yyvg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

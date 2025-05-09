@@ -26,7 +26,12 @@ const EmployeeStatusTable = () => {
         setIsLoading(true);
         const applications = await leaveService.getAll();
         const today = new Date();
-        const nextWeek = addDays(today, 7);
+
+        // Next 7 days for upcoming leaves
+        const nextSevenDays = addDays(today, 7);
+
+        // Next 2 days for returning employees
+        const nextTwoDays = addDays(today, 2);
 
         // Filter for employees who will start leave in the next 7 days
         const upcoming = applications
@@ -35,7 +40,7 @@ const EmployeeStatusTable = () => {
             return (
               app.status === "Approved" &&
               isAfter(startDate, today) &&
-              isBefore(startDate, nextWeek)
+              isBefore(startDate, nextSevenDays)
             );
           })
           .sort(
@@ -43,14 +48,14 @@ const EmployeeStatusTable = () => {
               new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
           );
 
-        // Filter for employees who will return from leave in the next 7 days
+        // Filter for employees who will return from leave in the next 2 days
         const returning = applications
           .filter((app) => {
             const endDate = parseISO(app.endDate);
             return (
               app.status === "Approved" &&
               isAfter(endDate, today) &&
-              isBefore(endDate, nextWeek)
+              isBefore(endDate, nextTwoDays)
             );
           })
           .sort(
@@ -95,8 +100,12 @@ const EmployeeStatusTable = () => {
       <CardContent>
         <Tabs defaultValue="upcoming">
           <TabsList className="mb-4">
-            <TabsTrigger value="upcoming">Upcoming Leave</TabsTrigger>
-            <TabsTrigger value="returning">Returning Soon</TabsTrigger>
+            <TabsTrigger value="upcoming">
+              Upcoming Leave ({upcomingLeaves.length})
+            </TabsTrigger>
+            <TabsTrigger value="returning">
+              Returning Soon ({returningEmployees.length})
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="upcoming">
@@ -125,6 +134,10 @@ const EmployeeStatusTable = () => {
               </div>
             ) : upcomingLeaves.length > 0 ? (
               <div className="overflow-x-auto">
+                <p className="text-xs text-muted-foreground mb-2">
+                  Showing employees with approved leave applications in the next
+                  7 days
+                </p>
                 <table className="w-full">
                   <thead className="bg-muted">
                     <tr>
@@ -165,7 +178,7 @@ const EmployeeStatusTable = () => {
               </div>
             ) : (
               <p className="text-center py-4 text-gray-500">
-                No upcoming leaves scheduled
+                No employees starting leave in the next 7 days
               </p>
             )}
           </TabsContent>
@@ -196,6 +209,9 @@ const EmployeeStatusTable = () => {
               </div>
             ) : returningEmployees.length > 0 ? (
               <div className="overflow-x-auto">
+                <p className="text-xs text-muted-foreground mb-2">
+                  Showing employees returning in the next 2 days
+                </p>
                 <table className="w-full">
                   <thead className="bg-muted">
                     <tr>
@@ -236,7 +252,7 @@ const EmployeeStatusTable = () => {
               </div>
             ) : (
               <p className="text-center py-4 text-gray-500">
-                No employees returning soon
+                No employees returning in the next 2 days
               </p>
             )}
           </TabsContent>

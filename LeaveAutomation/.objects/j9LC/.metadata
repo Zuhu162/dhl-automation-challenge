@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Chrome leave-sync-automator",
+  "Type": "App",
+  "Id": "j9LCfwaJTkuEk8VAYiqoNw",
+  "Reference": "QjS7MUzdXEWdtnxKhJV7XA/j9LCfwaJTkuEk8VAYiqoNw",
+  "Created": "2025-05-08T05:02:13.4250011Z",
+  "Updated": "2025-05-08T05:02:13.4250011Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

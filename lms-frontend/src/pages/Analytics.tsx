@@ -21,6 +21,8 @@ import {
 import EmployeeStatusTable from "@/components/EmployeeStatusTable";
 import EmployeeModal from "@/components/EmployeeModal";
 import { toast } from "sonner";
+import PastelStatsSection from "@/components/PastelStatsSection";
+import useEmployeeFilter from "@/hooks/useEmployeeFilter";
 
 const Analytics = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,11 +39,14 @@ const Analytics = () => {
   const [monthlyData, setMonthlyData] = useState<
     Array<{ name: string; value: number }>
   >([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [filteredEmployees, setFilteredEmployees] = useState<
-    LeaveApplication[]
-  >([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    filteredEmployees,
+    isModalOpen,
+    handleCardClick,
+    closeModal,
+    getModalTitle,
+  } = useEmployeeFilter();
 
   useEffect(() => {
     calculateStats();
@@ -113,57 +118,37 @@ const Analytics = () => {
         }))
       );
 
-      // Format monthly data for charts
+      // Format monthly data for charts with proper sorting
+      const monthOrder = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
       setMonthlyData(
-        Object.entries(monthlyLeaves).map(([name, value]) => ({
-          name,
-          value,
-        }))
+        Object.entries(monthlyLeaves)
+          .map(([name, value]) => ({
+            name,
+            value,
+            order: monthOrder.indexOf(name),
+          }))
+          .sort((a, b) => a.order - b.order)
+          .map(({ name, value }) => ({ name, value }))
       );
     } catch (error) {
       console.error("Error fetching analytics data:", error);
       toast.error("Failed to load analytics data");
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleCardClick = async (category: string) => {
-    try {
-      const applications = await leaveService.getAll();
-      const currentDate = new Date();
-
-      let filtered: LeaveApplication[] = [];
-
-      switch (category) {
-        case "onLeave":
-          filtered = applications.filter((app) => {
-            const startDate = new Date(app.startDate);
-            const endDate = new Date(app.endDate);
-            return (
-              app.status === "Approved" &&
-              startDate <= currentDate &&
-              endDate >= currentDate
-            );
-          });
-          break;
-        case "pending":
-          filtered = applications.filter((app) => app.status === "Pending");
-          break;
-        case "approved":
-          filtered = applications.filter((app) => app.status === "Approved");
-          break;
-        case "rejected":
-          filtered = applications.filter((app) => app.status === "Rejected");
-          break;
-      }
-
-      setFilteredEmployees(filtered);
-      setSelectedCategory(category);
-      setIsModalOpen(true);
-    } catch (error) {
-      console.error("Error fetching filtered data:", error);
-      toast.error("Failed to load employee data");
     }
   };
 
@@ -193,91 +178,13 @@ const Analytics = () => {
             </div>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-            <Card
-              className="cursor-pointer hover:shadow-md transition-shadow"
-              onClick={() => handleCardClick("onLeave")}>
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Currently On Leave</span>
-                  <Calendar className="h-5 w-5 text-dhl-red" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold">
-                    {isLoading ? "..." : stats.onLeave}
-                  </span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Click to view details
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card
-              className="cursor-pointer hover:shadow-md transition-shadow"
-              onClick={() => handleCardClick("pending")}>
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Pending Approval</span>
-                  <Users className="h-5 w-5 text-yellow-500" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-yellow-600">
-                    {isLoading ? "..." : stats.pending}
-                  </span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Awaiting review
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card
-              className="cursor-pointer hover:shadow-md transition-shadow"
-              onClick={() => handleCardClick("approved")}>
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Approved</span>
-                  <CheckCircle className="h-5 w-5 text-green-500" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-green-600">
-                    {isLoading ? "..." : stats.approved}
-                  </span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Total approved leaves
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card
-              className="cursor-pointer hover:shadow-md transition-shadow"
-              onClick={() => handleCardClick("rejected")}>
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center justify-between text-lg">
-                  <span>Rejected</span>
-                  <XCircle className="h-5 w-5 text-red-500" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-red-600">
-                    {isLoading ? "..." : stats.rejected}
-                  </span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Total rejected leaves
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Stats Cards - Pastel Theme */}
+          <div className="animate-fadeIn">
+            <PastelStatsSection
+              stats={stats}
+              isLoading={isLoading}
+              onCardClick={handleCardClick}
+            />
           </div>
 
           {/* Charts and Tables */}
@@ -395,17 +302,9 @@ const Analytics = () => {
       {isModalOpen && (
         <EmployeeModal
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={closeModal}
           employees={filteredEmployees}
-          title={`${
-            selectedCategory === "onLeave"
-              ? "Currently On Leave"
-              : selectedCategory === "pending"
-              ? "Pending Approval"
-              : selectedCategory === "approved"
-              ? "Approved Leaves"
-              : "Rejected Leaves"
-          }`}
+          title={getModalTitle()}
         />
       )}
     </>

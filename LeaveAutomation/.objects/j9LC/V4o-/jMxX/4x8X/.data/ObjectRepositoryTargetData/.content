@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="VnrhbzMKLkqa8g_2_AsiIg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost" CVScreenId="eb67e30f-13d1-4881-964b-bb4d96c28978" CvTextArea="41, 352, 131, 13" CvTextArgument="+ Input Leave Data" CvType="Text" DesignTimeRectangle="20, 337, 254, 44" DesignTimeScaleFactor="1" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Input Leave Data' tag='A' type='' class='flex items-center px-4 py-3 text-sm rounded-md transition-colors text-gray-700 hover:bg-gray-100' check:innerText='Input Leave Data' /&gt;" Guid="3282a3ef-f3db-49ae-9903-9ab6f7455366" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="2e0dcb82de5d50706699bb6c5ef87e4e.png" xmlns="">0era-TlXKMEWBxtNlxK2cUg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

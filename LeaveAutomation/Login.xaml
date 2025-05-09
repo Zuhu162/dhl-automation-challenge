@@ -1,0 +1,313 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Login" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Login_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="1276,3102" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1126,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Login Process Started&quot;]" />
+    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="[BrowserType.Chrome]" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="1126,2906" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" Url="http://localhost:8080">
+      <ui:OpenBrowser.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="1092,2758" sap2010:WorkflowViewState.IdRef="Sequence_19">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NCheckState DisplayName="Check App State 'BUTTON radix-r8'" sap:VirtualizedContainerService.HintSize="1058,2178" sap2010:WorkflowViewState.IdRef="NCheckState_2" Version="V4">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;User is already logged in. Skipping Login Process&quot;]" />
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="554,1929" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="520,1867" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                    <TryCatch.Try>
+                      <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="518,1152" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="484,1092" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" ScopeGuid="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V2">
+                          <uix:NApplicationCard.Body>
+                            <ActivityAction x:TypeArguments="x:Object">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,852" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Email address'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,286" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="hr@dhl.com" Version="V4">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="ea16cbb6-1a63-4370-ab2b-6ab6ee18081f" ContentHash="i9pg-IXO-0mDkgTf8M8pNg" CvElementArea="783, 554, 368, 43" CvType="InputBox" DesignTimeRectangle="785, 556, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='email' tag='INPUT' type='email' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='name@company.com' aaname='Email address' /&gt;" Guid="ec59f56d-cb1e-44cf-beb9-a70f2cb4c076" InformativeScreenshot="398b53ae561588852156cd1aef439c39.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/LHmNbbkQTE6biOsb-R_nyQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CVScreenId="ea16cbb6-1a63-4370-ab2b-6ab6ee18081f" CvTextArea="784, 531, 88, 13" CvTextArgument="Email address" CvType="Text" DesignTimeRectangle="785, 528, 366, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='block text-sm font-medium text-gray-700' aaname='Email address' check:innerText='Email address' /&gt;" Guid="f977c8d3-f924-49a5-b062-014e989fe61e" SearchSteps="FuzzySelector, CV" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                  <uix:NTypeInto.VerifyOptions>
+                                    <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                        <InArgument x:TypeArguments="x:Boolean" />
+                                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                        <InArgument x:TypeArguments="x:Double" />
+                                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    </uix:VerifyExecutionTypeIntoOptions>
+                                  </uix:NTypeInto.VerifyOptions>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Password'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,286" sap2010:WorkflowViewState.IdRef="NTypeInto_8" IsPassword="True" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="9A8+8|]'73w3" Version="V4">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="ce3d4f9b-7af9-4834-96e8-c0e37167cde7" ContentHash="5nBQx6VA30imS5pjBh_FJA" CvElementArea="784, 673, 367, 42" CvType="InputBox" DesignTimeRectangle="785, 648, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBoxPassword" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='••••••••' aaname='Password' /&gt;" Guid="29fe3382-c4b9-4cd8-9800-ac92474bde4b" InformativeScreenshot="74cbd80cb5bc7dafba680bc9c5fd0caa.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/ooakhjmTe0W-acoL7QdtSA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CVScreenId="ce3d4f9b-7af9-4834-96e8-c0e37167cde7" CvTextArea="784, 649, 60, 13" CvTextArgument="Password" CvType="Text" DesignTimeRectangle="785, 620, 60, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Password' tag='LABEL' type='' class='block text-sm font-medium text-gray-700' check:innerText='Password' /&gt;" Guid="edaa8473-0f8c-45f0-a302-51304812ec62" SearchSteps="FuzzySelector, CV" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                  <uix:NTypeInto.VerifyOptions>
+                                    <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                        <InArgument x:TypeArguments="x:Boolean" />
+                                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                        <InArgument x:TypeArguments="x:Double" />
+                                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    </uix:VerifyExecutionTypeIntoOptions>
+                                  </uix:NTypeInto.VerifyOptions>
+                                </uix:NTypeInto>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Sign in'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="ea16cbb6-1a63-4370-ab2b-6ab6ee18081f" ContentHash="tKsCl8b07kOr_Df18tIkYw" CvElementArea="783, 710, 370, 43" CvTextArea="944, 725, 46, 16" CvTextArgument="Sign in" CvType="Button" DesignTimeRectangle="785, 712, 366, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full bg-dhl-red hover:bg-red-700' aaname='Sign in' check:innerText='Sign in' /&gt;" Guid="22c23b5f-237e-409d-9e02-270ae6193364" InformativeScreenshot="52d18a2b5d01b4a380b8d224572c0758.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/t_uSZyRzSUixTTgjXMp0tQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                                  </uix:NClick.Target>
+                                  <uix:NClick.VerifyOptions>
+                                    <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                      <uix:VerifyExecutionOptions.Retry>
+                                        <InArgument x:TypeArguments="x:Boolean" />
+                                      </uix:VerifyExecutionOptions.Retry>
+                                      <uix:VerifyExecutionOptions.Timeout>
+                                        <InArgument x:TypeArguments="x:Double" />
+                                      </uix:VerifyExecutionOptions.Timeout>
+                                    </uix:VerifyExecutionOptions>
+                                  </uix:NClick.VerifyOptions>
+                                </uix:NClick>
+                              </Sequence>
+                            </ActivityAction>
+                          </uix:NApplicationCard.Body>
+                          <uix:NApplicationCard.TargetApp>
+                            <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="w95H4Q4ouk2Hrtj8CkS3Gg" IconBase64="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" InformativeScreenshot="5ba9604b3a2be9be48713818aac33866.jpg" Reference="QjS7MUzdXEWdtnxKhJV7XA/k5qSBGkCtUaMgrt4wmRf0w" Selector="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" Url="http://localhost:8080/login" Version="V2" />
+                          </uix:NApplicationCard.TargetApp>
+                        </uix:NApplicationCard>
+                      </Sequence>
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="518,459" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="TakeScreenshot - Invoke Workflow File (TakeScreenshot.xaml)" sap:VirtualizedContainerService.HintSize="484,233" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
+                                <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,166" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Error while inputting login data&quot; &amp; exception.Message]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                    <TryCatch.Finally>
+                      <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="518,89" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </TryCatch.Finally>
+                  </TryCatch>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="localhost" ContentHash="C9qjTFNfB0ufa8IcefJ01A" DesignTimeRectangle="417, 622, 1366, 393" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl type='' class='p-6 pt-0' parentid='radix-:rb:-content-applications' tag='DIV' aaname='' /&gt;" Guid="64e40127-fe5c-4416-b3a8-c8afbe6cb50a" InformativeScreenshot="d8cfe31c612e5ee5da21b3c58f22714a.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/e5p71L96fUCOGy3duTHc0g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CVScreenId="99f03fb5-f7de-453d-a399-77741dca5970" CvTextArea="440, 576, 162, 22" CvTextArgument="Leave Applications" CvType="Text" DesignTimeRectangle="441, 570, 1318, 28" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='radix-:rb:-content-applications' tag='H3' type='' class='font-semibold tracking-tight text-xl' aaname='Leave Applications' check:innerText='Leave Applications' /&gt;" Guid="58f62a43-852b-4131-81c2-529dd188bf12" SearchSteps="FuzzySelector, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NCheckState.Target>
+            </uix:NCheckState>
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1058,520" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="f6020526-c971-4647-a109-54fe64767964" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,280" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Input Leave Data'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f6020526-c971-4647-a109-54fe64767964" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="localhost" CVScreenId="eb67e30f-13d1-4881-964b-bb4d96c28978" ContentHash="VnrhbzMKLkqa8g_2_AsiIg" CvTextArea="41, 352, 131, 13" CvTextArgument="+ Input Leave Data" CvType="Text" DesignTimeRectangle="20, 337, 254, 44" DesignTimeScaleFactor="1" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Input Leave Data' tag='A' type='' class='flex items-center px-4 py-3 text-sm rounded-md transition-colors text-gray-700 hover:bg-gray-100' check:innerText='Input Leave Data' /&gt;" Guid="3282a3ef-f3db-49ae-9903-9ab6f7455366" InformativeScreenshot="2e0dcb82de5d50706699bb6c5ef87e4e.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/4x8X4sw71k2XgG_tpgdePA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                      <uix:NClick.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NClick.VerifyOptions>
+                    </uix:NClick>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="DHGH2TdxEEurG4Rp1A7j5Q" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAZ7SURBVGhD7VZ9jF1VEX9QjRIjBWJIUUFSULCUdt+7Z+Zu292398zcFmuqUWIbgh8QE8CE+InWpBhbSyFqDDa05UOjaClgl7QaumVpF1qi0ZpU5ENIKZVC0kJbNt19756Zu7tVfGbu29XdtiH6j/94f8kv97175s6ZOfNxplIpUaJEiRIlSpQoUaLE/z1alcoZrUrlzP+Wq9rPM/5DXfa+kD3N2hSZt9Mxea9Kb6UyrZV0nBP83Csy7xaExCUNX+W3Y6AaBY58TjBfOJ4zlEYXHV005z1tXcm7JYEZSlEtpC4pZBOXmO4xrs5qdF15bqOr69wsmXd5M4k7Rzz0FHrrNWok6PJFsy/UBdX3Sz26MiOYP9me3EfxSNJ58XDScU4rit7ZPi3bsDueI4TfFsZNSvCokNsh5HZOMIyz+O1hQAh3ZASPBYZNgeLbGh6WDVP1Q615HzzrzWTWjAa7hRm5O5vktpusMmzLGR6wPbTuqsN1VxWPX888/DwjeLTpYSDzrj+Quyun2qdHyS1WwpU5xw8I4zbbM5AzPfflHq8NiZs9lEbTi2i05s85P/REXjneoIx7hGCfejg4mWJPgleU8FAgGBYGbRMPB4bfBsbbT6SuOtgdXTC8COoZ44qM3d5gMimMKcOgMPw5EPwkeFgm5D4fCHszjwczwhAIgxC8mrHrywi+KUbGx9v7YRBGFYIj4qFfCW6Y4sBY4mYLw8eU3EphuF8IH1KC3kDuEaP9zgh6heFhYewPhPvHnRgVgtwUhzTaLIlLLW2UcYXJmXPC+DdheEsIDgvDNiFYqxx/VxnWB8Jnx40zmTeE4TH1sD54WK2EdwvhC0KYF+sEg4HxD0LwozyJulpm/EQKhXrtoyNc6zbPlPF2ZfyZEGzOCgfgwcBwnzD+0AwLDGuDxz2B4E2LQODi5A5lKWzJU1iWe7haUvdQYPhrYGgIw1hBwkMZQ7+QpRFsFobdyvC6EI4IYWbREcI7lfDWwLChnS54WO2QLIoELwTGe4Xhs3kaXTSliIeimdNH50eXjHr38ZDiqkI54atK+FogeDZj2Coc3dFk+JxQ/LVA+KQwHgvsLAoHhaG/cIzdzRm7Ffa9MBwRhuPCriFtuaPCsF/I/UUIXlSGV5ThWPGe4CVNcGsg/HLw8BUl2CIp7JP2+nFzXhj7Mu++aIfdiuOzJ3eqyoFLL33XKEWXmHchLU77ZS3Cin8v0oPcLiuujN2NwvgNZdwmbEa458x4YfxBluK31LsVym69svudMLwk7J5Xhj2Suh3CbkDYPS3k9gm7/cLwcmDYr+T+KAk8rIRrMoIbMnbLJcXt9r2SO2Dy2o7Og1kC1zeTWucJj3OtmzXrHR8e7XIzK82rZp0XqFoPKa4LDM8EwiFh/IcxMB5XD3sDwVYluNty005IGX9j9RI4Xm0FKQleZ+mXp7hR2fVZ11GG+5XhexY5tdNL3T1iXYndTmXYaTlfpEWC1+W+82orXCW8S1PTDwM5wRP2FIbHQzvt1pq+dq265crupoxq11eGemrdgaIvBYbdgbEhjGPC2CocIAxKaOHeKx6eUsLtyviIMmywaIjHL1jkhOEWYdgkhLtMjzD8Sgm+02R3Tb7QLVDvPhnIrbP2bBE1PRnjL4VxeZ7EnYGgLuS+L0ULhyeE4KnJzAvb3G5pZ8Muq6PAsFoS+GpFya3JCDcGwgPCeEIY3xp3wGgdQALBoBC+JoR/Coy/1hTXKOOSjOATVh/Crs/ab9HqCF4PPh4IHN+cJbjEnFSGO5Tg98rwhhIeEY6fDoQ/Dexu0oVVpz1ucead2fDieM4fs0ZxChns/dFgjjHcolxbYg6sFIIfm2HtKJxKaV80feJxoxnftD7O8ayGj6Mibxl+kZHbbgVul1JIcJ1S52JlgMDuM0ruVotKoc9O0aJlEUzxqlGe+xG7pZtJfFvmYYt43CHcjuQpLCIATyq5e5TxU2MerqjYpaCpq+Zp3FVc56ehXXShXq1bEdnoMJx0XNxaHJ9tI8FYEl1u70cI6iY33BP5hq9F2h1d0Jw377y8PvtCc9bGjgl9eVLrHPXuslYCMwYXXPbeVhK9z0aHfGKUOY0Nk21p9nRATnM/MJTOnF5praqc2bt06bTW0qXTdifJO05HW/sXV500dNn/yesFK9Mm1othb1xmir6TB7dJek7e/1Rb/q1/yp1QokSJEiVKlChRokSJEiX+h/gnJvnHa8yHJwsAAAAASUVORK5CYII=" InformativeScreenshot="09159abde63f0bf12954f4f080413c26.jpg" Reference="QjS7MUzdXEWdtnxKhJV7XA/jMxX3Dnz6k6gnIOH80o4vg" Selector="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" Url="http://localhost:8080/" Version="V2" />
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </ui:OpenBrowser.Body>
+    </ui:OpenBrowser>
+  </Sequence>
+</Activity>

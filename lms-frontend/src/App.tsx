@@ -15,7 +15,7 @@ import ApiDocs from "./pages/ApiDocs";
 import Analytics from "./pages/Analytics";
 import SpreadsheetLink from "./pages/SpreadsheetLink";
 import InputLeave from "./pages/InputLeave";
-import Logs from "./pages/Logs";
+import AutomationLogs from "./pages/AutomationLogs";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import { authService } from "@/services/authService";
@@ -104,10 +104,10 @@ const App = () => (
                 }
               />
               <Route
-                path="/logs"
+                path="/automation-logs"
                 element={
                   <RequireAuth>
-                    <Logs />
+                    <AutomationLogs />
                   </RequireAuth>
                 }
               />

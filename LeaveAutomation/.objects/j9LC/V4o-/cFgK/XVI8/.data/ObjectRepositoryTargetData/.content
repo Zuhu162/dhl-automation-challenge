@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="PCYEPvUOckyajPZg3ZHPIw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" CVScreenId="cd23741e-fa8d-47ab-b4ec-3d40382f28a3" CvTextArea="833, 957, 546, 13" CvType="AnyWordGroup" DesignTimeRectangle="806, 954, 588, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl id='NoDuplicateFoundText' tag='DIV' /&gt;" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl id='NoDuplicateFoundText' tag='DIV' type='' class='text-sm [&amp;amp;_p]:leading-relaxed text-green-700' /&gt;" Guid="128e2d26-4cab-4ea9-9392-701f77452b12" ImageBase64="" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="cd23741e-fa8d-47ab-b4ec-3d40382f28a3" CvTextArea="833, 957, 546, 13" CvTextArgument="No existing leave application found with these details. You can proceed with submission." CvType="Text" DesignTimeRectangle="833, 957, 546, 16" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='NoDuplicateFoundText' tag='DIV' type='' class='text-sm [&amp;amp;_p]:leading-relaxed text-green-700' aaname='No existing leave application found with these details. You can proceed with submission.' check:innerText='No existing leave application found with these details. You can proceed with submission.' /&gt;" Guid="68f10db8-12b2-404e-8f12-b16d2e1abb16" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="2ace6e3665e34ad2d9f9431c4c78e5ad.png" xmlns="">0BjFNF6HEVEKyFv6iLi8Xxg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

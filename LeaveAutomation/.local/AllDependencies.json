@@ -22223,10 +22223,7 @@
       "projectPath": "C:\\Users\\Asus\\Documents\\UiPath\\LeaveAutomation\\.local",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Asus\\Documents\\UiPath\\LeaveAutomation\\.local",
-      "UsingMicrosoftNETSdk": false,
-      "restoreAuditProperties": {
-        "enableAudit": "False"
-      }
+      "UsingMicrosoftNETSdk": false
     },
     "frameworks": {
       "net8.0-windows7.0": {

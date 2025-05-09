@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Employee NameStaff IDLe…",
+  "Type": "Element",
+  "Id": "XVI8FTCaSkusf0WGWLE7tQ",
+  "Reference": "QjS7MUzdXEWdtnxKhJV7XA/XVI8FTCaSkusf0WGWLE7tQ",
+  "ParentRef": "QjS7MUzdXEWdtnxKhJV7XA/cFgKtSsBbUut_jjUsSVkqA",
+  "Created": "2025-05-08T09:19:56.4679399Z",
+  "Updated": "2025-05-08T09:19:56.4679399Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

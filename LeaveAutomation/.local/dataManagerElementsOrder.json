@@ -12,6 +12,14 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "StartTime&Sequence_1",
+        "EndTime&Sequence_1",
+        "EmailErrorDetails&Sequence_1",
+        "InvalidRowsDT&Sequence_1",
+        "FinalInputRowsDT&Sequence_1",
+        "FinalRejectedRowsDT&Sequence_1",
+        "outinvalidrowsdt&Sequence_1",
+        "ValidRowsDT&Sequence_1",
         "DownloadLink&Sequence_1",
         "LatestExcelFilePath&Sequence_1"
       ],
@@ -57,9 +65,14 @@
         "UniqueRows&Sequence_1",
         "InvalidRowsDT&Sequence_1",
         "ValidRowsDT&Sequence_1",
-        "TableText&Sequence_1"
+        "TableText&Sequence_1",
+        "DuplicateRows&Sequence_1",
+        "SeenRows&Sequence_1",
+        "Key&Sequence_35"
       ],
       "ArgumentsSectionElementsOrder": [
+        "out_InvalidRowsDT",
+        "out_ValidRowsDT",
         "in_excelFilePath"
       ],
       "ConstantsSectionElementsOrder": [],
@@ -103,6 +116,26 @@
       ],
       "ArgumentsSectionElementsOrder": [
         "DownloadableURL"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "InputExcelData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "DuplicateRowsDT&Sequence_1",
+        "InputRowsDT&Sequence_1",
+        "TableText&Sequence_16",
+        "StartDateStr&Sequence_12",
+        "EndDateStr&Sequence_12",
+        "InputRowsDT&Sequence_18"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ValidRowsDT",
+        "in_InvalidRowsDT",
+        "out_InputRowsDT",
+        "out_InvalidRowsDT"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="HM6zY6p6ik2xdfq_JZTSdA" Reference="QjS7MUzdXEWdtnxKhJV7XA/QOKPbtaKT0-cN5YrNxfeUA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" CVScreenId="199948cd-98f2-4c96-a8dd-445e4e8024a5" CvElementArea="793, 655, 625, 47" CvType="InputBox" DesignTimeRectangle="795, 657, 623, 42" DesignTimeScaleFactor="1" ElementType="Button" FuzzyAccuracy="0.98" FuzzySelectorArgument="&lt;webctrl id='leave-type-select' tag='BUTTON' type='button' class='flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;amp;&amp;gt;span]:line-clamp-1' aaname='Annual' check:innerText='Annual' /&gt;" Guid="108cf6eb-2df2-47e2-8dbf-186867408b93" ImageBase64="" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="199948cd-98f2-4c96-a8dd-445e4e8024a5" CvTextArea="795, 633, 72, 16" CvTextArgument="Leave Type" CvType="Text" DesignTimeRectangle="796, 630, 70, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Leave Type' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Leave Type' /&gt;" Guid="29f088f2-f6e6-47b3-b586-a8c4de0f5e39" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <TargetAnchorable.PointOffset>
+        <PointOffset Position="TopLeft" X="311" Y="22" />
+      </TargetAnchorable.PointOffset>
+      <imageRef attrName="InformativeScreenshot" originalValue="c6e8b88b36b00c6268db92fb441d62f1.png" xmlns="">0Wz54SLGOR0e6ytaki1BeQg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
