@@ -41,14 +41,23 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 relative">
-      <div className="w-full max-w-md space-y-8 px-4">
+    <div
+      className="min-h-screen w-full flex items-center justify-center relative"
+      style={{
+        backgroundImage: "url('/login_backdrop.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
+      {/* Blur overlay */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-black/50"></div>
+
+      <div className="w-full max-w-md space-y-8 px-4 z-10">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-3xl font-extrabold text-white">
             <span className="font-bold text-3xl text-dhl-red">DHL</span>
             <span className="ml-2">Leave Management</span>
           </h2>
-          <p className="mt-2 text-sm text-gray-600">Sign in to your account</p>
+          <p className="mt-2 text-sm text-gray-200">Sign in to your account</p>
         </div>
 
         <Card>
@@ -81,9 +90,6 @@ const Login = () => {
                     className="block text-sm font-medium text-gray-700">
                     Password
                   </label>
-                  <a href="#" className="text-sm text-dhl-red hover:underline">
-                    Forgot password?
-                  </a>
                 </div>
                 <Input
                   id="password"
@@ -121,14 +127,35 @@ const Login = () => {
           <CardFooter className="flex justify-center border-t pt-4">
             <p className="text-sm text-gray-600">
               Don't have an account?{" "}
-              <a href="#" className="font-medium text-dhl-red hover:underline">
+              <a
+                href="mailto:zuhayer@graduate.utm.my"
+                className="font-medium text-dhl-red hover:underline">
                 Contact your administrator
               </a>
             </p>
           </CardFooter>
         </Card>
       </div>
-      <div className="absolute bottom-4 right-4 flex gap-2">
+
+      {/* Photo credits */}
+      <div className="absolute bottom-4 left-4 z-10">
+        <p className="text-xs text-white">
+          Photo by{" "}
+          <a
+            href="https://unsplash.com/@nikihero666?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+            className="underline hover:text-gray-200">
+            Nikita rud
+          </a>{" "}
+          on{" "}
+          <a
+            href="https://unsplash.com/photos/man-in-black-jacket-riding-bicycle-on-sidewalk-during-daytime-mEF00fo9YFE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+            className="underline hover:text-gray-200">
+            Unsplash
+          </a>
+        </p>
+      </div>
+
+      <div className="absolute bottom-4 right-4 flex gap-2 z-10">
         <IconLink
           type="github"
           href="https://github.com/Zuhu162/dhl-automation-challenge"

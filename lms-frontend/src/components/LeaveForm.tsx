@@ -287,12 +287,20 @@ export default function LeaveForm({
     setIsSubmitting(true);
 
     try {
+      // Format dates directly without timezone conversion
+      const formatDate = (date: Date): string => {
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+        return `${year}-${month}-${day}`;
+      };
+
       const leaveData: LeaveFormData = {
         employeeId: values.employeeId,
         employeeName: values.employeeName,
         leaveType: values.leaveType as LeaveType,
-        startDate: values.startDate.toISOString().split("T")[0],
-        endDate: values.endDate.toISOString().split("T")[0],
+        startDate: formatDate(values.startDate),
+        endDate: formatDate(values.endDate),
         status: values.status as LeaveStatus,
       };
 

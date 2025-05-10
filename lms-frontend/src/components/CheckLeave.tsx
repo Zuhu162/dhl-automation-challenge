@@ -57,8 +57,16 @@ const CheckLeave = ({
       setError(null);
 
       try {
-        const formattedStartDate = format(startDate, "yyyy-MM-dd");
-        const formattedEndDate = format(endDate, "yyyy-MM-dd");
+        // Format dates directly without timezone conversion
+        const formatDate = (date: Date): string => {
+          const day = String(date.getDate()).padStart(2, "0");
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const year = date.getFullYear();
+          return `${year}-${month}-${day}`;
+        };
+
+        const formattedStartDate = formatDate(startDate);
+        const formattedEndDate = formatDate(endDate);
 
         // Get all leaves and filter on the client side
         const response = await api.get("/leaves");

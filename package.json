@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm --prefix lms-backend install && npm --prefix lms-frontend install",
+    "postinstall": "cd lms-backend && npm install && cd ../lms-frontend && npm install && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run dev --prefix lms-frontend\" \"npm run dev --prefix lms-backend\""
   },
