@@ -59,6 +59,7 @@ export function BarChartComponent({
                 }
               : undefined
           }
+          allowDecimals={false}
         />
         <Tooltip />
         {/* <Legend /> */}

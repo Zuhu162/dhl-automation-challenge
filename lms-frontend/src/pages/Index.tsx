@@ -29,7 +29,6 @@ const Index = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [stats, setStats] = useState({
-    onLeave: 0,
     pending: 0,
     approved: 0,
     rejected: 0,
@@ -55,18 +54,6 @@ const Index = () => {
     try {
       setIsLoading(true);
       const applications = await leaveService.getAll();
-      const currentDate = new Date();
-
-      // Calculate current on leave count
-      const onLeave = applications.filter((app) => {
-        const startDate = new Date(app.startDate);
-        const endDate = new Date(app.endDate);
-        return (
-          app.status === "Approved" &&
-          startDate <= currentDate &&
-          endDate >= currentDate
-        );
-      }).length;
 
       // Calculate status counts
       const statusCounts = applications.reduce((acc, app) => {
@@ -75,7 +62,6 @@ const Index = () => {
       }, {} as Record<string, number>);
 
       setStats({
-        onLeave,
         pending: statusCounts.Pending || 0,
         approved: statusCounts.Approved || 0,
         rejected: statusCounts.Rejected || 0,
@@ -85,7 +71,6 @@ const Index = () => {
       toast.error("Failed to fetch leave applications");
       // Set default stats on error
       setStats({
-        onLeave: 0,
         pending: 0,
         approved: 0,
         rejected: 0,

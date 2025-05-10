@@ -31,6 +31,16 @@ const AutomationDialog: React.FC<AutomationDialogProps> = ({
           <DialogDescription>
             You are about to run the UiPath automation process for leave data
             entry.
+            <li>Make sure the Excel file is in the correct format.</li>
+            <li>
+              <a
+                href="https://docs.google.com/spreadsheets/d/10DW-C7t6xAd29Ozk-zAvgTbc_Q-oqdcP/edit?gid=1759902208#gid=1759902208"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-800">
+                Sample Link
+              </a>
+            </li>
           </DialogDescription>
         </DialogHeader>
 

@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import StatsCard from "./StatsCard";
 import EmployeeModal from "./EmployeeModal";
-import { Calendar, Users, CheckCircle, XCircle } from "lucide-react";
+import { LayoutDashboard, Users, CheckCircle, XCircle } from "lucide-react";
 import { LeaveApplication } from "@/types";
 
 interface StatsSectionProps {
   stats: {
-    onLeave: number;
     pending: number;
     approved: number;
     rejected: number;
@@ -20,18 +19,18 @@ const StatsSection: React.FC<StatsSectionProps> = ({
   isLoading,
   onCardClick,
 }) => {
+  const totalApplications = stats.pending + stats.approved + stats.rejected;
   return (
     <div className="grid gap-4 md:grid-cols-4 mb-8">
       <StatsCard
-        title="Currently On Leave"
-        value={stats.onLeave}
-        description="Click to view details"
-        icon={Calendar}
-        iconColor="text-dhl-red"
+        title="Total Applications"
+        value={totalApplications}
+        description="All leave requests submitted"
+        icon={LayoutDashboard}
+        iconColor="text-gray-500"
         isLoading={isLoading}
-        onClick={() => onCardClick("onLeave")}
         bgColor="bg-white"
-        accentColor="bg-red-100"
+        accentColor="bg-gray-100"
       />
 
       <StatsCard
