@@ -148,6 +148,21 @@
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
+    },
+    {
+      "Path": "PostLog.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "JsonBody&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_StartTime",
+        "in_EndTime",
+        "in_FinalInputRowsDT",
+        "in_FinalRejectedRowsDT"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
     }
   ]
 }
