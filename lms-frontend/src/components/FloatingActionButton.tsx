@@ -1,5 +1,5 @@
 import React from "react";
-import { Bot } from "lucide-react";
+import { Bot, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface FloatingActionButtonProps {
@@ -21,6 +21,7 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
   const buttonContent = (
     <>
       <Bot className="h-6 w-6" />
+      <Plus className="h-4 w-4" />
       <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out">
         {label}
       </span>

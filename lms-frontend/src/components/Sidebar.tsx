@@ -27,11 +27,6 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
       path: "/",
     },
     {
-      name: "Calendar",
-      icon: <Calendar className="h-5 w-5" />,
-      path: "/calendar",
-    },
-    {
       name: "Analytics",
       icon: <BarChart className="h-5 w-5" />,
       path: "/analytics",
@@ -40,6 +35,11 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
       name: "Input Leave Data",
       icon: <ClipboardPlus className="h-5 w-5" />,
       path: "/input-leave",
+    },
+    {
+      name: "Calendar",
+      icon: <Calendar className="h-5 w-5" />,
+      path: "/calendar",
     },
     {
       name: "Automation Logs",
