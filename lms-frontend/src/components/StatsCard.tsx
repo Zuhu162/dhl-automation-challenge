@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { LucideIcon } from "lucide-react";
 
 interface StatsCardProps {
@@ -29,7 +35,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
     <Card
       className={`${
         onClick ? "cursor-pointer hover:shadow-md transition-shadow" : ""
-      } ${bgColor} border overflow-hidden`}
+      } ${bgColor} border overflow-hidden relative`}
       onClick={onClick}>
       <div className={`h-1 w-full ${accentColor}`}></div>
       <CardHeader className="pb-2">
@@ -50,6 +56,11 @@ const StatsCard: React.FC<StatsCardProps> = ({
           <p className="text-sm text-muted-foreground mt-1">{description}</p>
         </div>
       </CardContent>
+      {onClick && (
+        <CardFooter className="pt-0 pb-2 px-6 flex justify-end">
+          <p className="text-xs text-gray-400 italic">Click to View</p>
+        </CardFooter>
+      )}
     </Card>
   );
 };

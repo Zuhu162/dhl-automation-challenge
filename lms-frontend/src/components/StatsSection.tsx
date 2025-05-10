@@ -1,7 +1,7 @@
 import React from "react";
 import StatsCard from "./StatsCard";
 import EmployeeModal from "./EmployeeModal";
-import { LayoutDashboard, Users, CheckCircle, XCircle } from "lucide-react";
+import { LayoutDashboard, CheckCircle, XCircle, Hourglass } from "lucide-react";
 import { LeaveApplication } from "@/types";
 
 interface StatsSectionProps {
@@ -37,7 +37,7 @@ const StatsSection: React.FC<StatsSectionProps> = ({
         title="Pending Approval"
         value={stats.pending}
         description="Awaiting review"
-        icon={Users}
+        icon={Hourglass}
         iconColor="text-yellow-500"
         isLoading={isLoading}
         onClick={() => onCardClick("pending")}

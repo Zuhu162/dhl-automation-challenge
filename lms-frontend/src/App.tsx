@@ -15,6 +15,7 @@ import ApiDocs from "./pages/ApiDocs";
 import Analytics from "./pages/Analytics";
 import InputLeave from "./pages/InputLeave";
 import AutomationLogs from "./pages/AutomationLogs";
+import Calendar from "./pages/Calendar";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import { authService } from "@/services/authService";
@@ -107,6 +108,14 @@ const App = () => (
                 element={
                   <RequireAuth>
                     <ApiDocs />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/calendar"
+                element={
+                  <RequireAuth>
+                    <Calendar />
                   </RequireAuth>
                 }
               />

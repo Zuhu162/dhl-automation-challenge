@@ -8,6 +8,7 @@ import {
   Github,
   ExternalLink,
   Heart,
+  Calendar,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,11 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
       name: "Dashboard",
       icon: <LayoutDashboard className="h-5 w-5" />,
       path: "/",
+    },
+    {
+      name: "Calendar",
+      icon: <Calendar className="h-5 w-5" />,
+      path: "/calendar",
     },
     {
       name: "Analytics",

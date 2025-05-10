@@ -1,6 +1,6 @@
 import React from "react";
 import StatsCard from "./StatsCard";
-import { Calendar, Users, CheckCircle, XCircle } from "lucide-react";
+import { Calendar, CheckCircle, XCircle, Hourglass } from "lucide-react";
 
 interface PastelStatsSectionProps {
   stats: {
@@ -36,7 +36,7 @@ const PastelStatsSection: React.FC<PastelStatsSectionProps> = ({
         title="Pending Approval"
         value={stats.pending}
         description="Awaiting review"
-        icon={Users}
+        icon={Hourglass}
         iconColor="text-yellow-500"
         isLoading={isLoading}
         onClick={() => onCardClick("pending")}
