@@ -14,7 +14,6 @@
       "VariablesSectionElementsOrder": [
         "StartTime&Sequence_1",
         "EndTime&Sequence_1",
-        "EmailErrorDetails&Sequence_1",
         "InvalidRowsDT&Sequence_1",
         "FinalInputRowsDT&Sequence_1",
         "FinalRejectedRowsDT&Sequence_1",
@@ -54,31 +53,6 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "ValidateExcelFile.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "SheetName&Sequence_1",
-        "ExcelLeaveRecordsDT&Sequence_1",
-        "ErrorImage&Sequence_1",
-        "ScreenshotFilePath&Sequence_1",
-        "ScreenshotFolder&Sequence_1",
-        "UniqueRows&Sequence_1",
-        "InvalidRowsDT&Sequence_1",
-        "ValidRowsDT&Sequence_1",
-        "TableText&Sequence_1",
-        "DuplicateRows&Sequence_1",
-        "SeenRows&Sequence_1",
-        "Key&Sequence_35"
-      ],
-      "ArgumentsSectionElementsOrder": [
-        "out_InvalidRowsDT",
-        "out_ValidRowsDT",
-        "in_excelFilePath"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
       "Path": "DownloadExcel.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
@@ -92,13 +66,15 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "TakeScreenshot.xaml",
+      "Path": "ErrorHandler.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "AttachmentList&Sequence_1",
         "Screenshot&Sequence_1",
         "ScreenshotFileInfo&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_exception",
         "in_Folder",
         "io_FilePath"
       ],
@@ -137,6 +113,39 @@
         "out_InputRowsDT",
         "out_InvalidRowsDT"
       ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "ValidateExcelFile.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Key&Sequence_46",
+        "SheetName&Sequence_1",
+        "ExcelLeaveRecordsDT&Sequence_1",
+        "ErrorImage&Sequence_1",
+        "ScreenshotFilePath&Sequence_1",
+        "ScreenshotFolder&Sequence_1",
+        "UniqueRows&Sequence_1",
+        "InvalidRowsDT&Sequence_1",
+        "ValidRowsDT&Sequence_1",
+        "TableText&Sequence_1",
+        "DuplicateRows&Sequence_1",
+        "SeenRows&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_excelFilePath",
+        "out_ValidRowsDT",
+        "out_InvalidRowsDT"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Login.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     }

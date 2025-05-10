@@ -61,7 +61,7 @@ export function BarChartComponent({
           }
         />
         <Tooltip />
-        <Legend />
+        {/* <Legend /> */}
         <Bar dataKey="value" fill={color} />
       </BarChart>
     </ResponsiveContainer>
