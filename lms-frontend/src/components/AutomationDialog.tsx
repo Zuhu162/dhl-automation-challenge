@@ -41,6 +41,10 @@ const AutomationDialog: React.FC<AutomationDialogProps> = ({
                 Sample Link
               </a>
             </li>
+            <li>
+              Also, please ensure that there are no browser tabs currently open
+              with the Leave Management System before proceeding.
+            </li>
           </DialogDescription>
         </DialogHeader>
 

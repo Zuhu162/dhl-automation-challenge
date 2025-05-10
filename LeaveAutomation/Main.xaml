@@ -120,7 +120,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1276,2050" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1276,2167" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DownloadLink" />
       <Variable x:TypeArguments="x:String" Name="LatestExcelFilePath" />
@@ -145,7 +145,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Main Process Start&quot;]" />
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Welcome to the Leave Management System Input Automation Process.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xD;&#xA;&quot;Please ensure that the spreadsheet link you provide is valid, publicly accessible, and contains the required headers.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xD;&#xA;&quot;A sample spreadsheet is available in the web application for reference.&quot;]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Welcome to the Leave Management System Input Automation Process.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xA;&quot;Please ensure that the spreadsheet link you provide is valid, publicly accessible, and contains the required headers.&quot; &amp; vbCrLf &amp; _&#xA;&quot;A sample spreadsheet is available in the web application for reference.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xA;&quot;Also, please ensure that there are no browser tabs currently open with the Leave Management System before proceeding.&quot;]" />
     <Assign sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateTime">[StartTime]</OutArgument>
@@ -221,7 +221,7 @@
         </ui:SendMail.Files>
       </ui:SendMail>
     </Sequence>
-    <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xD;&#xA;  &quot;&quot;status&quot;&quot;: true,&#xD;&#xA;  &quot;&quot;timeStart&quot;&quot;: &quot;&quot;&quot; &amp; StartTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xD;&#xA;  &quot;&quot;timeEnd&quot;&quot;: &quot;&quot;&quot; &amp; EndTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xD;&#xA;  &quot;&quot;successfulRows&quot;&quot;: &quot; &amp; FinalInputRowsDT.Rows.Count().ToString() &amp; &quot;,&#xD;&#xA;  &quot;&quot;failedRows&quot;&quot;: &quot; &amp; FinalRejectedRowsDT.Rows.Count().ToString() &amp; &quot;,&#xD;&#xA;  &quot;&quot;spreadsheetLink&quot;&quot;: &quot;&quot;&quot; &amp; DownloadLink &amp; &quot;&quot;&quot;&#xD;&#xA;}&quot;]" BodyFormat="application/json" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:5000/api/automation-logs" sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" TimeoutMS="6000">
+    <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;  &quot;&quot;status&quot;&quot;: true,&#xA;  &quot;&quot;timeStart&quot;&quot;: &quot;&quot;&quot; &amp; StartTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;timeEnd&quot;&quot;: &quot;&quot;&quot; &amp; EndTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;successfulRows&quot;&quot;: &quot; &amp; FinalInputRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;failedRows&quot;&quot;: &quot; &amp; FinalRejectedRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;spreadsheetLink&quot;&quot;: &quot;&quot;&quot; &amp; DownloadLink &amp; &quot;&quot;&quot;&#xA;}&quot;]" BodyFormat="application/json" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:5000/api/automation-logs" sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Attachments>
@@ -238,6 +238,7 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,117" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Automation Process Completed. Check logs for more details&quot;]" />
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Main Process Ended&quot;]" />
   </Sequence>
 </Activity>
