@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Menu, Bell, Search, User, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Menu, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
@@ -15,7 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { authService } from "@/services/authService";
-import { IconLink } from "./IconLink";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,13 +44,6 @@ const Header = () => {
               />
             </SheetContent>
           </Sheet>
-          <div className="hidden md:flex items-center gap-1">
-            <IconLink
-              type="github"
-              href="https://github.com/Zuhu162/dhl-automation-challenge"
-            />
-            <IconLink type="portfolio" href="https://zuhu.dev/" />
-          </div>
         </div>
 
         <div className="flex items-center space-x-4">

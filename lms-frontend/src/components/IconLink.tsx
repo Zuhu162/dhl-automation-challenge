@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Github, Globe } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -17,7 +17,7 @@ export function IconLink({ type, href }: IconLinkProps) {
     type === "github" ? (
       <Github className="h-5 w-5" />
     ) : (
-      <Globe className="h-5 w-5" />
+      <ExternalLink className="h-5 w-5" />
     );
   const tooltip =
     type === "github" ? "View GitHub Repository" : "Visit Portfolio";
