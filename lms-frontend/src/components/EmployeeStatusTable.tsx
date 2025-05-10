@@ -13,8 +13,14 @@ import {
 } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const EmployeeStatusTable = () => {
-  const [isLoading, setIsLoading] = useState(true);
+interface EmployeeStatusTableProps {
+  isLoading?: boolean;
+}
+
+const EmployeeStatusTable = ({
+  isLoading = false,
+}: EmployeeStatusTableProps) => {
+  const [internalLoading, setInternalLoading] = useState(true);
   const [upcomingLeaves, setUpcomingLeaves] = useState<LeaveApplication[]>([]);
   const [returningEmployees, setReturningEmployees] = useState<
     LeaveApplication[]
@@ -23,7 +29,7 @@ const EmployeeStatusTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading(true);
+        setInternalLoading(true);
         const applications = await leaveService.getAll();
         const today = new Date();
 
@@ -70,12 +76,15 @@ const EmployeeStatusTable = () => {
         setUpcomingLeaves([]);
         setReturningEmployees([]);
       } finally {
-        setIsLoading(false);
+        setInternalLoading(false);
       }
     };
 
     fetchData();
   }, []);
+
+  // Use either the prop or internal loading state
+  const loading = isLoading || internalLoading;
 
   const LoadingRow = () => (
     <tr className="border-b">
@@ -109,7 +118,7 @@ const EmployeeStatusTable = () => {
           </TabsList>
 
           <TabsContent value="upcoming">
-            {isLoading ? (
+            {loading ? (
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-muted">
@@ -184,7 +193,7 @@ const EmployeeStatusTable = () => {
           </TabsContent>
 
           <TabsContent value="returning">
-            {isLoading ? (
+            {loading ? (
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-muted">

@@ -2,27 +2,14 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Users, CheckCircle, XCircle } from "lucide-react";
 import { leaveService } from "@/services/leaveService";
-import { LeaveApplication } from "@/types";
-import { ChartContainer } from "@/components/ui/chart";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Legend,
-  Tooltip,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-} from "recharts";
 import EmployeeStatusTable from "@/components/EmployeeStatusTable";
 import EmployeeModal from "@/components/EmployeeModal";
 import { toast } from "sonner";
 import PastelStatsSection from "@/components/PastelStatsSection";
 import useEmployeeFilter from "@/hooks/useEmployeeFilter";
+import { PieChartComponent } from "@/components/charts/PieChartComponent";
+import { BarChartComponent } from "@/components/charts/BarChartComponent";
 
 const Analytics = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -153,7 +140,7 @@ const Analytics = () => {
   };
 
   // Prepare data for the pie chart
-  const pieData = [
+  const statusData = [
     { name: "Approved", value: stats.approved, color: "#4caf50" },
     { name: "Pending", value: stats.pending, color: "#ff9800" },
     { name: "Rejected", value: stats.rejected, color: "#f44336" },
@@ -194,35 +181,11 @@ const Analytics = () => {
                 <CardTitle>Leave Status Distribution</CardTitle>
               </CardHeader>
               <CardContent className="h-80">
-                {isLoading ? (
-                  <div className="h-full flex items-center justify-center">
-                    <p className="text-muted-foreground">
-                      Loading chart data...
-                    </p>
-                  </div>
-                ) : (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={pieData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                        label={({ name, percent }) =>
-                          `${name}: ${(percent * 100).toFixed(0)}%`
-                        }>
-                        {pieData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                      <Legend />
-                    </PieChart>
-                  </ResponsiveContainer>
-                )}
+                <PieChartComponent
+                  data={statusData}
+                  loading={isLoading}
+                  height={300}
+                />
               </CardContent>
             </Card>
 
@@ -231,82 +194,51 @@ const Analytics = () => {
                 <CardTitle>Leave Types</CardTitle>
               </CardHeader>
               <CardContent className="h-80">
-                {isLoading ? (
-                  <div className="h-full flex items-center justify-center">
-                    <p className="text-muted-foreground">
-                      Loading chart data...
-                    </p>
-                  </div>
-                ) : (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={leaveTypeData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                        label={({ name, percent }) =>
-                          `${name}: ${(percent * 100).toFixed(0)}%`
-                        }>
-                        {leaveTypeData.map((entry, index) => (
-                          <Cell
-                            key={`cell-${index}`}
-                            fill={
-                              leaveTypeColors[index % leaveTypeColors.length]
-                            }
-                          />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                      <Legend />
-                    </PieChart>
-                  </ResponsiveContainer>
-                )}
+                <PieChartComponent
+                  data={leaveTypeData}
+                  colors={leaveTypeColors}
+                  loading={isLoading}
+                  height={300}
+                />
               </CardContent>
             </Card>
-          </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card>
+            <Card className="md:col-span-2">
               <CardHeader>
                 <CardTitle>Monthly Leave Applications</CardTitle>
               </CardHeader>
               <CardContent className="h-80">
-                {isLoading ? (
-                  <div className="h-full flex items-center justify-center">
-                    <p className="text-muted-foreground">
-                      Loading chart data...
-                    </p>
-                  </div>
-                ) : (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={monthlyData}>
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Bar dataKey="value" fill="#8884d8" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                )}
+                <BarChartComponent
+                  data={monthlyData}
+                  loading={isLoading}
+                  height={300}
+                  xAxisLabel="Month"
+                  yAxisLabel="Number of Applications"
+                  color="#8884d8"
+                />
               </CardContent>
             </Card>
-
-            <EmployeeStatusTable />
           </div>
+
+          {/* Employee Status Table */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Employee Leave Status</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <EmployeeStatusTable isLoading={isLoading} />
+            </CardContent>
+          </Card>
+
+          {/* Employee Modal */}
+          <EmployeeModal
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            title={getModalTitle()}
+            employees={filteredEmployees}
+          />
         </main>
       </div>
-
-      {isModalOpen && (
-        <EmployeeModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          employees={filteredEmployees}
-          title={getModalTitle()}
-        />
-      )}
     </>
   );
 };
