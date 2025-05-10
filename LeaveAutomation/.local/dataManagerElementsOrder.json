@@ -12,14 +12,14 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "StartTime&Sequence_1",
-        "EndTime&Sequence_1",
+        "DownloadLink&Sequence_1",
+        "ValidRowsDT&Sequence_1",
         "InvalidRowsDT&Sequence_1",
         "FinalInputRowsDT&Sequence_1",
         "FinalRejectedRowsDT&Sequence_1",
         "outinvalidrowsdt&Sequence_1",
-        "ValidRowsDT&Sequence_1",
-        "DownloadLink&Sequence_1",
+        "StartTime&Sequence_1",
+        "EndTime&Sequence_1",
         "LatestExcelFilePath&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [],

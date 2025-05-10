@@ -222,7 +222,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Fatal" Message="[&quot;Header missing, Aborting&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Header missing, Aborting&quot;]" />
           <TryCatch DisplayName="Try Catch - Delete Excel File" sap:VirtualizedContainerService.HintSize="418,823" sap2010:WorkflowViewState.IdRef="TryCatch_5">
             <TryCatch.Try>
               <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="416,336" sap2010:WorkflowViewState.IdRef="Sequence_49">
@@ -330,7 +330,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[String.IsNullOrWhiteSpace(CurrentRow(&quot;Employee Name&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Staff ID&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Leave Type&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Start Date&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;End Date&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Status&quot;).ToString)]" DisplayName="If - Check for invalid/missing row data " sap:VirtualizedContainerService.HintSize="439,906" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If Condition="[String.IsNullOrWhiteSpace(CurrentRow(&quot;Employee Name&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Staff ID&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Leave Type&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Start Date&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;End Date&quot;).ToString) OrElse&#xA;String.IsNullOrWhiteSpace(CurrentRow(&quot;Status&quot;).ToString)]" DisplayName="If - Check for invalid/missing row data " sap:VirtualizedContainerService.HintSize="439,726" sap2010:WorkflowViewState.IdRef="If_3">
                     <If.Then>
                       <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,499" sap2010:WorkflowViewState.IdRef="Sequence_12">
                         <sap:WorkflowViewStateService.ViewState>
@@ -344,24 +344,24 @@
                       </Sequence>
                     </If.Then>
                     <If.Else>
-                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,269" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_13">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[ValidRowsDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="382,209" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
                       </Sequence>
                     </If.Else>
                   </If>
-                  <ui:IfElseIfV2 Condition="[Not DateTime.TryParse(CurrentRow(&quot;Start Date&quot;).ToString, New DateTime) OrElse&#xA;Not DateTime.TryParse(CurrentRow(&quot;End Date&quot;).ToString, New DateTime) OrElse&#xA;DateTime.Parse(CurrentRow(&quot;Start Date&quot;).ToString) &gt; DateTime.Parse(CurrentRow(&quot;End Date&quot;).ToString) OrElse&#xA;Not {&quot;Approved&quot;, &quot;Rejected&quot;, &quot;Pending&quot;}.Contains(CurrentRow(&quot;Status&quot;).ToString.Trim) OrElse&#xA;Not {&quot;Annual Leave&quot;, &quot;Medical Leave&quot;, &quot;Emergency Leave&quot;}.Contains(CurrentRow(&quot;Leave Type&quot;).ToString.Trim)]" DisplayName="Else If - Check for Invalid Data (incorrect dates, leave types, status)" sap:VirtualizedContainerService.HintSize="439,708" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+                  <ui:IfElseIfV2 Condition="[Not DateTime.TryParse(CurrentRow(&quot;Start Date&quot;).ToString, New DateTime) OrElse&#xA;Not DateTime.TryParse(CurrentRow(&quot;End Date&quot;).ToString, New DateTime) OrElse&#xA;DateTime.Parse(CurrentRow(&quot;Start Date&quot;).ToString) &gt; DateTime.Parse(CurrentRow(&quot;End Date&quot;).ToString) OrElse&#xA;Not {&quot;Approved&quot;, &quot;Rejected&quot;, &quot;Pending&quot;}.Contains(CurrentRow(&quot;Status&quot;).ToString.Trim) OrElse&#xA;Not {&quot;Annual Leave&quot;, &quot;Medical Leave&quot;, &quot;Emergency Leave&quot;}.Contains(CurrentRow(&quot;Leave Type&quot;).ToString.Trim)]" DisplayName="Else If - Check for Invalid Data (incorrect dates, leave types, status)" sap:VirtualizedContainerService.HintSize="439,888" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
                     <ui:IfElseIfV2.Else>
-                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="437,89" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="437,269" sap2010:WorkflowViewState.IdRef="Sequence_15">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
+                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[ValidRowsDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="403,209" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
                       </Sequence>
                     </ui:IfElseIfV2.Else>
                     <ui:IfElseIfV2.ElseIfs>
@@ -397,7 +397,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Fatal" Message="[exception]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception]" />
             </Sequence>
           </ActivityAction>
         </Catch>

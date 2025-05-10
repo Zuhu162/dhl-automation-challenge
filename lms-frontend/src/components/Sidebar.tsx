@@ -64,7 +64,7 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
       <div className="px-6 mt-4 mb-6">
         <Link to="/" className="flex items-center" onClick={handleClick}>
           <span className="font-bold text-2xl text-dhl-red">DHL</span>
-          <span className="text-xl ml-2">Leave Management</span>
+          <span className="text-md ml-2">Leave Management System</span>
         </Link>
       </div>
 

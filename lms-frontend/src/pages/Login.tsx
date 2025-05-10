@@ -55,7 +55,7 @@ const Login = () => {
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-extrabold text-white">
             <span className="font-bold text-3xl text-dhl-red">DHL</span>
-            <span className="ml-2">Leave Management</span>
+            <span className="ml-2">Leave Management System</span>
           </h2>
           <p className="mt-2 text-sm text-gray-200">Sign in to your account</p>
         </div>
