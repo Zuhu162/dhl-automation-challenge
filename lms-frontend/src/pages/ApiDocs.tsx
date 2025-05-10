@@ -100,13 +100,20 @@ const ApiDocs = () => {
                       </tr>
                       <tr>
                         <td className="px-4 py-2 font-medium">Start Date</td>
-                        <td className="px-4 py-2">Date (YYYY-MM-DD)</td>
-                        <td className="px-4 py-2">"2023-11-15"</td>
+                        <td className="px-4 py-2">Date (DD-MM-YYYY)</td>
+                        <td className="px-4 py-2">"10/05/2025"</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-2 font-medium">End Date</td>
-                        <td className="px-4 py-2">Date (YYYY-MM-DD)</td>
-                        <td className="px-4 py-2">"2023-11-20"</td>
+                        <td className="px-4 py-2">Date (DD-MM-YYYY)</td>
+                        <td className="px-4 py-2">"10/05/2025"</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 font-medium">Status</td>
+                        <td className="px-4 py-2">
+                          String (Pending, Approved, Rejected)
+                        </td>
+                        <td className="px-4 py-2">"Rejected"</td>
                       </tr>
                     </tbody>
                   </table>

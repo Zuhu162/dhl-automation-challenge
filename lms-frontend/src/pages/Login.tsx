@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { authService } from "@/services/authService";
 import { AxiosError } from "axios";
+import { IconLink } from "@/components/IconLink";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,7 +41,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 relative">
       <div className="w-full max-w-md space-y-8 px-4">
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
@@ -102,6 +103,20 @@ const Login = () => {
                 {isLoading ? "Signing in..." : "Sign in"}
               </Button>
             </form>
+
+            <div className="mt-4 p-3 border border-dashed border-gray-300 rounded-md bg-gray-50">
+              <p className="text-sm font-medium text-gray-700">
+                Demo Credentials:
+              </p>
+              <div className="text-sm text-gray-600 mt-1">
+                <p>
+                  <span className="font-medium">Email:</span> hr@dhl.com
+                </p>
+                <p>
+                  <span className="font-medium">Password:</span> 9A8+8|]'73w3
+                </p>
+              </div>
+            </div>
           </CardContent>
           <CardFooter className="flex justify-center border-t pt-4">
             <p className="text-sm text-gray-600">
@@ -112,6 +127,13 @@ const Login = () => {
             </p>
           </CardFooter>
         </Card>
+      </div>
+      <div className="absolute bottom-4 right-4 flex gap-2">
+        <IconLink
+          type="github"
+          href="https://github.com/Zuhu162/dhl-automation-challenge"
+        />
+        <IconLink type="portfolio" href="https://zuhu.dev/" />
       </div>
     </div>
   );

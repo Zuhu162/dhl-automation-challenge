@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { authService } from "@/services/authService";
+import { IconLink } from "./IconLink";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -31,7 +32,7 @@ const Header = () => {
   return (
     <header className="bg-white border-b sticky top-0 z-10">
       <div className="flex items-center justify-between px-4 py-3">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -45,6 +46,13 @@ const Header = () => {
               />
             </SheetContent>
           </Sheet>
+          <div className="hidden md:flex items-center gap-1">
+            <IconLink
+              type="github"
+              href="https://github.com/Zuhu162/dhl-automation-challenge"
+            />
+            <IconLink type="portfolio" href="https://zuhu.dev/" />
+          </div>
         </div>
 
         <div className="flex items-center space-x-4">

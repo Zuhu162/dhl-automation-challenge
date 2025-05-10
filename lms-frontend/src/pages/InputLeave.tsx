@@ -29,16 +29,25 @@ import { z } from "zod";
 import { LeaveType, LeaveStatus } from "@/types";
 import { leaveService } from "@/services/leaveService";
 
-const formSchema = z.object({
-  employeeName: z
-    .string()
-    .min(2, { message: "Name must be at least 2 characters" }),
-  employeeId: z.string().min(1, { message: "Staff ID is required" }),
-  leaveType: z.enum(["Annual", "Medical", "Emergency", "Other"] as const),
-  startDate: z.date({ required_error: "Start date is required" }),
-  endDate: z.date({ required_error: "End date is required" }),
-  status: z.enum(["Pending", "Approved", "Rejected"] as const),
-});
+const formSchema = z
+  .object({
+    employeeName: z
+      .string()
+      .min(2, { message: "Name must be at least 2 characters" }),
+    employeeId: z.string().min(1, { message: "Staff ID is required" }),
+    leaveType: z.enum(["Annual", "Medical", "Emergency", "Other"] as const, {
+      errorMap: () => ({ message: "Please select a valid leave type" }),
+    }),
+    startDate: z.date({ required_error: "Start date is required" }),
+    endDate: z.date({ required_error: "End date is required" }),
+    status: z.enum(["Pending", "Approved", "Rejected"] as const, {
+      errorMap: () => ({ message: "Please select a valid status" }),
+    }),
+  })
+  .refine((data) => data.startDate <= data.endDate, {
+    message: "End date must be on or after the start date",
+    path: ["endDate"],
+  });
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -75,7 +84,8 @@ const InputLeave = () => {
   const handleManualDateChange = (
     value: string,
     field: { onChange: (date: Date | undefined) => void },
-    setInputValue: React.Dispatch<React.SetStateAction<string>>
+    setInputValue: React.Dispatch<React.SetStateAction<string>>,
+    fieldName: "startDate" | "endDate"
   ) => {
     setInputValue(value);
 
@@ -100,6 +110,20 @@ const InputLeave = () => {
       // Check if the result is a valid date
       if (isValid(date)) {
         field.onChange(date);
+
+        // Validate date range if both dates are set
+        const startDate =
+          fieldName === "startDate" ? date : form.getValues("startDate");
+        const endDate =
+          fieldName === "endDate" ? date : form.getValues("endDate");
+
+        if (startDate && endDate && endDate < startDate) {
+          form.setError("endDate", {
+            message: "End date must be on or after the start date",
+          });
+        } else {
+          form.clearErrors("endDate");
+        }
       }
     } catch (error) {
       console.log("Invalid date format:", error);
@@ -124,9 +148,14 @@ const InputLeave = () => {
       setShowLeaveTypeOptions(true);
     }
 
-    // Only update form field if the value exactly matches one of the options
-    if (leaveTypeOptions.includes(value)) {
-      field.onChange(value);
+    // Update form field with the value to trigger validation
+    field.onChange(value);
+
+    // If it's not a valid option, it will trigger the validation error
+    if (!leaveTypeOptions.includes(value) && value) {
+      form.setError("leaveType", {
+        message: "Please select a valid leave type",
+      });
     }
   };
 
@@ -148,9 +177,14 @@ const InputLeave = () => {
       setShowStatusOptions(true);
     }
 
-    // Only update form field if the value exactly matches one of the options
-    if (statusOptions.includes(value)) {
-      field.onChange(value);
+    // Update form field with the value to trigger validation
+    field.onChange(value);
+
+    // If it's not a valid option, it will trigger the validation error
+    if (!statusOptions.includes(value) && value) {
+      form.setError("status", {
+        message: "Please select a valid status",
+      });
     }
   };
 
@@ -218,6 +252,14 @@ const InputLeave = () => {
   }, []);
 
   const onSubmit = (data: FormValues) => {
+    // Validate that end date is not before start date
+    if (data.endDate < data.startDate) {
+      form.setError("endDate", {
+        message: "End date must be on or after the start date",
+      });
+      return;
+    }
+
     // Create a new leave application
     const leaveFormData = {
       employeeName: data.employeeName,
@@ -362,40 +404,38 @@ const InputLeave = () => {
                           Leave Type
                         </FormLabel>
                         <div className="relative">
-                          <FormControl>
-                            <Input
-                              id="leave-type-input"
-                              placeholder="Type or select leave type"
-                              value={leaveTypeInput}
-                              onChange={(e) =>
-                                handleLeaveTypeChange(e.target.value, field)
-                              }
-                              onClick={() => setShowLeaveTypeOptions(true)}
-                              className="w-full"
-                            />
-                          </FormControl>
-                          {showLeaveTypeOptions &&
-                            filteredLeaveTypes.length > 0 && (
-                              <div
-                                className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg max-h-60 overflow-auto"
-                                onClick={(e) => e.stopPropagation()}>
-                                {filteredLeaveTypes.map((option) => (
-                                  <div
-                                    key={option}
-                                    id={`leave-type-${option.toLowerCase()}`}
-                                    className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
-                                      leaveTypeInput === option
-                                        ? "bg-gray-50"
-                                        : ""
-                                    }`}
-                                    onClick={() =>
-                                      selectLeaveType(option, field)
-                                    }>
-                                    {option}
-                                  </div>
-                                ))}
-                              </div>
+                          <Input
+                            placeholder="Search or select leave type"
+                            value={leaveTypeInput}
+                            onChange={(e) =>
+                              handleLeaveTypeChange(e.target.value, field)
+                            }
+                            onFocus={() => setShowLeaveTypeOptions(true)}
+                            className={cn(
+                              form.formState.errors.leaveType &&
+                                "border-red-500"
                             )}
+                          />
+                          {showLeaveTypeOptions && (
+                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
+                              {filteredLeaveTypes.map((option) => (
+                                <div
+                                  key={option}
+                                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                  onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    selectLeaveType(option, field);
+                                  }}>
+                                  {option}
+                                </div>
+                              ))}
+                              {filteredLeaveTypes.length === 0 && (
+                                <div className="px-4 py-2 text-gray-500">
+                                  No matching leave types
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
                         <FormMessage />
                       </FormItem>
@@ -421,7 +461,8 @@ const InputLeave = () => {
                                   handleManualDateChange(
                                     e.target.value,
                                     field,
-                                    setStartDateInput
+                                    setStartDateInput,
+                                    "startDate"
                                   )
                                 }
                                 className="rounded-r-none"
@@ -476,7 +517,8 @@ const InputLeave = () => {
                                   handleManualDateChange(
                                     e.target.value,
                                     field,
-                                    setEndDateInput
+                                    setEndDateInput,
+                                    "endDate"
                                   )
                                 }
                                 className="rounded-r-none"
@@ -521,33 +563,35 @@ const InputLeave = () => {
                       <FormItem>
                         <FormLabel htmlFor="status-input">Status</FormLabel>
                         <div className="relative">
-                          <FormControl>
-                            <Input
-                              id="status-input"
-                              placeholder="Type or select status"
-                              value={statusInput}
-                              onChange={(e) =>
-                                handleStatusChange(e.target.value, field)
-                              }
-                              onClick={() => setShowStatusOptions(true)}
-                              className="w-full"
-                            />
-                          </FormControl>
-                          {showStatusOptions && filteredStatuses.length > 0 && (
-                            <div
-                              className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg max-h-60 overflow-auto"
-                              onClick={(e) => e.stopPropagation()}>
+                          <Input
+                            placeholder="Search or select status"
+                            value={statusInput}
+                            onChange={(e) =>
+                              handleStatusChange(e.target.value, field)
+                            }
+                            onFocus={() => setShowStatusOptions(true)}
+                            className={cn(
+                              form.formState.errors.status && "border-red-500"
+                            )}
+                          />
+                          {showStatusOptions && (
+                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
                               {filteredStatuses.map((option) => (
                                 <div
                                   key={option}
-                                  id={`status-${option.toLowerCase()}`}
-                                  className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
-                                    statusInput === option ? "bg-gray-50" : ""
-                                  }`}
-                                  onClick={() => selectStatus(option, field)}>
+                                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                  onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    selectStatus(option, field);
+                                  }}>
                                   {option}
                                 </div>
                               ))}
+                              {filteredStatuses.length === 0 && (
+                                <div className="px-4 py-2 text-gray-500">
+                                  No matching statuses
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>

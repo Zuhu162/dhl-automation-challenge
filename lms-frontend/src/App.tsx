@@ -13,7 +13,6 @@ import {
 import Index from "./pages/Index";
 import ApiDocs from "./pages/ApiDocs";
 import Analytics from "./pages/Analytics";
-import SpreadsheetLink from "./pages/SpreadsheetLink";
 import InputLeave from "./pages/InputLeave";
 import AutomationLogs from "./pages/AutomationLogs";
 import Login from "./pages/Login";
@@ -84,14 +83,6 @@ const App = () => (
                 element={
                   <RequireAuth>
                     <Analytics />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/upload"
-                element={
-                  <RequireAuth>
-                    <SpreadsheetLink />
                   </RequireAuth>
                 }
               />
