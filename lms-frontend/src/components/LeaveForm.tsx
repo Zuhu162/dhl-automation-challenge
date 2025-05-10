@@ -109,8 +109,8 @@ export default function LeaveForm({
           employeeId: "",
           employeeName: "",
           leaveType: "Annual" as LeaveType,
-          startDate: new Date(),
-          endDate: new Date(),
+          startDate: undefined,
+          endDate: undefined,
           status: "Pending" as LeaveStatus,
         },
     mode: "onChange",
@@ -243,6 +243,8 @@ export default function LeaveForm({
     const startDate = form.watch("startDate");
     if (startDate) {
       setStartDateInput(format(startDate, "dd/MM/yyyy"));
+    } else {
+      setStartDateInput("");
     }
   }, [form.watch("startDate")]);
 
@@ -250,6 +252,8 @@ export default function LeaveForm({
     const endDate = form.watch("endDate");
     if (endDate) {
       setEndDateInput(format(endDate, "dd/MM/yyyy"));
+    } else {
+      setEndDateInput("");
     }
   }, [form.watch("endDate")]);
 
@@ -325,6 +329,7 @@ export default function LeaveForm({
       setLeaveTypeInput("Annual");
       setStatusInput("Pending");
       setIsDuplicateFound(false);
+      setDuplicateCheckPassed(false);
     } catch (error) {
       toast({
         title: "Error",
@@ -353,6 +358,7 @@ export default function LeaveForm({
     setLeaveTypeInput("Annual");
     setStatusInput("Pending");
     setIsDuplicateFound(false);
+    setDuplicateCheckPassed(false);
     toast({
       title: "Form fields cleared",
       description: "All fields have been reset.",
@@ -369,6 +375,15 @@ export default function LeaveForm({
   const employeeId = form.watch("employeeId");
   const startDate = form.watch("startDate");
   const endDate = form.watch("endDate");
+
+  // Track if duplicate check has been completed successfully
+  const [duplicateCheckPassed, setDuplicateCheckPassed] = useState(false);
+
+  // Update the duplicate check callback to also set if check passed
+  const handleDuplicateCheck = (isDuplicate: boolean) => {
+    handleDuplicateFound(isDuplicate);
+    setDuplicateCheckPassed(!isDuplicate);
+  };
 
   return (
     <Form {...form}>
@@ -635,7 +650,8 @@ export default function LeaveForm({
                 !form.formState.isValid ||
                 isDuplicateFound ||
                 isCheckingDuplicate ||
-                isSubmitting
+                isSubmitting ||
+                !duplicateCheckPassed
               }
               id="leaveform-submit-btn">
               {isSubmitting
@@ -668,7 +684,7 @@ export default function LeaveForm({
             employeeId={employeeId}
             startDate={startDate}
             endDate={endDate}
-            onDuplicateFound={handleDuplicateFound}
+            onDuplicateFound={handleDuplicateCheck}
           />
         )}
       </form>
