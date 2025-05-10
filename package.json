@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "workspaces": [
-    "lms-frontend",
-    "lms-backend"
-  ],
   "scripts": {
+    "postinstall": "npm --prefix lms-backend install && npm --prefix lms-frontend install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run dev --prefix lms-frontend\" \"npm run dev --prefix lms-backend\""
   },
