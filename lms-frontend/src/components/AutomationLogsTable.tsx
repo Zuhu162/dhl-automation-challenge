@@ -1,4 +1,4 @@
-import { format, parseISO, addHours } from "date-fns";
+import { parseISO, addHours } from "date-fns";
 import { CheckCircle, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -44,8 +44,18 @@ export function AutomationLogsTable({
   };
 
   // Format date with timezone adjustment
-  const formatDate = (dateString: string): string => {
-    return format(adjustTimeZone(dateString), "PPpp");
+  const formatDate = (isoString: string): string => {
+    const date = new Date(isoString);
+
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "UTC", // Optional: remove if you want local timezone
+    }).format(date);
   };
 
   // Calculate duration between start and end time
