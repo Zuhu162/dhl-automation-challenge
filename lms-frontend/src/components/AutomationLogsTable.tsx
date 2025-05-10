@@ -146,6 +146,7 @@ export function AutomationLogsTable({
             <TableHead>End Time</TableHead>
             <TableHead>Duration</TableHead>
             <TableHead className="text-right">Rows Processed</TableHead>
+            <TableHead>Spreadsheet Link</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -177,6 +178,19 @@ export function AutomationLogsTable({
                 <span className="text-red-600 font-medium">
                   {log.failedRows}
                 </span>
+              </TableCell>
+              <TableCell>
+                {log.spreadsheetLink ? (
+                  <a
+                    href={log.spreadsheetLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline hover:text-blue-800">
+                    Download Link
+                  </a>
+                ) : (
+                  <span className="text-gray-400">—</span>
+                )}
               </TableCell>
             </TableRow>
           ))}

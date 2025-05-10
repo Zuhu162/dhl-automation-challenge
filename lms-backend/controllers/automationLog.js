@@ -5,7 +5,14 @@ const AutomationLog = require("../models/AutomationLog");
 // @access  Private
 exports.createAutomationLog = async (req, res) => {
   try {
-    const { status, timeStart, timeEnd, successfulRows, failedRows } = req.body;
+    const {
+      status,
+      timeStart,
+      timeEnd,
+      successfulRows,
+      failedRows,
+      spreadsheetLink,
+    } = req.body;
 
     // Create automation log
     const automationLog = await AutomationLog.create({
@@ -14,6 +21,7 @@ exports.createAutomationLog = async (req, res) => {
       timeEnd,
       successfulRows,
       failedRows,
+      spreadsheetLink,
     });
 
     res.status(201).json({

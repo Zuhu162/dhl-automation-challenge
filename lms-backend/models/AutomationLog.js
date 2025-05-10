@@ -24,6 +24,10 @@ const AutomationLogSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    spreadsheetLink: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,

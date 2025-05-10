@@ -11,6 +11,7 @@ export interface AutomationLog {
   failedRows: string;
   createdAt: string;
   updatedAt: string;
+  spreadsheetLink?: string;
 }
 
 // Get all automation logs - no auth required
