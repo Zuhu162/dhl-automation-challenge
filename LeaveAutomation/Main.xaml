@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -120,7 +120,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1289,2167" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1304,1767" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DownloadLink" />
       <Variable x:TypeArguments="x:String" Name="LatestExcelFilePath" />
@@ -128,14 +128,6 @@
       <Variable x:TypeArguments="sd:DataTable" Name="InvalidRowsDT" />
       <Variable x:TypeArguments="sd:DataTable" Name="FinalInputRowsDT" />
       <Variable x:TypeArguments="sd:DataTable" Name="FinalRejectedRowsDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="outinvalidrowsdt">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:String x:Key="SourceIdRef">InvokeWorkflowFile_5</x:String>
-            <x:String x:Key="SourcePropertyName">out_InvalidRowsDT</x:String>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </Variable>
       <Variable x:TypeArguments="s:DateTime" Name="StartTime" />
       <Variable x:TypeArguments="s:DateTime" Name="EndTime" />
     </Sequence.Variables>
@@ -144,9 +136,9 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Main Process Start&quot;]" />
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Welcome to the Leave Management System Input Automation Process.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xA;&quot;Please ensure that the spreadsheet link you provide is valid, publicly accessible, and contains the required headers.&quot; &amp; vbCrLf &amp; _&#xA;&quot;A sample spreadsheet is available in the web application for reference.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xA;&quot;Also, please ensure that there are no browser tabs currently open with the Leave Management System before proceeding.&quot;]" />
-    <Assign sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Main Process Start&quot;]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Welcome to the Leave Management System Input Automation Process.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xA;&quot;Please ensure that the spreadsheet link you provide is valid, publicly accessible, and contains the required headers.&quot; &amp; vbCrLf &amp; _&#xA;&quot;A sample spreadsheet is available in the web application for reference.&quot; &amp; vbCrLf &amp; vbCrLf &amp; _&#xA;&quot;Also, please ensure that there are no browser tabs currently open with the Leave Management System before proceeding.&quot;]" />
+    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateTime">[StartTime]</OutArgument>
       </Assign.To>
@@ -154,30 +146,30 @@
         <InArgument x:TypeArguments="s:DateTime">[Now]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetUserInput - Invoke Workflow File (GetUserInput.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetUserInput.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetUserInput - Invoke Workflow File (GetUserInput.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetUserInput.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InOutArgument x:TypeArguments="x:String" x:Key="DownloadableURL">[DownloadLink]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="out_DownloadableURL">[DownloadLink]</InOutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DownloadExcel - Invoke Workflow File (DownloadExcel.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="DownloadExcel.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DownloadExcel - Invoke Workflow File (DownloadExcel.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="DownloadExcel.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="Link">[DownloadLink]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_LatestExcelFilePath">[LatestExcelFilePath]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Link">[DownloadLink]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ValidateExcelFile - Invoke Workflow File (ValidateExcelFile.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="ValidateExcelFile.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ValidateExcelFile - Invoke Workflow File (ValidateExcelFile.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="ValidateExcelFile.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_excelFilePath">[LatestExcelFilePath]</InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ValidRowsDT">[ValidRowsDT]</OutArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InvalidRowsDT">[InvalidRowsDT]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Login - Invoke Workflow File (Login.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Login.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Login - Invoke Workflow File (Login.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InputExcelData - Invoke Workflow File (InputExcelData.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="InputExcelData.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InputExcelData - Invoke Workflow File (InputExcelData.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="InputExcelData.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ValidRowsDT">[ValidRowsDT]</InArgument>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_InvalidRowsDT">[InvalidRowsDT]</InArgument>
@@ -185,7 +177,7 @@
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InvalidRowsDT">[FinalRejectedRowsDT]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Assign sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateTime">[EndTime]</OutArgument>
       </Assign.To>
@@ -193,52 +185,15 @@
         <InArgument x:TypeArguments="s:DateTime">[Now]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="Sequence - Final Email Process" sap:VirtualizedContainerService.HintSize="450,358" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="Existing" Body="[&quot;Hi Team,&#xA;&#xA;The data upload process has completed.&#xA;&#xA;      ✅ Successful uploads: &quot; &amp; FinalInputRowsDT.Rows.Count.ToString() &amp; &quot;&#xA;      ❌ Failed uploads: &quot; &amp; FinalRejectedRowsDT.Rows.Count.ToString() &amp; &quot;&#xA;    &#xA;Failed Records:&#xA;    &quot; &amp;&#xA;    String.Join(&quot;&quot;, FinalRejectedRowsDT.AsEnumerable().Select(Function(row) &quot;&#xA;      &#xA;        Name: &quot; &amp; row(&quot;Employee Name&quot;).ToString() &amp; &quot;&#xA;        ID: &quot; &amp; row(&quot;Staff ID&quot;).ToString() &amp; &quot;&#xA;        Leave: &quot; &amp; row(&quot;Leave Type&quot;).ToString() &amp; &quot;&#xA;        From: &quot; &amp; If(IsDate(row(&quot;Start Date&quot;).ToString()), CDate(row(&quot;Start Date&quot;)).ToString(&quot;dd/MM/yyyy&quot;), &quot;Invalid&quot;) &amp; &quot;&#xA;        To: &quot; &amp; If(IsDate(row(&quot;End Date&quot;).ToString()), CDate(row(&quot;End Date&quot;)).ToString(&quot;dd/MM/yyyy&quot;), &quot;Invalid&quot;) &amp; &quot;&#xA;        Status: &quot; &amp; row(&quot;Status&quot;).ToString() &amp; &quot;&#xA;      &quot;&#xA;    ).ToArray()) &amp; &quot;&#xA;    &#xA;Regards,&#xA;Your Automation Bot&#xA;    &#xA;&#x9;&#xA;Process Started: &quot; &amp; startTime.ToString(&quot;HH:mm - dd/MM/yyyy&quot;) &amp; &quot;&#xA;Process Ended: &quot; &amp; endTime.ToString(&quot;HH:mm - dd/MM/yyyy&quot;) &amp; &quot;&#xA;&quot;]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,266" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="eyrm aylo pnib doib" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Data Entry Status Update - Success" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
-        <ui:SendMail.AttachmentsBackup>
-          <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Existing">
-            <usau:BackupSlot.BackupValues>
-              <scg:Dictionary x:TypeArguments="umame:AttachmentInputMode, scg:List(x:Object)" />
-            </usau:BackupSlot.BackupValues>
-          </usau:BackupSlot>
-        </ui:SendMail.AttachmentsBackup>
-        <ui:SendMail.ConnectionDetailsBackupSlot>
-          <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="LegacyConfiguration">
-            <usau:BackupSlot.BackupValues>
-              <scg:List x:TypeArguments="x:Object" x:Key="IntegrationService" Capacity="1">
-                <x:Null />
-              </scg:List>
-            </usau:BackupSlot.BackupValues>
-          </usau:BackupSlot>
-        </ui:SendMail.ConnectionDetailsBackupSlot>
-        <ui:SendMail.Files>
-          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-        </ui:SendMail.Files>
-      </ui:SendMail>
-    </Sequence>
-    <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;  &quot;&quot;status&quot;&quot;: true,&#xA;  &quot;&quot;timeStart&quot;&quot;: &quot;&quot;&quot; &amp; StartTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;timeEnd&quot;&quot;: &quot;&quot;&quot; &amp; EndTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;successfulRows&quot;&quot;: &quot; &amp; FinalInputRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;failedRows&quot;&quot;: &quot; &amp; FinalRejectedRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;spreadsheetLink&quot;&quot;: &quot;&quot;&quot; &amp; DownloadLink &amp; &quot;&quot;&quot;&#xA;}&quot;]" BodyFormat="application/json" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:5000/api/automation-logs" sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" TimeoutMS="6000">
-      <ui:HttpClient.Attachments>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.Attachments>
-      <ui:HttpClient.Cookies>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.Cookies>
-      <ui:HttpClient.Headers>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.Headers>
-      <ui:HttpClient.Parameters>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.Parameters>
-      <ui:HttpClient.UrlSegments>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.UrlSegments>
-    </ui:HttpClient>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,117" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Automation Process Completed. Check logs for more details&quot;]" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Main Process Ended&quot;]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="FinalFeedbackProcess - Invoke Workflow File (FinalFeedbackProcess.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="FinalFeedbackProcess.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="FinalInputRowsDT">[FinalInputRowsDT]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="FinalRejectedRowsDT">[FinalRejectedRowsDT]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="StartTime">[StartTime]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="EndTime">[EndTime]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="DownloadLink">[DownloadLink]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Main Process Ended&quot;]" />
   </Sequence>
 </Activity>

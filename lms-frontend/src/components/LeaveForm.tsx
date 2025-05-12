@@ -30,6 +30,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 
 interface LeaveFormProps {
@@ -60,6 +61,7 @@ const formSchema = z
     status: z.enum(statusOptions, {
       errorMap: () => ({ message: "Please select a valid status" }),
     }),
+    isAutomated: z.boolean().optional().default(false),
   })
   .refine(
     (data) => {
@@ -97,6 +99,12 @@ export default function LeaveForm({
   const [showLeaveTypeOptions, setShowLeaveTypeOptions] = useState(false);
   const [showStatusOptions, setShowStatusOptions] = useState(false);
 
+  // Get isAutomated value from localStorage
+  const getIsAutomatedValue = () => {
+    const storedValue = localStorage.getItem("isAutomated");
+    return storedValue === "true";
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: application
@@ -104,6 +112,7 @@ export default function LeaveForm({
           ...application,
           startDate: new Date(application.startDate),
           endDate: new Date(application.endDate),
+          isAutomated: application.isAutomated || false,
         }
       : {
           employeeId: "",
@@ -112,6 +121,7 @@ export default function LeaveForm({
           startDate: undefined,
           endDate: undefined,
           status: "Pending" as LeaveStatus,
+          isAutomated: getIsAutomatedValue(),
         },
     mode: "onChange",
   });
@@ -291,7 +301,7 @@ export default function LeaveForm({
     setIsSubmitting(true);
 
     try {
-      // Format dates directly without timezone conversion
+      // Format dates
       const formatDate = (date: Date): string => {
         const day = String(date.getDate()).padStart(2, "0");
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -306,6 +316,7 @@ export default function LeaveForm({
         startDate: formatDate(values.startDate),
         endDate: formatDate(values.endDate),
         status: values.status as LeaveStatus,
+        isAutomated: getIsAutomatedValue(),
       };
 
       if (application?._id) {
@@ -352,6 +363,7 @@ export default function LeaveForm({
       startDate: undefined,
       endDate: undefined,
       status: "Pending",
+      isAutomated: getIsAutomatedValue(),
     });
     setStartDateInput("");
     setEndDateInput("");
@@ -434,7 +446,12 @@ export default function LeaveForm({
           name="leaveType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="leaveform-leaveType">Leave Type</FormLabel>
+              <FormLabel htmlFor="leaveform-leaveType">
+                Leave Type{" "}
+                <span className="text-xs text-gray-500">
+                  (Annual | Medical | Emergency | Other)
+                </span>
+              </FormLabel>
               <div className="relative">
                 <Input
                   id="leaveform-leaveType"
@@ -593,7 +610,12 @@ export default function LeaveForm({
           name="status"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="leaveform-status">Status</FormLabel>
+              <FormLabel htmlFor="leaveform-status">
+                Status{" "}
+                <span className="text-xs text-gray-500">
+                  (Pending | Approved | Rejected)
+                </span>
+              </FormLabel>
               <div className="relative">
                 <Input
                   id="leaveform-status"
@@ -632,7 +654,6 @@ export default function LeaveForm({
             </FormItem>
           )}
         />
-
         {!readOnly && (
           <div className="flex justify-between">
             <Button
@@ -687,6 +708,14 @@ export default function LeaveForm({
             onDuplicateFound={handleDuplicateCheck}
           />
         )}
+
+        {/* Add a hidden field for isAutomated */}
+        <input
+          type="hidden"
+          id="leaveform-isAutomated"
+          name="isAutomated"
+          value={getIsAutomatedValue() ? "true" : "false"}
+        />
       </form>
     </Form>
   );

@@ -23,6 +23,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
 import { leaveService } from "@/services/leaveService";
 import {
@@ -45,7 +51,13 @@ import {
 } from "@/components/ui/pagination";
 import { format, parseISO, isBefore } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Bot,
+  ChevronDown,
+  ChevronUp,
+  PencilIcon,
+  UserRoundPen,
+} from "lucide-react";
 
 // Define a type for the sort field
 type SortField =
@@ -55,6 +67,7 @@ type SortField =
   | "startDate"
   | "endDate"
   | "status"
+  | "isAutomated"
   | null;
 
 interface LeaveTableProps {
@@ -79,6 +92,7 @@ export default function LeaveTable({
   >([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [automatedFilter, setAutomatedFilter] = useState<string>("all");
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [currentApplication, setCurrentApplication] =
     useState<LeaveApplication | null>(null);
@@ -121,6 +135,7 @@ export default function LeaveTable({
   }, [
     searchQuery,
     statusFilter,
+    automatedFilter,
     applications,
     activeTab,
     sortField,
@@ -165,6 +180,13 @@ export default function LeaveTable({
       completed = completed.filter((app) => app.status === statusFilter);
     }
 
+    // Apply automated filter to both sets
+    if (automatedFilter !== "all") {
+      const isAutomated = automatedFilter === "automated";
+      active = active.filter((app) => app.isAutomated === isAutomated);
+      completed = completed.filter((app) => app.isAutomated === isAutomated);
+    }
+
     // Apply sorting if a sort field is selected
     if (sortField) {
       const sortFn = (a: LeaveApplication, b: LeaveApplication) => {
@@ -174,6 +196,11 @@ export default function LeaveTable({
         if (sortField === "startDate" || sortField === "endDate") {
           valueA = new Date(a[sortField]).getTime();
           valueB = new Date(b[sortField]).getTime();
+        }
+        // Handle boolean fields differently
+        else if (sortField === "isAutomated") {
+          valueA = a[sortField] ? 1 : 0;
+          valueB = b[sortField] ? 1 : 0;
         } else {
           valueA = a[sortField].toLowerCase();
           valueB = b[sortField].toLowerCase();
@@ -390,363 +417,439 @@ export default function LeaveTable({
       .fill(0)
       .map((_, index) => (
         <TableRow key={`empty-${index}`}>
-          <TableCell colSpan={7} className="h-[52px]"></TableCell>
+          <TableCell colSpan={8} className="h-[52px]"></TableCell>
         </TableRow>
       ));
   };
 
   return (
-    <>
-      <div className="flex flex-col md:flex-row gap-4 items-start md:items-center mb-4 justify-between">
-        <div className="w-full md:w-1/3">
-          <Input
-            placeholder="Search by employee ID or name..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="max-w-sm"
-          />
-        </div>
-        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Filter by status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Statuses</SelectItem>
-              <SelectItem value="Pending">Pending</SelectItem>
-              <SelectItem value="Approved">Approved</SelectItem>
-              <SelectItem value="Rejected">Rejected</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Button
-            onClick={() => {
-              loadApplications();
-              onRefresh();
-            }}
-            variant="outline">
-            Refresh
-          </Button>
-        </div>
-      </div>
-
-      <Tabs
-        defaultValue="active"
-        className="w-full"
-        value={activeTab}
-        onValueChange={handleTabChange}>
-        <TabsList className="mb-4">
-          <TabsTrigger value="active" className="px-6">
-            Active Requests ({activeApplications.length})
-          </TabsTrigger>
-          <TabsTrigger value="completed" className="px-6">
-            Completed Leaves ({completedApplications.length})
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="active">
-          <div className="rounded-md border" style={{ minHeight: "340px" }}>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("employeeId")}>
-                    Employee ID {renderSortIndicator("employeeId")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("employeeName")}>
-                    Name {renderSortIndicator("employeeName")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("leaveType")}>
-                    Leave Type {renderSortIndicator("leaveType")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("startDate")}>
-                    Start Date {renderSortIndicator("startDate")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("endDate")}>
-                    End Date {renderSortIndicator("endDate")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("status")}>
-                    Status {renderSortIndicator("status")}
-                  </TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {isLoading ? (
-                  // Loading skeletons
-                  Array(rowsPerPage)
-                    .fill(0)
-                    .map((_, i) => <LoadingRow key={i} />)
-                ) : currentItems.length === 0 ? (
-                  <>
-                    <TableRow>
-                      <TableCell colSpan={7} className="text-center py-4">
-                        {searchQuery || statusFilter !== "all"
-                          ? "No leave applications match your filters."
-                          : "No active leave applications found."}
-                      </TableCell>
-                    </TableRow>
-                    {renderEmptyRows()}
-                  </>
-                ) : (
-                  // Actual data rows
-                  <>
-                    {currentItems.map((application) => (
-                      <TableRow key={application._id}>
-                        <TableCell>{application.employeeId}</TableCell>
-                        <TableCell>{application.employeeName}</TableCell>
-                        <TableCell>{application.leaveType}</TableCell>
-                        <TableCell>
-                          {formatDate(application.startDate)}
-                        </TableCell>
-                        <TableCell>{formatDate(application.endDate)}</TableCell>
-                        <TableCell>
-                          <span
-                            className={getStatusBadgeClass(application.status)}>
-                            {application.status}
-                          </span>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm">
-                                Actions
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem
-                                onClick={() => handleEdit(application)}>
-                                Edit
-                              </DropdownMenuItem>
-                              <DropdownMenuItem
-                                onClick={() => handleDelete(application._id)}
-                                className="text-red-600">
-                                Delete
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                    {renderEmptyRows()}
-                  </>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="completed">
-          <div className="rounded-md border" style={{ minHeight: "340px" }}>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("employeeId")}>
-                    Employee ID {renderSortIndicator("employeeId")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("employeeName")}>
-                    Name {renderSortIndicator("employeeName")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("leaveType")}>
-                    Leave Type {renderSortIndicator("leaveType")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("startDate")}>
-                    Start Date {renderSortIndicator("startDate")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("endDate")}>
-                    End Date {renderSortIndicator("endDate")}
-                  </TableHead>
-                  <TableHead
-                    className="cursor-pointer hover:bg-slate-50"
-                    onClick={() => handleSort("status")}>
-                    Status {renderSortIndicator("status")}
-                  </TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {isLoading ? (
-                  // Loading skeletons
-                  Array(rowsPerPage)
-                    .fill(0)
-                    .map((_, i) => <LoadingRow key={i} />)
-                ) : currentItems.length === 0 ? (
-                  <>
-                    <TableRow>
-                      <TableCell colSpan={7} className="text-center py-4">
-                        {searchQuery || statusFilter !== "all"
-                          ? "No leave applications match your filters."
-                          : "No completed leave applications found."}
-                      </TableCell>
-                    </TableRow>
-                    {renderEmptyRows()}
-                  </>
-                ) : (
-                  // Actual data rows
-                  <>
-                    {currentItems.map((application) => (
-                      <TableRow key={application._id}>
-                        <TableCell>{application.employeeId}</TableCell>
-                        <TableCell>{application.employeeName}</TableCell>
-                        <TableCell>{application.leaveType}</TableCell>
-                        <TableCell>
-                          {formatDate(application.startDate)}
-                        </TableCell>
-                        <TableCell>{formatDate(application.endDate)}</TableCell>
-                        <TableCell>
-                          <span
-                            className={getStatusBadgeClass(application.status)}>
-                            {application.status}
-                          </span>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm">
-                                Actions
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem
-                                onClick={() => handleEdit(application)}>
-                                View
-                              </DropdownMenuItem>
-                              <DropdownMenuItem
-                                onClick={() => handleDelete(application._id)}
-                                className="text-red-600">
-                                Delete
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                    {renderEmptyRows()}
-                  </>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        </TabsContent>
-      </Tabs>
-
-      {/* Pagination */}
-      {!isLoading && filteredApplications.length > 0 && (
-        <div className="flex justify-center mt-4">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  onClick={() => {
-                    if (activeTab === "active" && currentPage > 1) {
-                      setCurrentPage(currentPage - 1);
-                    } else if (activeTab === "completed" && completedPage > 1) {
-                      setCompletedPage(completedPage - 1);
-                    }
-                  }}
-                  className={
-                    (activeTab === "active" && currentPage === 1) ||
-                    (activeTab === "completed" && completedPage === 1)
-                      ? "pointer-events-none opacity-50"
-                      : "cursor-pointer"
-                  }
-                />
-              </PaginationItem>
-
-              {getPageNumbers().map((page, i) => (
-                <PaginationItem key={i}>
-                  {page === "..." ? (
-                    <PaginationEllipsis />
-                  ) : (
-                    <PaginationLink
-                      onClick={() => handlePageChange(page as number)}
-                      isActive={
-                        activeTab === "active"
-                          ? currentPage === page
-                          : completedPage === page
-                      }
-                      className="cursor-pointer">
-                      {page}
-                    </PaginationLink>
-                  )}
-                </PaginationItem>
-              ))}
-
-              <PaginationItem>
-                <PaginationNext
-                  onClick={() => {
-                    if (
-                      activeTab === "active" &&
-                      currentPage < activeTotalPages
-                    ) {
-                      setCurrentPage(currentPage + 1);
-                    } else if (
-                      activeTab === "completed" &&
-                      completedPage < completedTotalPages
-                    ) {
-                      setCompletedPage(completedPage + 1);
-                    }
-                  }}
-                  className={
-                    (activeTab === "active" &&
-                      currentPage === activeTotalPages) ||
-                    (activeTab === "completed" &&
-                      completedPage === completedTotalPages)
-                      ? "pointer-events-none opacity-50"
-                      : "cursor-pointer"
-                  }
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
-      )}
-
-      {/* Edit Dialog */}
-      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>
-              {activeTab === "active"
-                ? "Edit Leave Application"
-                : "View Leave Application"}
-            </DialogTitle>
-            <DialogDescription>
-              {activeTab === "active"
-                ? "Update the leave application details below."
-                : "View the leave application details below."}
-            </DialogDescription>
-          </DialogHeader>
-          {currentApplication && (
-            <LeaveForm
-              application={currentApplication}
-              onSuccess={handleUpdateSuccess}
-              readOnly={activeTab === "completed"}
+    <TooltipProvider>
+      <>
+        <div className="flex flex-col md:flex-row gap-4 items-start md:items-center mb-4 justify-between">
+          <div className="w-full md:w-1/3">
+            <Input
+              placeholder="Search by employee ID or name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="max-w-sm"
             />
-          )}
-        </DialogContent>
-      </Dialog>
-    </>
+          </div>
+          <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Filter by status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Statuses</SelectItem>
+                <SelectItem value="Pending">Pending</SelectItem>
+                <SelectItem value="Approved">Approved</SelectItem>
+                <SelectItem value="Rejected">Rejected</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={automatedFilter} onValueChange={setAutomatedFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Filter by input type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Input Types</SelectItem>
+                <SelectItem value="automated">Automated</SelectItem>
+                <SelectItem value="manual">Manual</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Button
+              onClick={() => {
+                loadApplications();
+                onRefresh();
+              }}
+              variant="outline">
+              Refresh
+            </Button>
+          </div>
+        </div>
+
+        <Tabs
+          defaultValue="active"
+          className="w-full"
+          value={activeTab}
+          onValueChange={handleTabChange}>
+          <TabsList className="mb-4">
+            <TabsTrigger value="active" className="px-6">
+              Active Requests ({activeApplications.length})
+            </TabsTrigger>
+            <TabsTrigger value="completed" className="px-6">
+              Completed Leaves ({completedApplications.length})
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="active">
+            <div className="rounded-md border" style={{ minHeight: "340px" }}>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("employeeId")}>
+                      Employee ID {renderSortIndicator("employeeId")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("employeeName")}>
+                      Name {renderSortIndicator("employeeName")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("leaveType")}>
+                      Leave Type {renderSortIndicator("leaveType")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("startDate")}>
+                      Start Date {renderSortIndicator("startDate")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("endDate")}>
+                      End Date {renderSortIndicator("endDate")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("status")}>
+                      Status {renderSortIndicator("status")}
+                    </TableHead>
+                    <TableHead
+                      className="w-15 text-center cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("isAutomated")}>
+                      Input By {renderSortIndicator("isAutomated")}
+                    </TableHead>
+                    <TableHead className="text-right"></TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {isLoading ? (
+                    // Loading skeletons
+                    Array(rowsPerPage)
+                      .fill(0)
+                      .map((_, i) => <LoadingRow key={i} />)
+                  ) : currentItems.length === 0 ? (
+                    <>
+                      <TableRow>
+                        <TableCell colSpan={8} className="text-center py-4">
+                          {searchQuery || statusFilter !== "all"
+                            ? "No leave applications match your filters."
+                            : "No active leave applications found."}
+                        </TableCell>
+                      </TableRow>
+                      {renderEmptyRows()}
+                    </>
+                  ) : (
+                    // Actual data rows
+                    <>
+                      {currentItems.map((application) => (
+                        <TableRow key={application._id}>
+                          <TableCell>{application.employeeId}</TableCell>
+                          <TableCell>{application.employeeName}</TableCell>
+                          <TableCell>{application.leaveType}</TableCell>
+                          <TableCell>
+                            {formatDate(application.startDate)}
+                          </TableCell>
+                          <TableCell>
+                            {formatDate(application.endDate)}
+                          </TableCell>
+                          <TableCell>
+                            <span
+                              className={getStatusBadgeClass(
+                                application.status
+                              )}>
+                              {application.status}
+                            </span>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            {application.isAutomated ? (
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <Bot className="h-4 w-4 text-dhl-red inline" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Input by automation script</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            ) : (
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <UserRoundPen className="h-4 w-4 text-gray-500 inline" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Manual input by user</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm">
+                                  <PencilIcon />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onClick={() => handleEdit(application)}>
+                                  Edit
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() => handleDelete(application._id)}
+                                  className="text-red-600">
+                                  Delete
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                      {renderEmptyRows()}
+                    </>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="completed">
+            <div className="rounded-md border" style={{ minHeight: "340px" }}>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("employeeId")}>
+                      Employee ID {renderSortIndicator("employeeId")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("employeeName")}>
+                      Name {renderSortIndicator("employeeName")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("leaveType")}>
+                      Leave Type {renderSortIndicator("leaveType")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("startDate")}>
+                      Start Date {renderSortIndicator("startDate")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("endDate")}>
+                      End Date {renderSortIndicator("endDate")}
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("status")}>
+                      Status {renderSortIndicator("status")}
+                    </TableHead>
+                    <TableHead
+                      className="w-10 cursor-pointer hover:bg-slate-50"
+                      onClick={() => handleSort("isAutomated")}>
+                      Input By {renderSortIndicator("isAutomated")}
+                    </TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {isLoading ? (
+                    // Loading skeletons
+                    Array(rowsPerPage)
+                      .fill(0)
+                      .map((_, i) => <LoadingRow key={i} />)
+                  ) : currentItems.length === 0 ? (
+                    <>
+                      <TableRow>
+                        <TableCell colSpan={8} className="text-center py-4">
+                          {searchQuery || statusFilter !== "all"
+                            ? "No leave applications match your filters."
+                            : "No completed leave applications found."}
+                        </TableCell>
+                      </TableRow>
+                      {renderEmptyRows()}
+                    </>
+                  ) : (
+                    // Actual data rows
+                    <>
+                      {currentItems.map((application) => (
+                        <TableRow key={application._id}>
+                          <TableCell>{application.employeeId}</TableCell>
+                          <TableCell>{application.employeeName}</TableCell>
+                          <TableCell>{application.leaveType}</TableCell>
+                          <TableCell>
+                            {formatDate(application.startDate)}
+                          </TableCell>
+                          <TableCell>
+                            {formatDate(application.endDate)}
+                          </TableCell>
+                          <TableCell>
+                            <span
+                              className={getStatusBadgeClass(
+                                application.status
+                              )}>
+                              {application.status}
+                            </span>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            {application.isAutomated ? (
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <Bot className="h-4 w-4 text-dhl-red inline" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Input by automation script</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            ) : (
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <UserRoundPen className="h-4 w-4 text-gray-500 inline" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Manual input by user</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm">
+                                  Actions
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onClick={() => handleEdit(application)}>
+                                  View
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() => handleDelete(application._id)}
+                                  className="text-red-600">
+                                  Delete
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                      {renderEmptyRows()}
+                    </>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        {/* Pagination */}
+        {!isLoading && filteredApplications.length > 0 && (
+          <div className="flex justify-center mt-4">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => {
+                      if (activeTab === "active" && currentPage > 1) {
+                        setCurrentPage(currentPage - 1);
+                      } else if (
+                        activeTab === "completed" &&
+                        completedPage > 1
+                      ) {
+                        setCompletedPage(completedPage - 1);
+                      }
+                    }}
+                    className={
+                      (activeTab === "active" && currentPage === 1) ||
+                      (activeTab === "completed" && completedPage === 1)
+                        ? "pointer-events-none opacity-50"
+                        : "cursor-pointer"
+                    }
+                  />
+                </PaginationItem>
+
+                {getPageNumbers().map((page, i) => (
+                  <PaginationItem key={i}>
+                    {page === "..." ? (
+                      <PaginationEllipsis />
+                    ) : (
+                      <PaginationLink
+                        onClick={() => handlePageChange(page as number)}
+                        isActive={
+                          activeTab === "active"
+                            ? currentPage === page
+                            : completedPage === page
+                        }
+                        className="cursor-pointer">
+                        {page}
+                      </PaginationLink>
+                    )}
+                  </PaginationItem>
+                ))}
+
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() => {
+                      if (
+                        activeTab === "active" &&
+                        currentPage < activeTotalPages
+                      ) {
+                        setCurrentPage(currentPage + 1);
+                      } else if (
+                        activeTab === "completed" &&
+                        completedPage < completedTotalPages
+                      ) {
+                        setCompletedPage(completedPage + 1);
+                      }
+                    }}
+                    className={
+                      (activeTab === "active" &&
+                        currentPage === activeTotalPages) ||
+                      (activeTab === "completed" &&
+                        completedPage === completedTotalPages)
+                        ? "pointer-events-none opacity-50"
+                        : "cursor-pointer"
+                    }
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+        )}
+
+        {/* Edit Dialog */}
+        <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>
+                {activeTab === "active"
+                  ? "Edit Leave Application"
+                  : "View Leave Application"}
+              </DialogTitle>
+              <DialogDescription>
+                {activeTab === "active"
+                  ? "Update the leave application details below."
+                  : "View the leave application details below."}
+              </DialogDescription>
+            </DialogHeader>
+            {currentApplication && (
+              <LeaveForm
+                application={currentApplication}
+                onSuccess={handleUpdateSuccess}
+                readOnly={activeTab === "completed"}
+              />
+            )}
+          </DialogContent>
+        </Dialog>
+      </>
+    </TooltipProvider>
   );
 }

@@ -1,0 +1,14 @@
+﻿{
+  "Name": "BUTTON leaveform-isAuto…",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "zEfoT_ic8EWg1gEr1y0ZHA",
+  "Reference": "QjS7MUzdXEWdtnxKhJV7XA/zEfoT_ic8EWg1gEr1y0ZHA",
+  "ParentRef": "QjS7MUzdXEWdtnxKhJV7XA/cFgKtSsBbUut_jjUsSVkqA",
+  "Created": "2025-05-12T06:34:52.6601004Z",
+  "Updated": "2025-05-12T06:34:52.6601004Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

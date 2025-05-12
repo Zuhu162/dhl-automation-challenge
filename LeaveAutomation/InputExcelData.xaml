@@ -124,7 +124,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="InputExcelData" sap:VirtualizedContainerService.HintSize="1294,5066" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InputExcelData" sap:VirtualizedContainerService.HintSize="1304,5687" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="DuplicateRowsDT" />
       <Variable x:TypeArguments="sd:DataTable" Name="InputRowsDT" />
@@ -134,8 +134,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1094,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Started Input Data Process&quot;]" />
-    <Sequence DisplayName="Sequence - Initializing DataTables" sap:VirtualizedContainerService.HintSize="1094,311" sap2010:WorkflowViewState.IdRef="Sequence_16">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1128,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Started Input Data Process&quot;]" />
+    <Sequence DisplayName="Sequence - Initializing DataTables" sap:VirtualizedContainerService.HintSize="1128,311" sap2010:WorkflowViewState.IdRef="Sequence_16">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="TableText" />
       </Sequence.Variables>
@@ -161,276 +161,285 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1094,4175" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1128,4796" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1060,3926" sap2010:WorkflowViewState.IdRef="Sequence_12">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="StartDateStr" />
-              <Variable x:TypeArguments="x:String" Name="EndDateStr" />
-            </Sequence.Variables>
+          <Sequence sap:VirtualizedContainerService.HintSize="1094,4547" sap2010:WorkflowViewState.IdRef="Sequence_23">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_ValidRowsDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1026,3864" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1024,3691" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="990,3631" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-                      <TryCatch.Try>
-                        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="988,2974" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Employee Name'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_13" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Employee Name&quot;).ToString.Replace(&quot; Leave&quot;, &quot;&quot;).Trim]" Version="V4">
-                            <uix:NTypeInto.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" ContentHash="NnQPpeTlAEedGFgW4GKrlg" CvElementArea="796, 414, 622, 42" CvType="InputBox" DesignTimeRectangle="796, 415, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-employeeName' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='e.g. John Doe' aaname='Employee Name' /&gt;" Guid="0c345858-9600-493e-a0da-59e888f760be" InformativeScreenshot="29fe0680e78a6561e4b8c82d1ce5bed7.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/mV8AqktpZ0WdMCuQf4Mh6w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
-                                <uix:TargetAnchorable.Anchors>
-                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                    <uix:Target CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" CvTextArea="796, 389, 105, 16" CvTextArgument="Employee Name" CvType="Text" DesignTimeRectangle="796, 386, 104, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' aaname='Employee Name' check:innerText='Employee Name' /&gt;" Guid="1dcaf3c3-3ed5-473b-8e04-355d27a5e976" SearchSteps="FuzzySelector, CV" />
-                                  </scg:List>
-                                </uix:TargetAnchorable.Anchors>
-                              </uix:TargetAnchorable>
-                            </uix:NTypeInto.Target>
-                            <uix:NTypeInto.VerifyOptions>
-                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                                <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                  <InArgument x:TypeArguments="x:Boolean" />
-                                </uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                  <InArgument x:TypeArguments="x:Double" />
-                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                              </uix:VerifyExecutionTypeIntoOptions>
-                            </uix:NTypeInto.VerifyOptions>
-                          </uix:NTypeInto>
-                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Staff ID'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_14" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Staff ID&quot;).ToString.Replace(&quot; Leave&quot;, &quot;&quot;).Trim]" Version="V4">
-                            <uix:NTypeInto.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" ContentHash="iUW6qfNUEkSF-p7r6nJ4tA" CvElementArea="796, 509, 622, 42" CvType="InputBox" DesignTimeRectangle="796, 511, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-employeeId' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='e.g. EMP001' aaname='Staff ID' /&gt;" Guid="c7d1c00a-a514-45e7-bfb6-a2912cafa75d" InformativeScreenshot="c302a8547fb65527d17fd513e29f4492.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/6wct17oAp0yyIn37i9RhWw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
-                                <uix:TargetAnchorable.Anchors>
-                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                    <uix:Target CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" CvTextArea="795, 485, 49, 13" CvTextArgument="Staff ID" CvType="Text" DesignTimeRectangle="796, 482, 48, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Staff ID' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Staff ID' /&gt;" Guid="73cafe8b-237e-4d4d-a0ca-17ded9b30bb5" SearchSteps="FuzzySelector, CV" />
-                                  </scg:List>
-                                </uix:TargetAnchorable.Anchors>
-                              </uix:TargetAnchorable>
-                            </uix:NTypeInto.Target>
-                            <uix:NTypeInto.VerifyOptions>
-                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                                <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                  <InArgument x:TypeArguments="x:Boolean" />
-                                </uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                  <InArgument x:TypeArguments="x:Double" />
-                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                              </uix:VerifyExecutionTypeIntoOptions>
-                            </uix:NTypeInto.VerifyOptions>
-                          </uix:NTypeInto>
-                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Leave Type'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_9" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Leave Type&quot;).ToString.Replace(&quot; Leave&quot;, &quot;&quot;).Trim]" Version="V4">
-                            <uix:NTypeInto.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" ContentHash="tuCHy0s9C0yUFDjEx_P9eg" CvElementArea="795, 633, 623, 42" CvType="InputBox" DesignTimeRectangle="796, 635, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-leaveType' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='Search or select leave type' aaname='Leave Type' /&gt;" Guid="3e89d474-eafe-460e-85c5-0f3a8c8441d2" InformativeScreenshot="db9b995432eedc297fdf7150a6b48b1a.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/Wl4mkCsBTU2FaTB3gAz0yQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
-                                <uix:TargetAnchorable.Anchors>
-                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                    <uix:Target CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" CvTextArea="795, 609, 72, 16" CvTextArgument="Leave Type" CvType="Text" DesignTimeRectangle="796, 606, 70, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Leave Type' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Leave Type' /&gt;" Guid="525cfd66-d139-4340-ae87-1bb864b0b0ed" SearchSteps="FuzzySelector, CV" />
-                                  </scg:List>
-                                </uix:TargetAnchorable.Anchors>
-                              </uix:TargetAnchorable>
-                            </uix:NTypeInto.Target>
-                            <uix:NTypeInto.VerifyOptions>
-                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                                <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                  <InArgument x:TypeArguments="x:Boolean" />
-                                </uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                  <InArgument x:TypeArguments="x:Double" />
-                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                              </uix:VerifyExecutionTypeIntoOptions>
-                            </uix:NTypeInto.VerifyOptions>
-                          </uix:NTypeInto>
-                          <Assign sap:VirtualizedContainerService.HintSize="954,114" sap2010:WorkflowViewState.IdRef="Assign_1">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[StartDateStr]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[CType(CurrentRow("Start Date"), DateTime).ToString("dd/MM/yyyy")]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="954,114" sap2010:WorkflowViewState.IdRef="Assign_2">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[EndDateStr]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[CType(CurrentRow("End Date"), DateTime).ToString("dd/MM/yyyy")]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Start Date (DD/MM/YYYY)'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_11" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[StartDateStr]" Version="V4">
-                            <uix:NTypeInto.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" ContentHash="hVtcL7ioxUaLAZ3ge7lEsw" CvElementArea="794, 719, 299, 43" CvType="InputBox" DesignTimeRectangle="796, 721, 266, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-startDate' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm rounded-r-none' placeholder='DD/MM/YYYY' aaname='Start Date (DD/MM/YYYY)' /&gt;" Guid="214171cb-f983-4107-9619-57bcb176f486" InformativeScreenshot="4c21fe3f9da2aa7b09a4c04de9bf5eb5.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/9iZ8IVnfE06fvOLcOJ9ckw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
-                                <uix:TargetAnchorable.Anchors>
-                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                    <uix:Target CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" CvTextArea="795, 699, 169, 15" CvTextArgument="Start Date (DD/MM/YYYY)" CvType="Text" DesignTimeRectangle="796, 699, 299, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Start Date (DD/MM/YYYY)' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Start Date (DD/MM/YYYY)' /&gt;" Guid="dbdaa67e-6b5a-4312-b470-05d893177078" SearchSteps="FuzzySelector, CV" />
-                                  </scg:List>
-                                </uix:TargetAnchorable.Anchors>
-                              </uix:TargetAnchorable>
-                            </uix:NTypeInto.Target>
-                            <uix:NTypeInto.VerifyOptions>
-                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                                <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                  <InArgument x:TypeArguments="x:Boolean" />
-                                </uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                  <InArgument x:TypeArguments="x:Double" />
-                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                              </uix:VerifyExecutionTypeIntoOptions>
-                            </uix:NTypeInto.VerifyOptions>
-                          </uix:NTypeInto>
-                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'End Date (DD/MM/YYYY)'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_12" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[EndDateStr]" Version="V4">
-                            <uix:NTypeInto.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" ContentHash="POQBxz3UXEiCI6DFjVyrvg" CvElementArea="1117, 719, 289, 42" CvType="InputBox" DesignTimeRectangle="1119, 721, 266, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-endDate' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm rounded-r-none' placeholder='DD/MM/YYYY' aaname='End Date (DD/MM/YYYY)' /&gt;" Guid="fc275b42-6d7b-4b40-be57-a46a2f1d0dc3" InformativeScreenshot="cfa012cb56921fea02d9ea7e4396d308.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/vek43hJNlEOpX97BO2027g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
-                                <uix:TargetAnchorable.Anchors>
-                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                    <uix:Target CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" CvTextArea="1118, 699, 162, 15" CvTextArgument="End Date (DD/MM/YYYY)" CvType="Text" DesignTimeRectangle="1119, 699, 299, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='End Date (DD/MM/YYYY)' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='End Date (DD/MM/YYYY)' /&gt;" Guid="63ed4f8f-ed97-4c8f-be19-7755223ffc42" SearchSteps="FuzzySelector, CV" />
-                                  </scg:List>
-                                </uix:TargetAnchorable.Anchors>
-                              </uix:TargetAnchorable>
-                            </uix:NTypeInto.Target>
-                            <uix:NTypeInto.VerifyOptions>
-                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                                <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                  <InArgument x:TypeArguments="x:Boolean" />
-                                </uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                  <InArgument x:TypeArguments="x:Double" />
-                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                              </uix:VerifyExecutionTypeIntoOptions>
-                            </uix:NTypeInto.VerifyOptions>
-                          </uix:NTypeInto>
-                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Status'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_10" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Status&quot;).ToString]" Version="V4">
-                            <uix:NTypeInto.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" ContentHash="3a2W4tY1F0-gRFQNlJyGrQ" CvElementArea="795, 840, 623, 42" CvType="InputBox" DesignTimeRectangle="796, 841, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-status' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='Search or select status' aaname='Status' /&gt;" Guid="f46d48e4-0787-4606-ab64-ebcab00507e8" InformativeScreenshot="b9949ade4d9bd53d231375084c312df1.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/b48C-mEtBESGJvtQDR-p1w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
-                                <uix:TargetAnchorable.Anchors>
-                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                    <uix:Target CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" CvTextArea="795, 815, 41, 13" CvTextArgument="Status" CvType="Text" DesignTimeRectangle="796, 812, 39, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Status' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Status' /&gt;" Guid="03726377-ffcf-4a8c-97f9-ae6c8586cb5a" SearchSteps="FuzzySelector, CV" />
-                                  </scg:List>
-                                </uix:TargetAnchorable.Anchors>
-                              </uix:TargetAnchorable>
-                            </uix:NTypeInto.Target>
-                            <uix:NTypeInto.VerifyOptions>
-                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                                <uix:VerifyExecutionTypeIntoOptions.Retry>
-                                  <InArgument x:TypeArguments="x:Boolean" />
-                                </uix:VerifyExecutionTypeIntoOptions.Retry>
-                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                                  <InArgument x:TypeArguments="x:Double" />
-                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                              </uix:VerifyExecutionTypeIntoOptions>
-                            </uix:NTypeInto.VerifyOptions>
-                          </uix:NTypeInto>
-                          <uix:NCheckState DisplayName="Check App State 'Employee NameStaff IDLe…'" sap:VirtualizedContainerService.HintSize="954,970" sap2010:WorkflowViewState.IdRef="NCheckState_1" Timeout="4" Version="V4">
-                            <uix:NCheckState.IfExists>
-                              <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,694" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1060,4487" sap2010:WorkflowViewState.IdRef="Sequence_12">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="StartDateStr" />
+                <Variable x:TypeArguments="x:String" Name="EndDateStr" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_ValidRowsDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1026,4400" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                <ui:ForEachRow.Body>
+                  <ActivityAction x:TypeArguments="sd:DataRow">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1024,4227" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="990,4167" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                        <TryCatch.Try>
+                          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="988,3261" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uix:NInjectJsScript InputParameter="{x:Null}" ScriptOutput="{x:Null}" DisplayName="Inject Js Script - Sets isAutomated to true" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,287" sap2010:WorkflowViewState.IdRef="NInjectJsScript_4" ScriptCode="function () {&#xA;localStorage.setItem('isAutomated', 'true');&#xA;}" Version="V4" />
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Employee Name'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_13" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Employee Name&quot;).ToString.Replace(&quot; Leave&quot;, &quot;&quot;).Trim]" Version="V4">
+                              <uix:NTypeInto.Target>
+                                <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" ContentHash="NnQPpeTlAEedGFgW4GKrlg" CvElementArea="796, 414, 622, 42" CvType="InputBox" DesignTimeRectangle="796, 415, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-employeeName' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='e.g. John Doe' aaname='Employee Name' /&gt;" Guid="0c345858-9600-493e-a0da-59e888f760be" InformativeScreenshot="29fe0680e78a6561e4b8c82d1ce5bed7.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/mV8AqktpZ0WdMCuQf4Mh6w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" CvTextArea="796, 389, 105, 16" CvTextArgument="Employee Name" CvType="Text" DesignTimeRectangle="796, 386, 104, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' aaname='Employee Name' check:innerText='Employee Name' /&gt;" Guid="1dcaf3c3-3ed5-473b-8e04-355d27a5e976" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NTypeInto.Target>
+                              <uix:NTypeInto.VerifyOptions>
+                                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                </uix:VerifyExecutionTypeIntoOptions>
+                              </uix:NTypeInto.VerifyOptions>
+                            </uix:NTypeInto>
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Staff ID'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_14" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Staff ID&quot;).ToString.Replace(&quot; Leave&quot;, &quot;&quot;).Trim]" Version="V4">
+                              <uix:NTypeInto.Target>
+                                <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" ContentHash="iUW6qfNUEkSF-p7r6nJ4tA" CvElementArea="796, 509, 622, 42" CvType="InputBox" DesignTimeRectangle="796, 511, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-employeeId' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='e.g. EMP001' aaname='Staff ID' /&gt;" Guid="c7d1c00a-a514-45e7-bfb6-a2912cafa75d" InformativeScreenshot="c302a8547fb65527d17fd513e29f4492.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/6wct17oAp0yyIn37i9RhWw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="c3566085-0ab2-4f05-a80a-3e9c28f3031b" CvTextArea="795, 485, 49, 13" CvTextArgument="Staff ID" CvType="Text" DesignTimeRectangle="796, 482, 48, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Staff ID' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Staff ID' /&gt;" Guid="73cafe8b-237e-4d4d-a0ca-17ded9b30bb5" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NTypeInto.Target>
+                              <uix:NTypeInto.VerifyOptions>
+                                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                </uix:VerifyExecutionTypeIntoOptions>
+                              </uix:NTypeInto.VerifyOptions>
+                            </uix:NTypeInto>
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Leave Type'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_9" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Leave Type&quot;).ToString.Replace(&quot; Leave&quot;, &quot;&quot;).Trim]" Version="V4">
+                              <uix:NTypeInto.Target>
+                                <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="c03583db-c8b1-4182-bb97-079b3a7871b4" ContentHash="bUywxFmWkEmQ_gkxJx_j6g" CvElementArea="799, 633, 622, 42" CvType="InputBox" DesignTimeRectangle="799, 635, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-leaveType' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='Search or select leave type' aaname='Leave Type (Annual | Medical | Emergency | Other)' /&gt;" Guid="70786013-3bbc-4b30-bac4-5d24e1bad2bb" InformativeScreenshot="095ca70cbc65c1124bc323e488673252.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/Wl4mkCsBTU2FaTB3gAz0yQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="c03583db-c8b1-4182-bb97-079b3a7871b4" CvTextArea="798, 609, 285, 15" CvTextArgument="Leave Type (Annual I Medical Emergency Other)" CvType="Text" DesignTimeRectangle="799, 606, 284, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Leave Type ' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Leave Type (Annual | Medical | Emergency | Other)' /&gt;" Guid="1bf91179-453f-49bd-a561-a193c16e708d" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NTypeInto.Target>
+                              <uix:NTypeInto.VerifyOptions>
+                                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                </uix:VerifyExecutionTypeIntoOptions>
+                              </uix:NTypeInto.VerifyOptions>
+                            </uix:NTypeInto>
+                            <Assign sap:VirtualizedContainerService.HintSize="954,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[StartDateStr]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[CType(CurrentRow("Start Date"), DateTime).ToString("dd/MM/yyyy")]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap:VirtualizedContainerService.HintSize="954,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[EndDateStr]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[CType(CurrentRow("End Date"), DateTime).ToString("dd/MM/yyyy")]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Start Date (DD/MM/YYYY)'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_11" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[StartDateStr]" Version="V4">
+                              <uix:NTypeInto.Target>
+                                <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" ContentHash="hVtcL7ioxUaLAZ3ge7lEsw" CvElementArea="794, 719, 299, 43" CvType="InputBox" DesignTimeRectangle="796, 721, 266, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-startDate' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm rounded-r-none' placeholder='DD/MM/YYYY' aaname='Start Date (DD/MM/YYYY)' /&gt;" Guid="214171cb-f983-4107-9619-57bcb176f486" InformativeScreenshot="4c21fe3f9da2aa7b09a4c04de9bf5eb5.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/9iZ8IVnfE06fvOLcOJ9ckw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" CvTextArea="795, 699, 169, 15" CvTextArgument="Start Date (DD/MM/YYYY)" CvType="Text" DesignTimeRectangle="796, 699, 299, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Start Date (DD/MM/YYYY)' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Start Date (DD/MM/YYYY)' /&gt;" Guid="dbdaa67e-6b5a-4312-b470-05d893177078" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NTypeInto.Target>
+                              <uix:NTypeInto.VerifyOptions>
+                                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                </uix:VerifyExecutionTypeIntoOptions>
+                              </uix:NTypeInto.VerifyOptions>
+                            </uix:NTypeInto>
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'End Date (DD/MM/YYYY)'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_12" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[EndDateStr]" Version="V4">
+                              <uix:NTypeInto.Target>
+                                <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" ContentHash="POQBxz3UXEiCI6DFjVyrvg" CvElementArea="1117, 719, 289, 42" CvType="InputBox" DesignTimeRectangle="1119, 721, 266, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-endDate' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm rounded-r-none' placeholder='DD/MM/YYYY' aaname='End Date (DD/MM/YYYY)' /&gt;" Guid="fc275b42-6d7b-4b40-be57-a46a2f1d0dc3" InformativeScreenshot="cfa012cb56921fea02d9ea7e4396d308.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/vek43hJNlEOpX97BO2027g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="8097f5c0-c3b8-4dec-b879-c005765f2431" CvTextArea="1118, 699, 162, 15" CvTextArgument="End Date (DD/MM/YYYY)" CvType="Text" DesignTimeRectangle="1119, 699, 299, 14" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='End Date (DD/MM/YYYY)' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='End Date (DD/MM/YYYY)' /&gt;" Guid="63ed4f8f-ed97-4c8f-be19-7755223ffc42" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NTypeInto.Target>
+                              <uix:NTypeInto.VerifyOptions>
+                                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                </uix:VerifyExecutionTypeIntoOptions>
+                              </uix:NTypeInto.VerifyOptions>
+                            </uix:NTypeInto>
+                            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Status'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,286" sap2010:WorkflowViewState.IdRef="NTypeInto_10" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Text="[CurrentRow(&quot;Status&quot;).ToString]" Version="V4">
+                              <uix:NTypeInto.Target>
+                                <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="c03583db-c8b1-4182-bb97-079b3a7871b4" ContentHash="cCwYkIeKnEO7bbVXyR5Cew" CvElementArea="799, 840, 622, 41" CvType="InputBox" DesignTimeRectangle="799, 841, 622, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-status' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='Search or select status' aaname='Status (Pending | Approved | Rejected)' /&gt;" Guid="bbead905-ec13-4f0f-bf09-8eaaf69eb2a8" InformativeScreenshot="bee990bfa1d7d454fc2e6b206a23638d.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/b48C-mEtBESGJvtQDR-p1w" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="c03583db-c8b1-4182-bb97-079b3a7871b4" CvTextArea="798, 815, 216, 16" CvTextArgument="Status (Pending Approved Rejected)" CvType="Text" DesignTimeRectangle="799, 812, 215, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Status ' tag='LABEL' type='' class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' check:innerText='Status (Pending | Approved | Rejected)' /&gt;" Guid="6735c6dd-f237-492f-9c7e-b18d171ebc75" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NTypeInto.Target>
+                              <uix:NTypeInto.VerifyOptions>
+                                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                </uix:VerifyExecutionTypeIntoOptions>
+                              </uix:NTypeInto.VerifyOptions>
+                            </uix:NTypeInto>
+                            <uix:NCheckState DisplayName="Check App State 'Employee NameStaff IDLe…'" sap:VirtualizedContainerService.HintSize="954,970" sap2010:WorkflowViewState.IdRef="NCheckState_1" Timeout="4" Version="V4">
+                              <uix:NCheckState.IfExists>
+                                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,694" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;No duplicates detected. Submitting&quot;]" />
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Submit'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Version="V4">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="d83a75d0-9dfb-40fc-a2fb-e756ab00e726" ContentHash="WZ1s-BM1TUOttxRUQvSqAg" CvElementArea="1331, 851, 81, 43" CvTextArea="1348, 866, 48, 13" CvTextArgument="Submit" CvType="Button" DesignTimeRectangle="1333, 853, 78, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='leaveform-submit-btn' tag='BUTTON' type='submit' class='inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2' aaname='Submit' check:innerText='Submit' /&gt;" Guid="b376bb7a-7830-43f1-bf5b-1b3eeb656d51" InformativeScreenshot="65d7fe8d8ef5f4558189cd7ae03a0567.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/jB3DeKHFoEahIVsgkk3Rew" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[InputRowsDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                                  <ui:Continue sap:VirtualizedContainerService.HintSize="416,50" sap2010:WorkflowViewState.IdRef="Continue_3" />
+                                </Sequence>
+                              </uix:NCheckState.IfExists>
+                              <uix:NCheckState.IfNotExists>
+                                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,730" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="sd:DataTable" Name="InputRowsDT" />
+                                  </Sequence.Variables>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Duplicate data found in System. Clearing Fields&quot;]" />
+                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[DuplicateRowsDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Clear Fields'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,225" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Version="V4">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="a7351c61-bb5f-4387-9870-54f2a2f8e71b" ContentHash="ZB2YTr8mkE2p8WD_0Vv6ng" CvElementArea="787, 787, 133, 43" CvTextArea="829, 802, 74, 13" CvTextArgument="Clear Fields" CvType="Button" DesignTimeRectangle="789, 789, 130, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='leaveform-clear-btn' tag='BUTTON' type='button' class='justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center gap-2' aaname='Clear Fields' check:innerText='Clear Fields' /&gt;" Guid="961417d2-eb4f-4dc8-b25b-cbb3f6aac35a" InformativeScreenshot="3e77bc91ce4cc8ced89dfc794f6224eb.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/i-nAlO7VGUOy_QPgPdqdxQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" />
+                                    </uix:NClick.Target>
+                                    <uix:NClick.VerifyOptions>
+                                      <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                        <uix:VerifyExecutionOptions.Retry>
+                                          <InArgument x:TypeArguments="x:Boolean" />
+                                        </uix:VerifyExecutionOptions.Retry>
+                                        <uix:VerifyExecutionOptions.Timeout>
+                                          <InArgument x:TypeArguments="x:Double" />
+                                        </uix:VerifyExecutionOptions.Timeout>
+                                      </uix:VerifyExecutionOptions>
+                                    </uix:NClick.VerifyOptions>
+                                  </uix:NClick>
+                                  <ui:Continue sap:VirtualizedContainerService.HintSize="416,50" sap2010:WorkflowViewState.IdRef="Continue_2" />
+                                </Sequence>
+                              </uix:NCheckState.IfNotExists>
+                              <uix:NCheckState.Target>
+                                <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="f8838772-6e10-41e6-be32-bd54e7f129c8" ContentHash="wbBQYxglP0mtHL_WqL_r6w" CvTextArea="833, 957, 546, 13" CvType="AnyWordGroup" DesignTimeRectangle="806, 954, 588, 20" DesignTimeScaleFactor="1" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='NoDuplicateFoundText' tag='DIV' type='' class='text-sm [&amp;amp;_p]:leading-relaxed text-green-700' /&gt;" Guid="73427de4-1d44-4473-8b40-fa569cfd47ce" InformativeScreenshot="4c2b671331795c97a48e84eb3822bcd4.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/XVI8FTCaSkusf0WGWLE7tQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                              </uix:NCheckState.Target>
+                            </uix:NCheckState>
+                          </Sequence>
+                        </TryCatch.Try>
+                        <TryCatch.Catches>
+                          <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                            <ActivityAction x:TypeArguments="s:Exception">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="988,403" sap2010:WorkflowViewState.IdRef="Sequence_4">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;No duplicates detected. Submitting&quot;]" />
-                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Submit'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Version="V4">
-                                  <uix:NClick.Target>
-                                    <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="d83a75d0-9dfb-40fc-a2fb-e756ab00e726" ContentHash="WZ1s-BM1TUOttxRUQvSqAg" CvElementArea="1331, 851, 81, 43" CvTextArea="1348, 866, 48, 13" CvTextArgument="Submit" CvType="Button" DesignTimeRectangle="1333, 853, 78, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='leaveform-submit-btn' tag='BUTTON' type='submit' class='inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2' aaname='Submit' check:innerText='Submit' /&gt;" Guid="b376bb7a-7830-43f1-bf5b-1b3eeb656d51" InformativeScreenshot="65d7fe8d8ef5f4558189cd7ae03a0567.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/jB3DeKHFoEahIVsgkk3Rew" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
-                                  </uix:NClick.Target>
-                                </uix:NClick>
-                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[InputRowsDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
-                                <ui:Continue sap:VirtualizedContainerService.HintSize="416,50" sap2010:WorkflowViewState.IdRef="Continue_3" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="954,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Error while inputting data&quot;]" />
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Error Handler" sap:VirtualizedContainerService.HintSize="954,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
+                                    <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_exception" />
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
                               </Sequence>
-                            </uix:NCheckState.IfExists>
-                            <uix:NCheckState.IfNotExists>
-                              <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,730" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                                <Sequence.Variables>
-                                  <Variable x:TypeArguments="sd:DataTable" Name="InputRowsDT" />
-                                </Sequence.Variables>
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Duplicate data found in System. Clearing Fields&quot;]" />
-                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[DuplicateRowsDT]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Clear Fields'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,225" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2cc86afd-69fc-4d92-9a5f-6921f7c3ca28" Version="V4">
-                                  <uix:NClick.Target>
-                                    <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="a7351c61-bb5f-4387-9870-54f2a2f8e71b" ContentHash="zYI2NwNx0kKdw5DIdoKLUA" CvElementArea="787, 787, 133, 43" CvTextArea="829, 802, 74, 13" CvTextArgument="Clear Fields" CvType="Button" DesignTimeRectangle="789, 789, 130, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='leaveform-clear-btn' tag='BUTTON' type='button' class='justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center gap-2' aaname='Clear Fields' check:innerText='Clear Fields' /&gt;" Guid="961417d2-eb4f-4dc8-b25b-cbb3f6aac35a" InformativeScreenshot="3e77bc91ce4cc8ced89dfc794f6224eb.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/i-nAlO7VGUOy_QPgPdqdxQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
-                                  </uix:NClick.Target>
-                                  <uix:NClick.VerifyOptions>
-                                    <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
-                                      <uix:VerifyExecutionOptions.Retry>
-                                        <InArgument x:TypeArguments="x:Boolean" />
-                                      </uix:VerifyExecutionOptions.Retry>
-                                      <uix:VerifyExecutionOptions.Timeout>
-                                        <InArgument x:TypeArguments="x:Double" />
-                                      </uix:VerifyExecutionOptions.Timeout>
-                                    </uix:VerifyExecutionOptions>
-                                  </uix:NClick.VerifyOptions>
-                                </uix:NClick>
-                                <ui:Continue sap:VirtualizedContainerService.HintSize="416,50" sap2010:WorkflowViewState.IdRef="Continue_2" />
-                              </Sequence>
-                            </uix:NCheckState.IfNotExists>
-                            <uix:NCheckState.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost/input-leave" CVScreenId="f8838772-6e10-41e6-be32-bd54e7f129c8" ContentHash="wbBQYxglP0mtHL_WqL_r6w" CvTextArea="833, 957, 546, 13" CvType="AnyWordGroup" DesignTimeRectangle="806, 954, 588, 20" DesignTimeScaleFactor="1" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='NoDuplicateFoundText' tag='DIV' type='' class='text-sm [&amp;amp;_p]:leading-relaxed text-green-700' /&gt;" Guid="73427de4-1d44-4473-8b40-fa569cfd47ce" InformativeScreenshot="4c2b671331795c97a48e84eb3822bcd4.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/XVI8FTCaSkusf0WGWLE7tQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
-                            </uix:NCheckState.Target>
-                          </uix:NCheckState>
-                        </Sequence>
-                      </TryCatch.Try>
-                      <TryCatch.Catches>
-                        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-                          <ActivityAction x:TypeArguments="s:Exception">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                            </ActivityAction.Argument>
-                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="988,403" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="954,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Error while inputting data&quot;]" />
-                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Error Handler" sap:VirtualizedContainerService.HintSize="954,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
-                                <ui:InvokeWorkflowFile.Arguments>
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
-                                  <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
-                                  <InArgument x:TypeArguments="x:String" x:Key="in_exception" />
-                                </ui:InvokeWorkflowFile.Arguments>
-                              </ui:InvokeWorkflowFile>
-                            </Sequence>
-                          </ActivityAction>
-                        </Catch>
-                      </TryCatch.Catches>
-                      <TryCatch.Finally>
-                        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="988,89" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Sequence>
-                      </TryCatch.Finally>
-                    </TryCatch>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
+                            </ActivityAction>
+                          </Catch>
+                        </TryCatch.Catches>
+                        <TryCatch.Finally>
+                          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="988,338" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uix:NInjectJsScript InputParameter="{x:Null}" ScriptOutput="{x:Null}" DisplayName="Inject Js Script - Sets isAutomated to true" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="954,278" sap2010:WorkflowViewState.IdRef="NInjectJsScript_3" ScriptCode="function () {&#xD;&#xA;localStorage.setItem('isAutomated', 'false');&#xD;&#xA;}" Version="V4" />
+                          </Sequence>
+                        </TryCatch.Finally>
+                      </TryCatch>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEachRow.Body>
+              </ui:ForEachRow>
+            </Sequence>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -438,7 +447,7 @@
         <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" ContentHash="-EGIRr7JC02ehpVlHRqS0w" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAZ7SURBVGhD7VZ9jF1VEX9QjRIjBWJIUUFSULCUdt+7Z+Zu292398zcFmuqUWIbgh8QE8CE+InWpBhbSyFqDDa05UOjaClgl7QaumVpF1qi0ZpU5ENIKZVC0kJbNt19756Zu7tVfGbu29XdtiH6j/94f8kv97175s6ZOfNxplIpUaJEiRIlSpQoUaLE/z1alcoZrUrlzP+Wq9rPM/5DXfa+kD3N2hSZt9Mxea9Kb6UyrZV0nBP83Csy7xaExCUNX+W3Y6AaBY58TjBfOJ4zlEYXHV005z1tXcm7JYEZSlEtpC4pZBOXmO4xrs5qdF15bqOr69wsmXd5M4k7Rzz0FHrrNWok6PJFsy/UBdX3Sz26MiOYP9me3EfxSNJ58XDScU4rit7ZPi3bsDueI4TfFsZNSvCokNsh5HZOMIyz+O1hQAh3ZASPBYZNgeLbGh6WDVP1Q615HzzrzWTWjAa7hRm5O5vktpusMmzLGR6wPbTuqsN1VxWPX888/DwjeLTpYSDzrj+Quyun2qdHyS1WwpU5xw8I4zbbM5AzPfflHq8NiZs9lEbTi2i05s85P/REXjneoIx7hGCfejg4mWJPgleU8FAgGBYGbRMPB4bfBsbbT6SuOtgdXTC8COoZ44qM3d5gMimMKcOgMPw5EPwkeFgm5D4fCHszjwczwhAIgxC8mrHrywi+KUbGx9v7YRBGFYIj4qFfCW6Y4sBY4mYLw8eU3EphuF8IH1KC3kDuEaP9zgh6heFhYewPhPvHnRgVgtwUhzTaLIlLLW2UcYXJmXPC+DdheEsIDgvDNiFYqxx/VxnWB8Jnx40zmTeE4TH1sD54WK2EdwvhC0KYF+sEg4HxD0LwozyJulpm/EQKhXrtoyNc6zbPlPF2ZfyZEGzOCgfgwcBwnzD+0AwLDGuDxz2B4E2LQODi5A5lKWzJU1iWe7haUvdQYPhrYGgIw1hBwkMZQ7+QpRFsFobdyvC6EI4IYWbREcI7lfDWwLChnS54WO2QLIoELwTGe4Xhs3kaXTSliIeimdNH50eXjHr38ZDiqkI54atK+FogeDZj2Coc3dFk+JxQ/LVA+KQwHgvsLAoHhaG/cIzdzRm7Ffa9MBwRhuPCriFtuaPCsF/I/UUIXlSGV5ThWPGe4CVNcGsg/HLw8BUl2CIp7JP2+nFzXhj7Mu++aIfdiuOzJ3eqyoFLL33XKEWXmHchLU77ZS3Cin8v0oPcLiuujN2NwvgNZdwmbEa458x4YfxBluK31LsVym69svudMLwk7J5Xhj2Suh3CbkDYPS3k9gm7/cLwcmDYr+T+KAk8rIRrMoIbMnbLJcXt9r2SO2Dy2o7Og1kC1zeTWucJj3OtmzXrHR8e7XIzK82rZp0XqFoPKa4LDM8EwiFh/IcxMB5XD3sDwVYluNty005IGX9j9RI4Xm0FKQleZ+mXp7hR2fVZ11GG+5XhexY5tdNL3T1iXYndTmXYaTlfpEWC1+W+82orXCW8S1PTDwM5wRP2FIbHQzvt1pq+dq265crupoxq11eGemrdgaIvBYbdgbEhjGPC2CocIAxKaOHeKx6eUsLtyviIMmywaIjHL1jkhOEWYdgkhLtMjzD8Sgm+02R3Tb7QLVDvPhnIrbP2bBE1PRnjL4VxeZ7EnYGgLuS+L0ULhyeE4KnJzAvb3G5pZ8Muq6PAsFoS+GpFya3JCDcGwgPCeEIY3xp3wGgdQALBoBC+JoR/Coy/1hTXKOOSjOATVh/Crs/ab9HqCF4PPh4IHN+cJbjEnFSGO5Tg98rwhhIeEY6fDoQ/Dexu0oVVpz1ucead2fDieM4fs0ZxChns/dFgjjHcolxbYg6sFIIfm2HtKJxKaV80feJxoxnftD7O8ayGj6Mibxl+kZHbbgVul1JIcJ1S52JlgMDuM0ruVotKoc9O0aJlEUzxqlGe+xG7pZtJfFvmYYt43CHcjuQpLCIATyq5e5TxU2MerqjYpaCpq+Zp3FVc56ehXXShXq1bEdnoMJx0XNxaHJ9tI8FYEl1u70cI6iY33BP5hq9F2h1d0Jw377y8PvtCc9bGjgl9eVLrHPXuslYCMwYXXPbeVhK9z0aHfGKUOY0Nk21p9nRATnM/MJTOnF5praqc2bt06bTW0qXTdifJO05HW/sXV500dNn/yesFK9Mm1othb1xmir6TB7dJek7e/1Rb/q1/yp1QokSJEiVKlChRokSJEiX+h/gnJvnHa8yHJwsAAAAASUVORK5CYII=" InformativeScreenshot="b894d9951dbfa9dcc1d9e8c7b84e5958.jpg" Reference="QjS7MUzdXEWdtnxKhJV7XA/cFgKtSsBbUut_jjUsSVkqA" Selector="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" Url="http://localhost:8080/input-leave" Version="V2" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
-    <Assign sap:VirtualizedContainerService.HintSize="1094,114" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap:VirtualizedContainerService.HintSize="1128,114" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[out_InputRowsDT]</OutArgument>
       </Assign.To>
@@ -446,7 +455,7 @@
         <InArgument x:TypeArguments="sd:DataTable">[InputRowsDT]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="1094,114" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign sap:VirtualizedContainerService.HintSize="1128,114" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[out_InvalidRowsDT]</OutArgument>
       </Assign.To>
@@ -454,6 +463,6 @@
         <InArgument x:TypeArguments="sd:DataTable">[in_InvalidRowsDT]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:MergeDataTable Destination="[out_InvalidRowsDT]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="1094,156" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[DuplicateRowsDT]" />
+    <ui:MergeDataTable Destination="[out_InvalidRowsDT]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="1128,156" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[DuplicateRowsDT]" />
   </Sequence>
 </Activity>

@@ -1,6 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="UserInput" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="DownloadableURL" Type="InOutArgument(x:String)" />
+    <x:Property Name="out_DownloadableURL" Type="InOutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -93,7 +93,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UserInput" sap:VirtualizedContainerService.HintSize="1294,3030" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UserInput" sap:VirtualizedContainerService.HintSize="506,3030" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="SpreadSheetLink" />
       <Variable x:TypeArguments="x:String" Name="SpreadSheetID" />
@@ -114,7 +114,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="470,271" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="[&quot;⚠️ Please ensure you have closed any tabs/windows of the Leave Management System before proceeding.&quot; &amp; vbCrLf &amp; _&#xD;&#xA;&quot; &quot; &amp; vbCrLf &amp; _&#xD;&#xA;&quot;Enter your Spreadsheet link&quot;]" Title="Spreadsheet Link">
+          <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="470,271" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="[&quot;⚠️ Please ensure you have closed any tabs/windows of the Leave Management System before proceeding.&quot; &amp; vbCrLf &amp; _&#xA;&quot; &quot; &amp; vbCrLf &amp; _&#xA;&quot;Enter your Spreadsheet link&quot;]" Title="Spreadsheet Link">
             <ui:InputDialog.Result>
               <OutArgument x:TypeArguments="x:String">[SpreadSheetLink]</OutArgument>
             </ui:InputDialog.Result>
@@ -142,7 +142,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:IfElseIfV2 Condition="[Not (SpreadSheetLink.StartsWith(&quot;https://docs.google.com/spreadsheets/d/&quot;) AndAlso&#xD;&#xA;     SpreadSheetLink.Contains(&quot;/edit&quot;) AndAlso&#xD;&#xA;     SpreadSheetLink.Contains(&quot;gid=&quot;))]" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="470,1147" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+          <ui:IfElseIfV2 Condition="[Not (SpreadSheetLink.StartsWith(&quot;https://docs.google.com/spreadsheets/d/&quot;) AndAlso&#xA;     SpreadSheetLink.Contains(&quot;/edit&quot;) AndAlso&#xA;     SpreadSheetLink.Contains(&quot;gid=&quot;))]" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="470,1147" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
             <ui:IfElseIfV2.Else>
               <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,680" sap2010:WorkflowViewState.IdRef="Sequence_8">
                 <sap:WorkflowViewStateService.ViewState>
@@ -176,7 +176,7 @@
                 </Assign>
                 <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_4">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[DownloadableURL]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String">[out_DownloadableURL]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
                     <InArgument x:TypeArguments="x:String">[DownloadableLink]</InArgument>
@@ -215,7 +215,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="470,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[exception.Message]" />
-              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="470,117" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Failed to extract the spreadsheet. &quot; &amp; vbCrLf &amp; _&#xD;&#xA;&quot; &quot; &amp; vbCrLf &amp; _&#xD;&#xA;&quot;The spreadsheet link you provided was invalid or had it's privacy set to private&quot;  &amp; vbCrLf &amp; _&#xD;&#xA;&quot; &quot;  &amp; vbCrLf &amp; _&#xD;&#xA;&quot;Terminating Process&quot;]" />
+              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="470,117" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Failed to extract the spreadsheet. &quot; &amp; vbCrLf &amp; _&#xA;&quot; &quot; &amp; vbCrLf &amp; _&#xA;&quot;The spreadsheet link you provided was invalid or had it's privacy set to private&quot;  &amp; vbCrLf &amp; _&#xA;&quot; &quot;  &amp; vbCrLf &amp; _&#xA;&quot;Terminating Process&quot;]" />
               <Throw Exception="[exception]" sap:VirtualizedContainerService.HintSize="470,113" sap2010:WorkflowViewState.IdRef="Throw_3" />
             </Sequence>
           </ActivityAction>

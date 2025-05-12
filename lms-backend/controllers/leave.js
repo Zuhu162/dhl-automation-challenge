@@ -5,8 +5,15 @@ const Leave = require("../models/Leave");
 // @access  Private
 exports.createLeave = async (req, res) => {
   try {
-    const { employeeId, employeeName, leaveType, startDate, endDate, status } =
-      req.body;
+    const {
+      employeeId,
+      employeeName,
+      leaveType,
+      startDate,
+      endDate,
+      status,
+      isAutomated,
+    } = req.body;
 
     // Create leave application
     const leave = await Leave.create({
@@ -16,6 +23,7 @@ exports.createLeave = async (req, res) => {
       startDate,
       endDate,
       status,
+      isAutomated: isAutomated || false,
       createdBy: req.user.id,
     });
 
