@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Chrome DHL Data Upload Summary",
+  "Type": "App",
+  "Id": "hA1h1chDUkOrF2LiULyIOg",
+  "Reference": "QjS7MUzdXEWdtnxKhJV7XA/hA1h1chDUkOrF2LiULyIOg",
+  "Created": "2025-05-13T10:36:49.5977764Z",
+  "Updated": "2025-05-13T10:36:49.5977764Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

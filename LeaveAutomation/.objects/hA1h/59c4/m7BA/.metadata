@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Chrome DHL Data Upload Summary",
+  "Type": "Screen",
+  "Id": "m7BAdytW-022ln088087tA",
+  "Reference": "QjS7MUzdXEWdtnxKhJV7XA/m7BAdytW-022ln088087tA",
+  "ParentRef": "QjS7MUzdXEWdtnxKhJV7XA/59c4d6d_vU6mDdGsSFScIA",
+  "Created": "2025-05-13T10:36:49.6388138Z",
+  "Updated": "2025-05-13T10:36:49.6388138Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

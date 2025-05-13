@@ -3,6 +3,7 @@
     <x:Property Name="in_excelFilePath" Type="InArgument(x:String)" />
     <x:Property Name="out_ValidRowsDT" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="out_InvalidRowsDT" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_StartTime" Type="InArgument(s:DateTime)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -123,6 +124,7 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -131,7 +133,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="1276,9577" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="1304,9577" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="SheetName" />
       <Variable x:TypeArguments="sd:DataTable" Name="ExcelLeaveRecordsDT" />
@@ -197,6 +199,10 @@
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
                   <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
                   <InArgument x:TypeArguments="x:String" x:Key="in_exception">[exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
+                  <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink" />
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
               <Throw Exception="[New BusinessRuleException(&quot;Error reading Excel File&quot;)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
@@ -266,7 +272,11 @@
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[ScreenshotFolder]</InArgument>
               <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
-              <InArgument x:TypeArguments="x:String" x:Key="in_exception">Invalid Headers. Error email sent</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_exception">Invalid Headers in excel file. Please make sure it follows the specified format</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
+              <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
+              <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink" />
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Invalid Headers. Error email sent&quot;]" />
@@ -397,7 +407,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message]" />
             </Sequence>
           </ActivityAction>
         </Catch>
@@ -515,7 +525,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="506,164" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Fatal" Message="[exception]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="506,164" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Fatal" Message="[exception.Message]" />
             </Sequence>
           </ActivityAction>
         </Catch>
@@ -582,7 +592,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Fatal" Message="[exception]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Fatal" Message="[exception.Message]" />
             </Sequence>
           </ActivityAction>
         </Catch>

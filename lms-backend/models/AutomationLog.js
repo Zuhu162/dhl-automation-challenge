@@ -4,7 +4,8 @@ const AutomationLogSchema = new mongoose.Schema(
   {
     status: {
       type: String,
-      default: "false",
+      enum: ["complete", "partial", "failed"],
+      default: "failed",
     },
     timeStart: {
       type: String,

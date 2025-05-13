@@ -13,7 +13,7 @@ const ApiDocs = () => {
   return (
     <>
       <Sidebar />
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 w-full">
         <Header />
 
         <main className="flex-1 container mx-auto px-4 py-6">

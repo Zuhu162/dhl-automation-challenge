@@ -113,6 +113,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -130,6 +131,7 @@
       <Variable x:TypeArguments="sd:DataTable" Name="FinalRejectedRowsDT" />
       <Variable x:TypeArguments="s:DateTime" Name="StartTime" />
       <Variable x:TypeArguments="s:DateTime" Name="EndTime" />
+      <Variable x:TypeArguments="x:String" Name="SpreadSheetLink" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -148,7 +150,8 @@
     </Assign>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetUserInput - Invoke Workflow File (GetUserInput.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetUserInput.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InOutArgument x:TypeArguments="x:String" x:Key="out_DownloadableURL">[DownloadLink]</InOutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_DownloadableURL">[DownloadLink]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_SpreadSheetLink">[SpreadSheetLink]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DownloadExcel - Invoke Workflow File (DownloadExcel.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="DownloadExcel.xaml">
@@ -162,19 +165,22 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_excelFilePath">[LatestExcelFilePath]</InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ValidRowsDT">[ValidRowsDT]</OutArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InvalidRowsDT">[InvalidRowsDT]</OutArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Login - Invoke Workflow File (Login.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InputExcelData - Invoke Workflow File (InputExcelData.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="InputExcelData.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InputExcelData - Invoke Workflow File (InputExcelData.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="InputExcelData.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ValidRowsDT">[ValidRowsDT]</InArgument>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_InvalidRowsDT">[InvalidRowsDT]</InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InputRowsDT">[FinalInputRowsDT]</OutArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InvalidRowsDT">[FinalRejectedRowsDT]</OutArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink">[SpreadSheetLink]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -187,11 +193,11 @@
     </Assign>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="FinalFeedbackProcess - Invoke Workflow File (FinalFeedbackProcess.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="FinalFeedbackProcess.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="FinalInputRowsDT">[FinalInputRowsDT]</InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="FinalRejectedRowsDT">[FinalRejectedRowsDT]</InArgument>
-        <InArgument x:TypeArguments="s:DateTime" x:Key="StartTime">[StartTime]</InArgument>
-        <InArgument x:TypeArguments="s:DateTime" x:Key="EndTime">[EndTime]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="DownloadLink">[DownloadLink]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_FinalInputRowsDT">[FinalInputRowsDT]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_FinalRejectedRowsDT">[FinalRejectedRowsDT]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_EndTime">[EndTime]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SpreadSheetLink">[SpreadSheetLink]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Main Process Ended&quot;]" />

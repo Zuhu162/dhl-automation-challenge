@@ -2,18 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import LeaveTable from "@/components/LeaveTable";
 import FloatingActionButton from "@/components/FloatingActionButton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Calendar,
-  FileText,
-  LayoutDashboard,
-  Users,
-  CheckCircle,
-  XCircle,
-} from "lucide-react";
 import { leaveService } from "@/services/leaveService";
 import { runAutomation } from "@/services/automationService";
 import { Progress } from "@/components/ui/progress";
@@ -24,6 +15,7 @@ import { LeaveApplication } from "@/types";
 import StatsSection from "@/components/StatsSection";
 import useEmployeeFilter from "@/hooks/useEmployeeFilter";
 import { UiPathIntegrationGuide } from "@/components/UiPathIntegrationGuide";
+import LeaveTable from "@/components/LeaveTable/LeaveTable";
 
 const Index = () => {
   const [refreshKey, setRefreshKey] = useState(0);

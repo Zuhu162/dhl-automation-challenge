@@ -4,7 +4,7 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 export interface AutomationLog {
   _id: string;
-  status: string;
+  status: "complete" | "partial" | "failed";
   timeStart: string;
   timeEnd: string;
   successfulRows: string;

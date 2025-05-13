@@ -2,7 +2,16 @@ import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { format, isValid } from "date-fns";
+import {
+  format,
+  isValid,
+  isFuture,
+  isPast,
+  addYears,
+  subYears,
+  isAfter,
+  isBefore,
+} from "date-fns";
 import { AlertCircle, CalendarIcon, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -43,6 +52,8 @@ interface LeaveFormProps {
 const leaveTypeOptions = ["Annual", "Medical", "Emergency", "Other"] as const;
 const statusOptions = ["Pending", "Approved", "Rejected"] as const;
 
+// Date validation constants - removed restrictions
+
 const formSchema = z
   .object({
     employeeId: z.string().min(1, { message: "Staff ID is required" }),
@@ -52,12 +63,22 @@ const formSchema = z
     leaveType: z.enum(leaveTypeOptions, {
       errorMap: () => ({ message: "Please select a valid leave type" }),
     }),
-    startDate: z.date({
-      required_error: "Start date is required",
-    }),
-    endDate: z.date({
-      required_error: "End date is required",
-    }),
+    startDate: z
+      .date({
+        required_error: "Start date is required",
+        invalid_type_error: "Invalid date format",
+      })
+      .refine((date) => isValid(date), {
+        message: "Invalid date format",
+      }),
+    endDate: z
+      .date({
+        required_error: "End date is required",
+        invalid_type_error: "Invalid date format",
+      })
+      .refine((date) => isValid(date), {
+        message: "Invalid date format",
+      }),
     status: z.enum(statusOptions, {
       errorMap: () => ({ message: "Please select a valid status" }),
     }),
@@ -105,6 +126,11 @@ export default function LeaveForm({
     return storedValue === "true";
   };
 
+  // Function to validate a date is within allowed range - removed restrictions
+  const isDateInAllowedRange = (date: Date): boolean => {
+    return true; // All dates are now allowed
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: application
@@ -138,11 +164,19 @@ export default function LeaveForm({
 
     if (!value) {
       field.onChange(undefined);
+      form.setError(fieldName, {
+        message: `${
+          fieldName === "startDate" ? "Start" : "End"
+        } date is required`,
+      });
       return;
     }
 
-    // If the input doesn't match DD/MM/YYYY pattern, don't try to parse it
+    // If the input doesn't match DD/MM/YYYY pattern, mark as invalid
     if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value)) {
+      form.setError(fieldName, {
+        message: "Date must be in DD/MM/YYYY format",
+      });
       return;
     }
 
@@ -150,27 +184,49 @@ export default function LeaveForm({
       const [day, month, year] = value
         .split("/")
         .map((part) => parseInt(part, 10));
+
+      // Basic validation for day/month ranges
+      if (month < 1 || month > 12) {
+        form.setError(fieldName, { message: "Month must be between 1 and 12" });
+        return;
+      }
+
+      // Get days in the selected month (accounting for leap years)
+      const daysInMonth = new Date(year, month, 0).getDate();
+      if (day < 1 || day > daysInMonth) {
+        form.setError(fieldName, {
+          message: `Day must be between 1 and ${daysInMonth} for the selected month`,
+        });
+        return;
+      }
+
       const date = new Date(year, month - 1, day);
 
-      if (isValid(date)) {
-        field.onChange(date);
+      if (!isValid(date)) {
+        form.setError(fieldName, { message: "Invalid date" });
+        return;
+      }
 
-        // Validate date range if both dates are set
-        const startDate =
-          fieldName === "startDate" ? date : form.getValues("startDate");
-        const endDate =
-          fieldName === "endDate" ? date : form.getValues("endDate");
+      // If we got here, the date is valid - update the field
+      field.onChange(date);
+      form.clearErrors(fieldName);
 
-        if (startDate && endDate && endDate < startDate) {
-          form.setError("endDate", {
-            message: "End date must be on or after the start date",
-          });
-        } else {
-          form.clearErrors("endDate");
-        }
+      // Validate date range if both dates are set
+      const startDate =
+        fieldName === "startDate" ? date : form.getValues("startDate");
+      const endDate =
+        fieldName === "endDate" ? date : form.getValues("endDate");
+
+      if (startDate && endDate && endDate < startDate) {
+        form.setError("endDate", {
+          message: "End date must be on or after the start date",
+        });
+      } else if (startDate && endDate) {
+        form.clearErrors("endDate");
       }
     } catch (error) {
-      console.log("Invalid date format:", error);
+      form.setError(fieldName, { message: "Invalid date format" });
+      console.log("Date parsing error:", error);
     }
   };
 

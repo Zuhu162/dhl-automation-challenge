@@ -1,5 +1,5 @@
 import { parseISO, addHours } from "date-fns";
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, XCircle, FileWarning } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -146,12 +146,26 @@ export function AutomationLogsTable({
     );
   }
 
+  // Function to get row background color based on status
+  const getRowBgColor = (status: string) => {
+    switch (status) {
+      case "complete":
+        return "bg-green-50 hover:bg-green-100 transition-colors";
+      case "partial":
+        return "bg-yellow-50 hover:bg-yellow-100 transition-colors";
+      case "failed":
+        return "bg-red-50 hover:bg-red-100 transition-colors";
+      default:
+        return "";
+    }
+  };
+
   return (
-    <div className="rounded-lg border">
+    <div>
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-gray-100">
           <TableRow>
-            <TableHead className="w-[100px]">Status</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead>Start Time</TableHead>
             <TableHead>End Time</TableHead>
             <TableHead>Duration</TableHead>
@@ -161,17 +175,29 @@ export function AutomationLogsTable({
         </TableHeader>
         <TableBody>
           {getPaginatedData().map((log) => (
-            <TableRow key={log._id}>
+            <TableRow key={log._id} className={getRowBgColor(log.status)}>
               <TableCell>
                 <div className="flex items-center">
-                  {log.status === "true" ? (
+                  {log.status === "complete" ? (
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                  ) : log.status === "partial" ? (
+                    <FileWarning className="h-5 w-5 text-yellow-500 mr-2" />
                   ) : (
                     <XCircle className="h-5 w-5 text-red-500 mr-2" />
                   )}
                   <Badge
-                    variant={log.status === "true" ? "outline" : "destructive"}>
-                    {log.status === "true" ? "Success" : "Failed"}
+                    variant={
+                      log.status === "complete"
+                        ? "success"
+                        : log.status === "partial"
+                        ? "warning"
+                        : "destructive"
+                    }>
+                    {log.status === "complete"
+                      ? "Complete"
+                      : log.status === "partial"
+                      ? "Partial"
+                      : "Failed"}
                   </Badge>
                 </div>
               </TableCell>
@@ -196,7 +222,7 @@ export function AutomationLogsTable({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 underline hover:text-blue-800">
-                    Download Link
+                    Link
                   </a>
                 ) : (
                   <span className="text-gray-400">—</span>

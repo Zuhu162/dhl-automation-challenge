@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import { RefreshCcw } from "lucide-react";
+import { RefreshCcw, CheckCircle, XCircle, FileWarning } from "lucide-react";
 import {
   getAllAutomationLogs,
   type AutomationLog as AutomationLogType,
@@ -41,10 +41,28 @@ const AutomationLogs = () => {
     }
   };
 
+  // Legend item component
+  const LegendItem = ({
+    color,
+    icon,
+    text,
+  }: {
+    color: string;
+    icon: React.ReactNode;
+    text: string;
+  }) => (
+    <div className="flex items-center gap-2">
+      <span className="flex items-center gap-1">
+        {icon}
+        {text}
+      </span>
+    </div>
+  );
+
   return (
     <>
       <Sidebar />
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 w-full">
         <Header />
 
         <main className="flex-1 container mx-auto px-4 py-6">
@@ -63,6 +81,28 @@ const AutomationLogs = () => {
             </button>
           </div>
 
+          {/* Status Legend */}
+          <div className="bg-white rounded-lg border p-4 mb-6 shadow-sm">
+            <h3 className="text-lg font-medium mb-3">Status Legend</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <LegendItem
+                color="bg-green-50"
+                icon={<CheckCircle className="h-4 w-4 text-green-500" />}
+                text="Complete: All rows successfully input"
+              />
+              <LegendItem
+                color="bg-yellow-50"
+                icon={<FileWarning className="h-4 w-4 text-yellow-500" />}
+                text="Partial: Process stopped before completion"
+              />
+              <LegendItem
+                color="bg-red-50"
+                icon={<XCircle className="h-4 w-4 text-red-500" />}
+                text="Failed: Could not start input process"
+              />
+            </div>
+          </div>
+
           {error ? (
             <div className="text-center py-12 bg-red-50 rounded-lg border border-red-200">
               <p className="text-red-500">{error}</p>
@@ -73,14 +113,16 @@ const AutomationLogs = () => {
               </button>
             </div>
           ) : (
-            <AutomationLogsTable
-              logs={logs}
-              loading={loading}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              itemsPerPage={itemsPerPage}
-              onPageChange={setCurrentPage}
-            />
+            <div className="max-w-full overflow-x-auto">
+              <AutomationLogsTable
+                logs={logs}
+                loading={loading}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                itemsPerPage={itemsPerPage}
+                onPageChange={setCurrentPage}
+              />
+            </div>
           )}
         </main>
       </div>

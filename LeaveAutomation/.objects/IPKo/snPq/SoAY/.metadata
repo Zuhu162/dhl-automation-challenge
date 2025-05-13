@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Chrome DHL  Leave Management System",
+  "Type": "Screen",
+  "Id": "SoAYJMYhUUu-4Bh1EyfT1Q",
+  "Reference": "QjS7MUzdXEWdtnxKhJV7XA/SoAYJMYhUUu-4Bh1EyfT1Q",
+  "ParentRef": "QjS7MUzdXEWdtnxKhJV7XA/snPqbVOB50aP0_UtrwNarA",
+  "Created": "2025-05-13T10:37:10.5454008Z",
+  "Updated": "2025-05-13T10:37:10.5454008Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

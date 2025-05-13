@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="C9qjTFNfB0ufa8IcefJ01A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="-dihBlfTrUuI7ggqL3Nv5w" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost" DesignTimeRectangle="417, 622, 1366, 393" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl type='' class='p-6 pt-0' parentid='radix-:rb:-content-applications' tag='DIV' aaname='' /&gt;" Guid="64e40127-fe5c-4416-b3a8-c8afbe6cb50a" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
-      <TargetAnchorable.Anchors>
-        <scg:List x:TypeArguments="ITarget" Capacity="4">
-          <Target CVScreenId="99f03fb5-f7de-453d-a399-77741dca5970" CvTextArea="440, 576, 162, 22" CvTextArgument="Leave Applications" CvType="Text" DesignTimeRectangle="441, 570, 1318, 28" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='radix-:rb:-content-applications' tag='H3' type='' class='font-semibold tracking-tight text-xl' aaname='Leave Applications' check:innerText='Leave Applications' /&gt;" Guid="58f62a43-852b-4131-81c2-529dd188bf12" SearchSteps="FuzzySelector, CV" />
-        </scg:List>
-      </TargetAnchorable.Anchors>
-      <imageRef attrName="InformativeScreenshot" originalValue="d8cfe31c612e5ee5da21b3c58f22714a.png" xmlns="">00HKWyCDhqECT-VjJk9fjcw</imageRef>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost" CVScreenId="9562110c-24c5-4e4b-8d93-0f7b352f7819" CvTextArea="450, 573, 163, 23" CvTextArgument="Leave Applications" CvType="Text" DesignTimeRectangle="427, 544, 1366, 76" DesignTimeScaleFactor="1" FuzzySelectorArgument="&lt;webctrl type='' parentid='radix-:rb:-content-applications' tag='DIV' class='flex flex-col space-y-1.5 p-6' aaname='' check:innerText='Leave Applications' /&gt;" Guid="5c16afe1-dc3e-4343-9a05-92f9a08610ad" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="2bc237c8a4ab766439365a6b143b375b.png" xmlns="">0HFhqdNmnqU2ZW9syKiu3Kg</imageRef>
     </TargetAnchorable>
     <x:String x:Key="ActivityType">None</x:String>
   </ObjectRepositoryTargetData.Data>

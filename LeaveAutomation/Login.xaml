@@ -1,4 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Login" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Login_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_StartTime" Type="InArgument(s:DateTime)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Login_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -101,6 +108,9 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="1304,3801" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -124,13 +134,13 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                 </ActivityAction.Argument>
-                <Sequence sap:VirtualizedContainerService.HintSize="1058,2742" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                <Sequence sap:VirtualizedContainerService.HintSize="1058,2702" sap2010:WorkflowViewState.IdRef="Sequence_19">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State 'BUTTON radix-r8'" sap:VirtualizedContainerService.HintSize="1024,2162" sap2010:WorkflowViewState.IdRef="NCheckState_2" Version="V4">
+                  <uix:NCheckState DisplayName="Check App State 'BUTTON radix-r8'" sap:VirtualizedContainerService.HintSize="1024,2122" sap2010:WorkflowViewState.IdRef="NCheckState_2" Version="V4">
                     <uix:NCheckState.IfExists>
                       <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="Sequence_15">
                         <sap:WorkflowViewStateService.ViewState>
@@ -142,13 +152,13 @@
                       </Sequence>
                     </uix:NCheckState.IfExists>
                     <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="520,1913" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="520,1873" sap2010:WorkflowViewState.IdRef="Sequence_16">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486,1851" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" ScopeGuid="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V2">
+                        <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486,1811" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" ScopeGuid="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V2">
                           <uix:NApplicationCard.Body>
                             <ActivityAction x:TypeArguments="x:Object">
                               <ActivityAction.Argument>
@@ -245,6 +255,10 @@
                                               <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
                                               <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
                                               <InArgument x:TypeArguments="x:String" x:Key="in_exception">[exception.Message]</InArgument>
+                                              <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
+                                              <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
+                                              <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[Now]</InArgument>
+                                              <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink" />
                                             </ui:InvokeWorkflowFile.Arguments>
                                           </ui:InvokeWorkflowFile>
                                         </Sequence>
@@ -271,13 +285,7 @@
                       </Sequence>
                     </uix:NCheckState.IfNotExists>
                     <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="localhost" ContentHash="C9qjTFNfB0ufa8IcefJ01A" DesignTimeRectangle="417, 622, 1366, 393" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl type='' class='p-6 pt-0' parentid='radix-:rb:-content-applications' tag='DIV' aaname='' /&gt;" Guid="64e40127-fe5c-4416-b3a8-c8afbe6cb50a" InformativeScreenshot="d8cfe31c612e5ee5da21b3c58f22714a.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/e5p71L96fUCOGy3duTHc0g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
-                        <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target CVScreenId="99f03fb5-f7de-453d-a399-77741dca5970" CvTextArea="440, 576, 162, 22" CvTextArgument="Leave Applications" CvType="Text" DesignTimeRectangle="441, 570, 1318, 28" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='radix-:rb:-content-applications' tag='H3' type='' class='font-semibold tracking-tight text-xl' aaname='Leave Applications' check:innerText='Leave Applications' /&gt;" Guid="58f62a43-852b-4131-81c2-529dd188bf12" SearchSteps="FuzzySelector, CV" />
-                          </scg:List>
-                        </uix:TargetAnchorable.Anchors>
-                      </uix:TargetAnchorable>
+                      <uix:TargetAnchorable BrowserURL="localhost" CVScreenId="9562110c-24c5-4e4b-8d93-0f7b352f7819" ContentHash="-dihBlfTrUuI7ggqL3Nv5w" CvTextArea="450, 573, 163, 23" CvTextArgument="Leave Applications" CvType="Text" DesignTimeRectangle="427, 544, 1366, 76" DesignTimeScaleFactor="1" FuzzySelectorArgument="&lt;webctrl type='' parentid='radix-:rb:-content-applications' tag='DIV' class='flex flex-col space-y-1.5 p-6' aaname='' check:innerText='Leave Applications' /&gt;" Guid="5c16afe1-dc3e-4343-9a05-92f9a08610ad" InformativeScreenshot="2bc237c8a4ab766439365a6b143b375b.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/e5p71L96fUCOGy3duTHc0g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
                     </uix:NCheckState.Target>
                   </uix:NCheckState>
                   <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1024,520" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="f6020526-c971-4647-a109-54fe64767964" Version="V2">
@@ -338,6 +346,10 @@
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
                   <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
                   <InArgument x:TypeArguments="x:String" x:Key="in_exception">[exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
+                  <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink" />
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
             </Sequence>
