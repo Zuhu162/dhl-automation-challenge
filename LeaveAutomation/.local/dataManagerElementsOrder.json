@@ -14,12 +14,18 @@
       "VariablesSectionElementsOrder": [
         "DownloadLink&Sequence_1",
         "LatestExcelFilePath&Sequence_1",
+        "ValidRowsDT&Sequence_1",
+        "InvalidRowsDT&Sequence_1",
         "FinalInputRowsDT&Sequence_1",
         "FinalRejectedRowsDT&Sequence_1",
         "StartTime&Sequence_1",
-        "EndTime&Sequence_1",
-        "ValidRowsDT&Sequence_1",
-        "InvalidRowsDT&Sequence_1"
+        "SpreadSheetLink&Sequence_1",
+        "TotalRows&Sequence_1",
+        "Screenshot&Sequence_1",
+        "ScreenshotFileInfo&Sequence_1",
+        "AttachmentList&Sequence_1",
+        "EmailPass&Sequence_1",
+        "EndTime&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
@@ -68,11 +74,18 @@
       "Path": "ErrorHandler.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "EmailPass&Sequence_1",
+        "EndTime&Sequence_1",
         "AttachmentList&Sequence_1",
         "Screenshot&Sequence_1",
         "ScreenshotFileInfo&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_TotalRows",
+        "in_ValidRowsCount",
+        "in_InvalidRowsCount",
+        "in_StartTime",
+        "in_DownloadLink",
         "in_exception",
         "in_Folder",
         "io_FilePath"
@@ -99,14 +112,20 @@
       "Path": "InputExcelData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "InputRowsDT&Sequence_18",
+        "MaxRetries&Sequence_1",
         "DuplicateRowsDT&Sequence_1",
         "InputRowsDT&Sequence_1",
+        "RetryCount&Sequence_1",
+        "Success&Sequence_1",
         "TableText&Sequence_16",
         "StartDateStr&Sequence_12",
-        "EndDateStr&Sequence_12",
-        "InputRowsDT&Sequence_18"
+        "EndDateStr&Sequence_12"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_TotalRows",
+        "in_StartTime",
+        "in_DownloadLink",
         "in_ValidRowsDT",
         "in_InvalidRowsDT",
         "out_InputRowsDT",
@@ -133,6 +152,8 @@
         "SeenRows&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "out_TotalRows",
+        "in_StartTime",
         "in_excelFilePath",
         "out_ValidRowsDT",
         "out_InvalidRowsDT"
@@ -143,8 +164,12 @@
     {
       "Path": "Login.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": [],
+      "VariablesSectionElementsOrder": [
+        "LoginPassword&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_StartTime"
+      ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
@@ -166,13 +191,16 @@
     {
       "Path": "FinalFeedbackProcess.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
+      "VariablesSectionElementsOrder": [
+        "EmailPass&Sequence_2"
+      ],
       "ArgumentsSectionElementsOrder": [
-        "FinalInputRowsDT",
-        "FinalRejectedRowsDT",
-        "StartTime",
-        "EndTime",
-        "DownloadLink"
+        "in_TotalRows",
+        "in_FinalInputRowsDT",
+        "in_FinalRejectedRowsDT",
+        "in_StartTime",
+        "in_EndTime",
+        "in_SpreadSheetLink"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

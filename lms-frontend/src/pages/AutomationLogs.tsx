@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import { RefreshCcw, CheckCircle, XCircle, FileWarning } from "lucide-react";
+import {
+  RefreshCcw,
+  CheckCircle,
+  XCircle,
+  FileWarning,
+  ChevronRight,
+} from "lucide-react";
 import {
   getAllAutomationLogs,
   type AutomationLog as AutomationLogType,
@@ -100,6 +106,20 @@ const AutomationLogs = () => {
                 icon={<XCircle className="h-4 w-4 text-red-500" />}
                 text="Failed: Could not start input process"
               />
+            </div>
+            <div className="mt-4 text-sm text-gray-600">
+              <p className="mb-1">
+                <strong>Rows Processed:</strong> Shows as{" "}
+                <strong>Valid / Invalid / Total</strong> rows
+              </p>
+              <p className="flex items-center mb-1">
+                <ChevronRight className="h-4 w-4 mr-1" /> Click on any row to
+                view more details
+              </p>
+              <p className="ml-5">
+                Additional information such as remarks will be shown in the
+                expanded view
+              </p>
             </div>
           </div>
 

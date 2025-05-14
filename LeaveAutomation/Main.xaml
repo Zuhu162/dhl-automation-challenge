@@ -121,7 +121,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1304,1767" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1309,1767" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DownloadLink" />
       <Variable x:TypeArguments="x:String" Name="LatestExcelFilePath" />
@@ -132,6 +132,7 @@
       <Variable x:TypeArguments="s:DateTime" Name="StartTime" />
       <Variable x:TypeArguments="s:DateTime" Name="EndTime" />
       <Variable x:TypeArguments="x:String" Name="SpreadSheetLink" />
+      <Variable x:TypeArguments="x:String" Name="TotalRows" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -166,6 +167,7 @@
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ValidRowsDT">[ValidRowsDT]</OutArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InvalidRowsDT">[InvalidRowsDT]</OutArgument>
         <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_TotalRows">[TotalRows]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Login - Invoke Workflow File (Login.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Login.xaml">
@@ -181,6 +183,7 @@
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InvalidRowsDT">[FinalRejectedRowsDT]</OutArgument>
         <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink">[SpreadSheetLink]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows">[TotalRows]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -198,6 +201,7 @@
         <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
         <InArgument x:TypeArguments="s:DateTime" x:Key="in_EndTime">[EndTime]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_SpreadSheetLink">[SpreadSheetLink]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows">[TotalRows]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Main Process Ended&quot;]" />

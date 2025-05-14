@@ -25,6 +25,16 @@ const AutomationLogSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    totalRows: {
+      type: String,
+      required: false,
+      default: 0,
+    },
+    remarks: {
+      type: String,
+      required: false,
+      default: "",
+    },
     spreadsheetLink: {
       type: String,
       required: false,

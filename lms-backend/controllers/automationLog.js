@@ -11,6 +11,8 @@ exports.createAutomationLog = async (req, res) => {
       timeEnd,
       successfulRows,
       failedRows,
+      totalRows,
+      remarks,
       spreadsheetLink,
     } = req.body;
 
@@ -21,6 +23,8 @@ exports.createAutomationLog = async (req, res) => {
       timeEnd,
       successfulRows,
       failedRows,
+      totalRows,
+      remarks,
       spreadsheetLink,
     });
 

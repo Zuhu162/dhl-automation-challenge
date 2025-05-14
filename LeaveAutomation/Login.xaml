@@ -49,6 +49,7 @@
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
       <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Activities.Contracts</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -111,15 +112,20 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="1304,3801" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="1304,3858" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="LoginPassword" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1128,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Login Process Started&quot;]" />
+    <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="1128,57" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAj7oCPU1qPUupwHxEhc/iBAAAAAACAAAAAAAQZgAAAAEAACAAAADm8eF3xKJs1BJEzNzaS4SSpquKdt+FaixlqpTmxrY8kQAAAAAOgAAAAAIAACAAAADJrigj47DLlB1gCWY5Z0B2Dp9sRRU1tNn45/S87HwxlhAAAAB26rREfHSUeSzt8J1LIF6iQAAAAFGTLKnLV196sCeZgH2dpL+tp4NBzk5fVu2HI72FQAZqhdeQCfeMWKQONuMm9KvOtUxHoKQcrUnrQW4Z37k0HhE=" Result="[LoginPassword]" />
     <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1128,3605" sap2010:WorkflowViewState.IdRef="TryCatch_3">
       <TryCatch.Try>
         <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="1126,2950" sap2010:WorkflowViewState.IdRef="Sequence_21">
@@ -199,7 +205,7 @@
                                           </uix:VerifyExecutionTypeIntoOptions>
                                         </uix:NTypeInto.VerifyOptions>
                                       </uix:NTypeInto>
-                                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Password'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,286" sap2010:WorkflowViewState.IdRef="NTypeInto_8" IsPassword="True" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="9A8+8|]'73w3" Version="V4">
+                                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Password'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,286" sap2010:WorkflowViewState.IdRef="NTypeInto_8" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="[LoginPassword]" Version="V4">
                                         <uix:NTypeInto.Target>
                                           <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="ce3d4f9b-7af9-4834-96e8-c0e37167cde7" ContentHash="5nBQx6VA30imS5pjBh_FJA" CvElementArea="784, 673, 367, 42" CvType="InputBox" DesignTimeRectangle="785, 648, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBoxPassword" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='••••••••' aaname='Password' /&gt;" Guid="29fe3382-c4b9-4cd8-9800-ac92474bde4b" InformativeScreenshot="74cbd80cb5bc7dafba680bc9c5fd0caa.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/ooakhjmTe0W-acoL7QdtSA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
                                             <uix:TargetAnchorable.Anchors>

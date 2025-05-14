@@ -1,5 +1,11 @@
-import { parseISO, addHours } from "date-fns";
-import { CheckCircle, XCircle, FileWarning } from "lucide-react";
+import { parseISO, addHours, format } from "date-fns";
+import {
+  CheckCircle,
+  XCircle,
+  FileWarning,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -19,6 +25,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { type AutomationLog } from "@/services/automationLogService";
+import { useState } from "react";
 
 interface AutomationLogsTableProps {
   logs: AutomationLog[];
@@ -37,6 +44,17 @@ export function AutomationLogsTable({
   itemsPerPage,
   onPageChange,
 }: AutomationLogsTableProps) {
+  // State to track expanded rows
+  const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
+
+  // Toggle row expansion
+  const toggleRowExpansion = (id: string) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   // Adjust UTC time to local time (adding 4 hours)
   const adjustTimeZone = (dateString: string): Date => {
     const date = parseISO(dateString);
@@ -161,74 +179,177 @@ export function AutomationLogsTable({
   };
 
   return (
-    <div>
+    <div className="rounded-lg border overflow-hidden">
       <Table>
         <TableHeader className="bg-gray-100">
           <TableRow>
+            <TableHead className="w-[30px]"></TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Start Time</TableHead>
             <TableHead>End Time</TableHead>
             <TableHead>Duration</TableHead>
             <TableHead className="text-right">Rows Processed</TableHead>
-            <TableHead>Spreadsheet Link</TableHead>
+            <TableHead>Spreadsheet</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {getPaginatedData().map((log) => (
-            <TableRow key={log._id} className={getRowBgColor(log.status)}>
-              <TableCell>
-                <div className="flex items-center">
-                  {log.status === "complete" ? (
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                  ) : log.status === "partial" ? (
-                    <FileWarning className="h-5 w-5 text-yellow-500 mr-2" />
+            <>
+              <TableRow
+                key={log._id}
+                className={`cursor-pointer ${getRowBgColor(log.status)}`}
+                onClick={() => toggleRowExpansion(log._id)}>
+                <TableCell className="px-2">
+                  {expandedRows[log._id] ? (
+                    <ChevronDown className="h-4 w-4" />
                   ) : (
-                    <XCircle className="h-5 w-5 text-red-500 mr-2" />
+                    <ChevronRight className="h-4 w-4" />
                   )}
-                  <Badge
-                    variant={
-                      log.status === "complete"
-                        ? "success"
+                </TableCell>
+                <TableCell>
+                  <div className="flex items-center">
+                    {log.status === "complete" ? (
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                    ) : log.status === "partial" ? (
+                      <FileWarning className="h-5 w-5 text-yellow-500 mr-2" />
+                    ) : (
+                      <XCircle className="h-5 w-5 text-red-500 mr-2" />
+                    )}
+                    <Badge
+                      variant={
+                        log.status === "complete"
+                          ? "success"
+                          : log.status === "partial"
+                          ? "warning"
+                          : "destructive"
+                      }>
+                      {log.status === "complete"
+                        ? "Complete"
                         : log.status === "partial"
-                        ? "warning"
-                        : "destructive"
-                    }>
-                    {log.status === "complete"
-                      ? "Complete"
-                      : log.status === "partial"
-                      ? "Partial"
-                      : "Failed"}
-                  </Badge>
-                </div>
-              </TableCell>
-              <TableCell>{formatDate(log.timeStart)}</TableCell>
-              <TableCell>{formatDate(log.timeEnd)}</TableCell>
-              <TableCell>
-                {calculateDuration(log.timeStart, log.timeEnd)}
-              </TableCell>
-              <TableCell className="text-right">
-                <span className="text-green-600 font-medium">
-                  {log.successfulRows}
-                </span>
-                {" / "}
-                <span className="text-red-600 font-medium">
-                  {log.failedRows}
-                </span>
-              </TableCell>
-              <TableCell>
-                {log.spreadsheetLink ? (
-                  <a
-                    href={log.spreadsheetLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline hover:text-blue-800">
-                    Link
-                  </a>
-                ) : (
-                  <span className="text-gray-400">—</span>
-                )}
-              </TableCell>
-            </TableRow>
+                        ? "Partial"
+                        : "Failed"}
+                    </Badge>
+                  </div>
+                </TableCell>
+                <TableCell>{formatDate(log.timeStart)}</TableCell>
+                <TableCell>{formatDate(log.timeEnd)}</TableCell>
+                <TableCell>
+                  {calculateDuration(log.timeStart, log.timeEnd)}
+                </TableCell>
+                <TableCell className="text-right font-medium">
+                  <span className="text-green-600">{log.successfulRows}</span>
+                  {" / "}
+                  <span className="text-red-600">{log.failedRows}</span>
+                  {" / "}
+                  <span>
+                    {log.totalRows ||
+                      (
+                        parseInt(log.successfulRows) + parseInt(log.failedRows)
+                      ).toString()}
+                  </span>
+                </TableCell>
+                <TableCell>
+                  {log.spreadsheetLink ? (
+                    <a
+                      href={log.spreadsheetLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline hover:text-blue-800"
+                      onClick={(e) => e.stopPropagation()}>
+                      Link
+                    </a>
+                  ) : (
+                    <span className="text-gray-400">—</span>
+                  )}
+                </TableCell>
+              </TableRow>
+              {expandedRows[log._id] && (
+                <TableRow
+                  className={`${getRowBgColor(log.status)} bg-opacity-50`}>
+                  <TableCell colSpan={7} className="p-4">
+                    <div className="text-sm">
+                      <h4 className="font-semibold mb-2">Details</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <p>
+                            <span className="font-medium">Log ID:</span>{" "}
+                            {log._id}
+                          </p>
+                          <p>
+                            <span className="font-medium">Status:</span>{" "}
+                            {log.status}
+                          </p>
+                          <p>
+                            <span className="font-medium">Rows Processed:</span>{" "}
+                            <span className="text-green-600">
+                              {log.successfulRows}
+                            </span>{" "}
+                            valid,{" "}
+                            <span className="text-red-600">
+                              {log.failedRows}
+                            </span>{" "}
+                            invalid (Total:{" "}
+                            {log.totalRows ||
+                              (
+                                parseInt(log.successfulRows) +
+                                parseInt(log.failedRows)
+                              ).toString()}
+                            )
+                          </p>
+                          {log.remarks && (
+                            <p>
+                              <span className="font-medium">Remarks:</span>{" "}
+                              <span className="text-gray-700">
+                                {log.remarks}
+                              </span>
+                            </p>
+                          )}
+                        </div>
+                        <div>
+                          <p>
+                            <span className="font-medium">Started:</span>{" "}
+                            {formatDate(log.timeStart)}
+                          </p>
+                          <p>
+                            <span className="font-medium">Ended:</span>{" "}
+                            {formatDate(log.timeEnd)}
+                          </p>
+                          <p>
+                            <span className="font-medium">Duration:</span>{" "}
+                            {calculateDuration(log.timeStart, log.timeEnd)}
+                          </p>
+                          <p>
+                            <span className="font-medium">Spreadsheet:</span>{" "}
+                            {log.spreadsheetLink ? (
+                              <a
+                                href={log.spreadsheetLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-800">
+                                Download
+                              </a>
+                            ) : (
+                              <span className="text-gray-400">
+                                Not available
+                              </span>
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-2 text-xs text-gray-500">
+                        <p>
+                          Created: {format(new Date(log.createdAt), "PPpp")}
+                        </p>
+                        <p>
+                          Last Updated:{" "}
+                          {format(new Date(log.updatedAt), "PPpp")}
+                        </p>
+                      </div>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              )}
+            </>
           ))}
         </TableBody>
       </Table>

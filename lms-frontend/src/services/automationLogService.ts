@@ -9,6 +9,8 @@ export interface AutomationLog {
   timeEnd: string;
   successfulRows: string;
   failedRows: string;
+  totalRows: string;
+  remarks: string;
   createdAt: string;
   updatedAt: string;
   spreadsheetLink?: string;

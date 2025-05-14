@@ -4,6 +4,7 @@
     <x:Property Name="out_ValidRowsDT" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="out_InvalidRowsDT" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="in_StartTime" Type="InArgument(s:DateTime)" />
+    <x:Property Name="out_TotalRows" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -125,6 +126,8 @@
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -133,7 +136,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="1304,9577" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="1309,9691" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="SheetName" />
       <Variable x:TypeArguments="sd:DataTable" Name="ExcelLeaveRecordsDT" />
@@ -198,11 +201,12 @@
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
                   <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
-                  <InArgument x:TypeArguments="x:String" x:Key="in_exception">[exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_exception">["There was an error while trying to process the excel sheett" &amp; exception.Message]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
                   <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
                   <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows" />
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
               <Throw Exception="[New BusinessRuleException(&quot;Error reading Excel File&quot;)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
@@ -220,6 +224,14 @@
         </Sequence>
       </TryCatch.Finally>
     </TryCatch>
+    <Assign sap:VirtualizedContainerService.HintSize="542,114" sap2010:WorkflowViewState.IdRef="Assign_23">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_TotalRows]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[ExcelLeaveRecordsDT.RowCount.ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
     <If Condition="[Not ExcelLeaveRecordsDT.Columns.Contains(&quot;Employee Name&quot;) OrElse&#xA;Not ExcelLeaveRecordsDT.Columns.Contains(&quot;Staff ID&quot;) OrElse&#xA;Not ExcelLeaveRecordsDT.Columns.Contains(&quot;Leave Type&quot;) OrElse&#xA;Not ExcelLeaveRecordsDT.Columns.Contains(&quot;Start Date&quot;) OrElse&#xA;Not ExcelLeaveRecordsDT.Columns.Contains(&quot;End Date&quot;) OrElse&#xA;Not ExcelLeaveRecordsDT.Columns.Contains(&quot;Status&quot;)]" DisplayName="If - Check for invalid/missing headers" sap:VirtualizedContainerService.HintSize="542,1624" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="452,1397" sap2010:WorkflowViewState.IdRef="Sequence_6">
@@ -277,6 +289,7 @@
               <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
               <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink" />
+              <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows">[out_TotalRows]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Invalid Headers. Error email sent&quot;]" />
