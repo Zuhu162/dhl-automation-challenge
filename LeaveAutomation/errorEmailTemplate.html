@@ -30,47 +30,46 @@
         letter-spacing: 1px;
       }
 
-      .logo {
+      .logo-text {
         text-align: center;
         margin: 20px 0;
       }
 
-      .status {
-        font-size: 16px;
-        margin: 10px 0;
+      .logo-text h3 {
+        color: #ba0c2f;
+        font-weight: 900;
+        font-size: 20px;
+        margin: 0;
       }
 
-      .status span {
+      .logo-text h4 {
+        color: #000000;
         font-weight: bold;
+        margin-top: 5px;
       }
 
-      .table-container {
-        margin-top: 20px;
+      .error-message {
+        color: #ba0c2f;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 20px 0;
       }
-
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        border-radius: 6px;
-        overflow: hidden;
+      .bot-signature {
+        color: #ba0c2f;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: inline-block;
       }
-
-      th {
-        background-color: #ffcc00;
-        color: #000;
-        padding: 10px;
-        text-align: left;
-        border: 1px solid #ddd;
-      }
-
-      td {
-        background-color: #fffbe6;
-        padding: 10px;
-        border: 1px solid #ddd;
-      }
-
-      tr:hover td {
-        background-color: #fceabb;
+      pre {
+        background-color: #fff2cc;
+        border: 1px solid #ffcc00;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: Consolas, monospace;
+        color: #ba0c2f;
       }
 
       .footer {
@@ -81,13 +80,6 @@
         text-align: center;
         padding: 20px;
         border-radius: 0 0 10px 10px;
-      }
-
-      .bot-signature {
-        color: #ba0c2f;
-        font-weight: bold;
-        margin-bottom: 10px;
-        display: inline-block;
       }
 
       .footer-button {
@@ -111,44 +103,21 @@
   </head>
   <body>
     <div class="email-container">
-      <div class="logo-text" style="text-align: center; margin: 20px 0">
-        <h3
-          style="color: #ba0c2f; font-weight: 900; font-size: 20px; margin: 0">
-          DHL
-        </h3>
-        <h4 style="color: #000000; font-weight: bold; margin-top: 5px">
-          Leave Management System
-        </h4>
+      <div class="logo-text">
+        <h3>DHL</h3>
+        <h4>Leave Management System</h4>
       </div>
-      <div class="header-bar">📤 DHL Leave Management Upload Report</div>
 
-      <p>Hi Team,</p>
-      <p>The data upload process has completed.</p>
+      <div class="header-bar">⚠️ Automation Process Error</div>
 
-      <p class="status">
-        ✅ <span>Successful uploads:</span> {SuccessCount}<br />
-        ❌ <span>Failed uploads:</span> {FailCount}
+      <p class="error-message">
+        ❌ An unexpected error has occurred. The automation process has been
+        terminated.
       </p>
 
-      <p><strong>Failed Records:</strong></p>
+      <pre>{ExceptionDetails}</pre>
 
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>ID</th>
-              <th>Leave</th>
-              <th>From</th>
-              <th>To</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {FailedRows}
-          </tbody>
-        </table>
-      </div>
+      <p><strong>Total Rows Successfully Input:</strong> {ValidRowsCount}</p>
 
       <p class="bot-signature">Regards,<br />Your Automation Bot 🤖</p>
       <p>

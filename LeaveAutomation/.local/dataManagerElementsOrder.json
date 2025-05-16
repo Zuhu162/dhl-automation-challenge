@@ -70,6 +70,8 @@
       "Path": "ErrorHandler.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "EmailBody&Sequence_1",
+        "EmailTemplate&Sequence_1",
         "EmailPass&Sequence_1",
         "EndTime&Sequence_1",
         "AttachmentList&Sequence_1",
@@ -99,6 +101,7 @@
         "DownloadableLink&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "out_SpreadSheetLink",
         "out_DownloadableURL"
       ],
       "ConstantsSectionElementsOrder": [],
@@ -148,6 +151,7 @@
         "SeenRows&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_SpreadSheetLink",
         "out_TotalRows",
         "in_StartTime",
         "in_excelFilePath",
@@ -164,6 +168,8 @@
         "LoginPassword&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_SpreadSheetLink",
+        "in_TotalRows",
         "in_StartTime"
       ],
       "ConstantsSectionElementsOrder": [],
@@ -188,6 +194,11 @@
       "Path": "FinalFeedbackProcess.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Base64logo&Sequence_3",
+        "ImgPath&Sequence_3",
+        "EmailTemplate&Sequence_3",
+        "EmailBody&Sequence_3",
+        "FailedRows&Sequence_3",
         "EmailPass&Sequence_2"
       ],
       "ArgumentsSectionElementsOrder": [

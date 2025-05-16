@@ -68,9 +68,11 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
           : "hidden md:flex md:sticky top-0 left-0 h-screen overflow-y-auto min-w-64"
       )}>
       <div className="px-6 mt-4 mb-6">
-        <Link to="/" className="flex items-center" onClick={handleClick}>
-          <span className="font-bold text-2xl text-dhl-red">DHL</span>
-          <span className="text-md ml-2">Leave Management System</span>
+        <Link
+          to="/"
+          className="flex flex-col items-center"
+          onClick={handleClick}>
+          <img src="/logo.png" alt="DHL Logo" className="h-10 w-auto mb-2" />
         </Link>
       </div>
 

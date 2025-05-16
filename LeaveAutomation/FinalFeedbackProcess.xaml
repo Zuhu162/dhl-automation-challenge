@@ -48,6 +48,7 @@
       <x:String>System.Numerics</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>UiPath.Activities.Contracts</x:String>
+      <x:String>UiPath.Shared.Telemetry</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -122,16 +123,49 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sends final report via email and HTTP POST log:&#xA;⭕ Counts successful and failed entries&#xA;⭕ Sends summary email to stakeholders&#xA;⭕ Posts JSON payload to /api/automation-logs with timestamps and metrics." sap:VirtualizedContainerService.HintSize="684,720" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap2010:Annotation.AnnotationText="Sends final report via email and HTTP POST log:&#xA;⭕ Counts successful and failed entries&#xA;⭕ Sends summary email to stakeholders&#xA;⭕ Posts JSON payload to /api/automation-logs with timestamps and metrics." sap:VirtualizedContainerService.HintSize="1582,1061" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="FailedRows" />
+      <Variable x:TypeArguments="x:String" Name="EmailBody" />
+      <Variable x:TypeArguments="x:String" Name="EmailTemplate" />
+      <Variable x:TypeArguments="x:String" Name="ImgPath" />
+      <Variable x:TypeArguments="x:String" Name="Base64logo" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Sequence - Final Feedback Process" sap:VirtualizedContainerService.HintSize="450,625" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <ui:ReadTextFile File="{x:Null}" Content="[EmailTemplate]" DisplayName="Read Text File" FileName="emailTemplate.html" sap:VirtualizedContainerService.HintSize="450,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    <Assign sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[FailedRows]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Join("", in_FinalRejectedRowsDT.AsEnumerable().Select(Function(row) "&lt;tr&gt;&lt;td&gt;" &amp; row("Employee Name").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Staff ID").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Leave Type").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; If(IsDate(row("Start Date").ToString()), CDate(row("Start Date")).ToString("dd/MM/yyyy"), "Invalid") &amp; "&lt;/td&gt;&lt;td&gt;" &amp; If(IsDate(row("End Date").ToString()), CDate(row("End Date")).ToString("dd/MM/yyyy"), "Invalid") &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Status").ToString() &amp; "&lt;/td&gt;&lt;/tr&gt;"))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="450,115" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[EmailBody]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[EmailTemplate.Replace("{SuccessCount}", in_FinalInputRowsDT.Rows.Count.ToString()) _
+                         .Replace("{FailCount}", in_FinalRejectedRowsDT.Rows.Count.ToString()) _
+                         .Replace("{FailedRows}", failedRows) _
+                         .Replace("{StartTime}", in_StartTime.ToString("HH:mm - dd/MM/yyyy")) _
+                         .Replace("{EndTime}", in_EndTime.ToString("HH:mm - dd/MM/yyyy"))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Sequence DisplayName="Sequence - Final Feedback Process" sap:VirtualizedContainerService.HintSize="450,415" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="EmailPass" />
       </Sequence.Variables>
@@ -141,11 +175,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAj7oCPU1qPUupwHxEhc/iBAAAAAACAAAAAAAQZgAAAAEAACAAAABJ9F65DmovEixG3KjrPGQYjcqtqtqgDuE/aAA47GdnDQAAAAAOgAAAAAIAACAAAABjJL3C8XhM3RIIkFoK7H48YPJVz6Omap9z4HvEK22snSAAAAAOBDnApFuim+33vLy2uAaxvbLcNor9gkVaWdm5qVT7G0AAAABjiX+FMZaVedDNMopcOqZtN1hTyHb98DsDGQREWzErNv76u8tv6BPwKD60o+5Jh3bCvxcmJawGeM0jpmMvfULR" Result="[EmailPass]" />
-      <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="Existing" Body="[&quot;Hi Team,&#xA;&#xA;The data upload process has completed.&#xA;&#xA;      ✅ Successful uploads: &quot; &amp; in_FinalInputRowsDT.Rows.Count.ToString() &amp; &quot;&#xA;      ❌ Failed uploads: &quot; &amp; in_FinalRejectedRowsDT.Rows.Count.ToString() &amp; &quot;&#xA;    &#xA;Failed Records:&#xA;    &quot; &amp;&#xA;    String.Join(&quot;&quot;, in_FinalRejectedRowsDT.AsEnumerable().Select(Function(row) &quot;&#xA;      &#xA;        Name: &quot; &amp; row(&quot;Employee Name&quot;).ToString() &amp; &quot;&#xA;        ID: &quot; &amp; row(&quot;Staff ID&quot;).ToString() &amp; &quot;&#xA;        Leave: &quot; &amp; row(&quot;Leave Type&quot;).ToString() &amp; &quot;&#xA;        From: &quot; &amp; If(IsDate(row(&quot;Start Date&quot;).ToString()), CDate(row(&quot;Start Date&quot;)).ToString(&quot;dd/MM/yyyy&quot;), &quot;Invalid&quot;) &amp; &quot;&#xA;        To: &quot; &amp; If(IsDate(row(&quot;End Date&quot;).ToString()), CDate(row(&quot;End Date&quot;)).ToString(&quot;dd/MM/yyyy&quot;), &quot;Invalid&quot;) &amp; &quot;&#xA;        Status: &quot; &amp; row(&quot;Status&quot;).ToString() &amp; &quot;&#xA;      &quot;&#xA;    ).ToArray()) &amp; &quot;&#xA;    &#xA;Regards,&#xA;Your Automation Bot&#xA;    &#xA;&#x9;&#xA;Process Started: &quot; &amp; in_StartTime.ToString(&quot;HH:mm - dd/MM/yyyy&quot;) &amp; &quot;&#xA;Process Ended: &quot; &amp; in_EndTime.ToString(&quot;HH:mm - dd/MM/yyyy&quot;) &amp; &quot;&#xA;&quot;]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,275" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="[EmailPass]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Data Entry Status Update - Success" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
+      <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Files="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="Builder" Body="[EmailBody]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,266" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Password="[EmailPass]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Data Entry Status Update - Success" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
         <ui:SendMail.AttachmentsBackup>
-          <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Existing">
+          <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Builder">
             <usau:BackupSlot.BackupValues>
-              <scg:Dictionary x:TypeArguments="umame:AttachmentInputMode, scg:List(x:Object)" />
+              <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
+                <x:Null />
+              </scg:List>
+              <scg:List x:TypeArguments="x:Object" x:Key="FilePaths" Capacity="2">
+                <x:Null />
+                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+              </scg:List>
+              <scg:List x:TypeArguments="x:Object" x:Key="Builder" Capacity="1">
+                <x:Null />
+              </scg:List>
             </usau:BackupSlot.BackupValues>
           </usau:BackupSlot>
         </ui:SendMail.AttachmentsBackup>
@@ -158,28 +201,25 @@
             </usau:BackupSlot.BackupValues>
           </usau:BackupSlot>
         </ui:SendMail.ConnectionDetailsBackupSlot>
-        <ui:SendMail.Files>
-          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-        </ui:SendMail.Files>
       </ui:SendMail>
-      <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;  &quot;&quot;status&quot;&quot;: &quot;&quot;complete&quot;&quot;,&#xA;  &quot;&quot;timeStart&quot;&quot;: &quot;&quot;&quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;timeEnd&quot;&quot;: &quot;&quot;&quot; &amp; in_EndTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;successfulRows&quot;&quot;: &quot; &amp; in_FinalInputRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;failedRows&quot;&quot;: &quot; &amp; in_FinalRejectedRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;spreadsheetLink&quot;&quot;: &quot;&quot;&quot; &amp; in_SpreadSheetLink &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;totalRows&quot;&quot;: &quot; &amp; in_TotalRows.ToString() &amp; &quot;,&#xA;  &quot;&quot;remarks&quot;&quot;: &quot;&quot;Leave data input automation successfully completed.&quot;&quot;&#xA;}&quot;]" BodyFormat="application/json" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:5000/api/automation-logs" sap:VirtualizedContainerService.HintSize="416,102" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" TimeoutMS="6000">
-        <ui:HttpClient.Attachments>
-          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-        </ui:HttpClient.Attachments>
-        <ui:HttpClient.Cookies>
-          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-        </ui:HttpClient.Cookies>
-        <ui:HttpClient.Headers>
-          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-        </ui:HttpClient.Headers>
-        <ui:HttpClient.Parameters>
-          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-        </ui:HttpClient.Parameters>
-        <ui:HttpClient.UrlSegments>
-          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-        </ui:HttpClient.UrlSegments>
-      </ui:HttpClient>
-      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Automation Process Completed. Check logs for more details&quot;]" />
     </Sequence>
+    <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;  &quot;&quot;status&quot;&quot;: &quot;&quot;complete&quot;&quot;,&#xA;  &quot;&quot;timeStart&quot;&quot;: &quot;&quot;&quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;timeEnd&quot;&quot;: &quot;&quot;&quot; &amp; in_EndTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;successfulRows&quot;&quot;: &quot; &amp; in_FinalInputRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;failedRows&quot;&quot;: &quot; &amp; in_FinalRejectedRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;spreadsheetLink&quot;&quot;: &quot;&quot;&quot; &amp; in_SpreadSheetLink &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;totalRows&quot;&quot;: &quot; &amp; in_TotalRows.ToString() &amp; &quot;,&#xA;  &quot;&quot;remarks&quot;&quot;: &quot;&quot;Leave data input automation successfully completed.&quot;&quot;&#xA;}&quot;]" BodyFormat="application/json" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:5000/api/automation-logs" sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" TimeoutMS="6000">
+      <ui:HttpClient.Attachments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Attachments>
+      <ui:HttpClient.Cookies>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Cookies>
+      <ui:HttpClient.Headers>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Headers>
+      <ui:HttpClient.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Parameters>
+      <ui:HttpClient.UrlSegments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.UrlSegments>
+    </ui:HttpClient>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Automation Process Completed. Check logs for more details&quot;]" />
   </Sequence>
 </Activity>

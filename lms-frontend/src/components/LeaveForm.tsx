@@ -453,6 +453,9 @@ export default function LeaveForm({
     setDuplicateCheckPassed(!isDuplicate);
   };
 
+  // Determine if this is an edit or a new entry
+  const isEditMode = !!application?._id;
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -470,7 +473,7 @@ export default function LeaveForm({
                     id="leaveform-employeeName"
                     placeholder="e.g. John Doe"
                     {...field}
-                    disabled={readOnly}
+                    disabled={readOnly || isEditMode}
                   />
                 </FormControl>
                 <FormMessage />
@@ -488,7 +491,7 @@ export default function LeaveForm({
                     id="leaveform-employeeId"
                     placeholder="e.g. EMP001"
                     {...field}
-                    disabled={readOnly}
+                    disabled={readOnly || isEditMode}
                   />
                 </FormControl>
                 <FormMessage />
@@ -712,23 +715,26 @@ export default function LeaveForm({
         />
         {!readOnly && (
           <div className="flex justify-between">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleClearFields}
-              className="flex items-center gap-2"
-              id="leaveform-clear-btn">
-              <RefreshCw className="h-4 w-4" />
-              Clear Fields
-            </Button>
+            {!isEditMode && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleClearFields}
+                className="flex items-center gap-2"
+                id="leaveform-clear-btn">
+                <RefreshCw className="h-4 w-4" />
+                Clear Fields
+              </Button>
+            )}
             <Button
               type="submit"
               disabled={
                 !form.formState.isValid ||
-                isDuplicateFound ||
-                isCheckingDuplicate ||
-                isSubmitting ||
-                !duplicateCheckPassed
+                (!isEditMode &&
+                  (isDuplicateFound ||
+                    isCheckingDuplicate ||
+                    !duplicateCheckPassed)) ||
+                isSubmitting
               }
               id="leaveform-submit-btn">
               {isSubmitting
@@ -756,7 +762,7 @@ export default function LeaveForm({
         )}
 
         {/* Display the duplicate check component when all required fields are filled */}
-        {!readOnly && employeeId && startDate && endDate && (
+        {!readOnly && !isEditMode && employeeId && startDate && endDate && (
           <CheckLeave
             employeeId={employeeId}
             startDate={startDate}

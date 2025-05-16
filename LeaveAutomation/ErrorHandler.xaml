@@ -137,13 +137,15 @@
       <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Global error handler for uncaught failures in any process:&#xA;⭕ Captures and saves a screenshot&#xA;⭕ Sends error email with relevant info&#xA;⭕ Posts error report to system for logging and review." DisplayName="Take and Save Screenshot" sap:VirtualizedContainerService.HintSize="684,1941" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Global error handler for uncaught failures in any process:&#xA;⭕ Captures and saves a screenshot&#xA;⭕ Sends error email with relevant info&#xA;⭕ Posts error report to system for logging and review." DisplayName="Take and Save Screenshot" sap:VirtualizedContainerService.HintSize="1582,2168" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="Screenshot" />
       <Variable x:TypeArguments="si:FileInfo" Name="ScreenshotFileInfo" />
       <Variable x:TypeArguments="x:String" Name="AttachmentList" />
       <Variable x:TypeArguments="s:DateTime" Name="EndTime" />
       <Variable x:TypeArguments="x:String" Name="EmailPass" />
+      <Variable x:TypeArguments="x:String" Name="EmailTemplate" />
+      <Variable x:TypeArguments="x:String" Name="EmailBody" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -151,6 +153,18 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:ReadTextFile File="{x:Null}" Content="[EmailTemplate]" DisplayName="Read Text File" FileName="errorEmailTemplate.html" sap:VirtualizedContainerService.HintSize="436,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    <Assign sap:VirtualizedContainerService.HintSize="436,115" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[EmailBody]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[EmailTemplate.Replace("{ExceptionDetails}", in_exception) _
+    .Replace("{ValidRowsCount}", in_ValidRowsCount.ToString()) _
+    .Replace("{StartTime}", in_StartTime.ToString("HH:mm - dd/MM/yyyy")) _
+    .Replace("{EndTime}", EndTime.ToString("HH:mm - dd/MM/yyyy"))]</InArgument>
+      </Assign.Value>
+    </Assign>
     <ui:TakeScreenshot WaitBefore="{x:Null}" sap2010:Annotation.AnnotationText="The whole screen is captured." DisplayName="Take screenshot" sap:VirtualizedContainerService.HintSize="436,150" sap2010:WorkflowViewState.IdRef="TakeScreenshot_4" Screenshot="[Screenshot]">
       <ui:TakeScreenshot.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="cdfbed4b-33c9-4bc0-85c3-c68ed4238b19" WaitForReady="INTERACTIVE">
@@ -227,7 +241,7 @@
         <InArgument x:TypeArguments="s:DateTime">[Now]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="FilePaths" Body="[&quot;❌ An unexpected error has occurred. The automation process has been terminated.&quot; &amp; Environment.NewLine &amp; in_exception &amp; Environment.NewLine &amp;&#xA;&quot;Total Rows Successfully Input was - &quot; &amp; in_ValidRowsCount &amp; Environment.NewLine &amp; Environment.NewLine &amp;&#xA;&quot;Process Started: &quot; &amp; in_StartTime.ToString(&quot;HH:mm - dd/MM/yyyy&quot;) &amp; Environment.NewLine &amp; Environment.NewLine &amp;&#xA;&quot;Process Ended: &quot; &amp; EndTime.ToString(&quot;HH:mm - dd/MM/yyyy&quot;) &amp; Environment.NewLine &amp; Environment.NewLine]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="436,326" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="[EmailPass]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Leave Update Error" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="FilePaths" Body="[EmailBody]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="436,326" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Password="[EmailPass]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Leave Update Error" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
       <ui:SendMail.AttachmentsBackup>
         <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
           <usau:BackupSlot.BackupValues>

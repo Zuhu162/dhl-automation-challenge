@@ -13,6 +13,7 @@ import {
 import { authService } from "@/services/authService";
 import { AxiosError } from "axios";
 import { IconLink } from "@/components/IconLink";
+import { Copy } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -47,6 +48,17 @@ const Login = () => {
     }
   };
 
+  // Demo credentials
+  const demoEmail = "hr@dhl.com";
+  const demoPassword = "9A8+8|]'73w3";
+
+  // Handle demo credentials click
+  const handleDemoCredentialsClick = () => {
+    setEmail(demoEmail);
+    setPassword(demoPassword);
+    toast.success("Demo credentials copied!");
+  };
+
   return (
     <div
       className="min-h-screen w-full flex items-center justify-center relative"
@@ -60,16 +72,16 @@ const Login = () => {
 
       <div className="w-full max-w-md space-y-8 px-4 z-10">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-extrabold text-white">
-            <span className="font-bold text-3xl text-dhl-red">DHL</span>
-            <span className="ml-2">Leave Management System</span>
-          </h2>
           <p className="mt-2 text-sm text-gray-200">Sign in to your account</p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl text-center">Login</CardTitle>
+            <img
+              src="/logo.png"
+              alt="DHL Logo"
+              className="mx-auto h-12 w-auto mb-2"
+            />
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -117,18 +129,25 @@ const Login = () => {
               </Button>
             </form>
 
-            <div className="mt-4 p-3 border border-dashed border-gray-300 rounded-md bg-gray-50">
-              <p className="text-sm font-medium text-gray-700">
-                Demo Credentials:
-              </p>
-              <div className="text-sm text-gray-600 mt-1">
-                <p>
-                  <span className="font-medium">Email:</span> hr@dhl.com
+            <div
+              className="mt-4 p-3 border border-dashed border-gray-300 rounded-md bg-gray-50 cursor-pointer flex items-center gap-3 hover:bg-yellow-100 transition-colors"
+              onClick={handleDemoCredentialsClick}
+              title="Click to autofill demo credentials">
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-700">
+                  Demo Credentials:
                 </p>
-                <p>
-                  <span className="font-medium">Password:</span> 9A8+8|]'73w3
-                </p>
+                <div className="text-sm text-gray-600 mt-1">
+                  <p>
+                    <span className="font-medium">Email:</span> {demoEmail}
+                  </p>
+                  <p>
+                    <span className="font-medium">Password:</span>{" "}
+                    {demoPassword}
+                  </p>
+                </div>
               </div>
+              <Copy className="h-5 w-5 text-gray-500 hover:text-dhl-red transition-colors" />
             </div>
           </CardContent>
           <CardFooter className="flex justify-center border-t pt-4">

@@ -48,9 +48,12 @@ const Header = () => {
 
         <div className="flex items-center space-x-4">
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
+            <DropdownMenuTrigger id="user-menu" asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="bg-dhl-red text-white rounded-full hover:bg-red-500 transition-colors">
+                <User className="h-5 w-5 text-white" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
