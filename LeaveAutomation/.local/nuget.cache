@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZyZA/h/BYd0=",
+  "dgSpecHash": "cHYU6oFGcII=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Asus\\Documents\\UiPath\\LeaveAutomation\\.local\\",
+  "projectFilePath": "C:\\porashuna\\Sem 7\\Internship\\DHL\\LeaveAutomation\\.local\\",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\avalonedit\\6.1.3.50\\avalonedit.6.1.3.50.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\azure.core\\1.18.0\\azure.core.1.18.0.nupkg.sha512",
@@ -50,12 +50,12 @@
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.graph\\4.11.0\\microsoft.graph.4.11.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.graph.core\\2.0.5\\microsoft.graph.core.2.0.5.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identity.client\\4.35.1\\microsoft.identity.client.4.35.1.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.34.0\\microsoft.identitymodel.abstractions.6.34.0.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.34.0\\microsoft.identitymodel.jsonwebtokens.6.34.0.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.logging\\6.34.0\\microsoft.identitymodel.logging.6.34.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.4.1\\microsoft.identitymodel.abstractions.7.4.1.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.4.1\\microsoft.identitymodel.jsonwebtokens.7.4.1.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.logging\\7.4.1\\microsoft.identitymodel.logging.7.4.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.12.2\\microsoft.identitymodel.protocols.6.12.2.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.12.2\\microsoft.identitymodel.protocols.openidconnect.6.12.2.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.34.0\\microsoft.identitymodel.tokens.6.34.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.4.1\\microsoft.identitymodel.tokens.7.4.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.management.infrastructure\\3.0.0\\microsoft.management.infrastructure.3.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.management.infrastructure.cimcmdlets\\7.2.24\\microsoft.management.infrastructure.cimcmdlets.7.2.24.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.management.infrastructure.runtime.unix\\3.0.0\\microsoft.management.infrastructure.runtime.unix.3.0.0.nupkg.sha512",
@@ -146,7 +146,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\runtime.win.system.runtime.extensions\\4.3.0\\runtime.win.system.runtime.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\sharpziplib\\1.4.2\\sharpziplib.1.4.2.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\sixlabors.fonts\\1.0.0-beta18\\sixlabors.fonts.1.0.0-beta18.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\system.activities.viewmodels\\1.0.0-20250401.2\\system.activities.viewmodels.1.0.0-20250401.2.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\system.activities.viewmodels\\1.0.0-20250425.1\\system.activities.viewmodels.1.0.0-20250425.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
@@ -176,7 +176,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.globalization.calendars\\4.3.0\\system.globalization.calendars.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.globalization.extensions\\4.3.0\\system.globalization.extensions.4.3.0.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.34.0\\system.identitymodel.tokens.jwt.6.34.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.4.1\\system.identitymodel.tokens.jwt.7.4.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.io.abstractions\\3.0.10\\system.io.abstractions.3.0.10.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.io.compression\\4.3.0\\system.io.compression.4.3.0.nupkg.sha512",
@@ -214,6 +214,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\system.reflection.metadata\\5.0.0\\system.reflection.metadata.5.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.reflection.typeextensions\\4.3.0\\system.reflection.typeextensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\system.resources.extensions\\5.0.0\\system.resources.extensions.5.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.runtime\\4.3.1\\system.runtime.4.3.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.runtime.caching\\6.0.0\\system.runtime.caching.6.0.0.nupkg.sha512",
@@ -226,7 +227,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\system.security.accesscontrol\\6.0.1\\system.security.accesscontrol.6.0.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.security.claims\\4.3.0\\system.security.claims.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.security.cryptography.algorithms\\4.3.0\\system.security.cryptography.algorithms.4.3.0.nupkg.sha512",
-    "C:\\Users\\Asus\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\system.security.cryptography.cng\\4.3.0\\system.security.cryptography.cng.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.security.cryptography.csp\\4.3.0\\system.security.cryptography.csp.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.security.cryptography.encoding\\4.3.0\\system.security.cryptography.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.security.cryptography.openssl\\4.3.0\\system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -271,12 +272,14 @@
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.connectionclient\\2.0.4\\uipath.connectionclient.2.0.4.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.emgucvbundle\\1.3.0\\uipath.emgucvbundle.1.3.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.excel.activities\\3.0.1\\uipath.excel.activities.3.0.1.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\uipath.formactivitylibrary.contracts\\2.0.7\\uipath.formactivitylibrary.contracts.2.0.7.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.imageprocessing\\23.4.0\\uipath.imageprocessing.23.4.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.mail.activities\\2.1.10-preview\\uipath.mail.activities.2.1.10-preview.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.ocr.activities\\3.22.0-preview\\uipath.ocr.activities.3.22.0-preview.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.ocr.contracts\\2.17.1-preview\\uipath.ocr.contracts.2.17.1-preview.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.officelibs\\1.0.0\\uipath.officelibs.1.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.opentelemetry.contracts\\2.3.3\\uipath.opentelemetry.contracts.2.3.3.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\uipath.persistence.activities\\1.6.2\\uipath.persistence.activities.1.6.2.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.platform\\25.4.0\\uipath.platform.25.4.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.system.activities\\25.4.2\\uipath.system.activities.25.4.2.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.system.activities.runtime\\25.4.2\\uipath.system.activities.runtime.25.4.2.nupkg.sha512",
@@ -291,5 +294,18 @@
     "C:\\Users\\Asus\\.nuget\\packages\\uipath.webapi.activities.runtime\\1.21.1\\uipath.webapi.activities.runtime.1.21.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\xlparser\\1.5.2\\xlparser.1.5.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "filePath": "C:\\porashuna\\Sem 7\\Internship\\DHL\\LeaveAutomation\\.local",
+      "message": "UiPath.Persistence.Activities 1.6.2 depends on UiPath.FormActivityLibrary.Contracts (>= 2.0.7-alpha.4234105) but UiPath.FormActivityLibrary.Contracts 2.0.7-alpha.4234105 was not found. UiPath.FormActivityLibrary.Contracts 2.0.7 was resolved instead.",
+      "libraryId": "UiPath.FormActivityLibrary.Contracts",
+      "targetGraphs": [
+        "net8.0-windows7.0",
+        "net8.0-windows7.0/win-x64"
+      ]
+    }
+  ]
 }

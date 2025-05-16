@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="C7eCaSnURUKX372jG20R_g" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" DesignTimeRectangle="306, 238, 660, 793" DesignTimeScaleFactor="1" FuzzySelectorArgument="&lt;webctrl tag='MAIN' type='' class='flex-1 container mx-auto px-4 py-6' aaname='' check:innerText='Input Leave Data&amp;#xA;&amp;#xA;Manually create a new leave application&amp;#xA;&amp;#xA;Leave Application Form&amp;#xA;Employee Name' /&gt;" Guid="dedda864-94f2-45d6-9516-1a49d7f9a1e6" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="d79fa334c72a942bf1807608eb8e883e.png" xmlns="">0Hfb5iKp_pkO2wGnq_Xzi6w</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">CheckState</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

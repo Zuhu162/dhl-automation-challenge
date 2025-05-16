@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="RPl5DsLg-U6ylvQTV-fBcA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" CVScreenId="1bb3e315-1e29-4fe9-8e24-d2ae726439a2" CvTextArea="805, 390, 245, 21" CvTextArgument="Leave Application Form" CvType="Text" DesignTimeRectangle="806, 387, 622, 24" DesignTimeScaleFactor="1" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='H3' type='' class='text-2xl font-semibold leading-none tracking-tight' aaname='Leave Application Form' check:innerText='Leave Application Form' /&gt;" Guid="be67b465-d771-4db2-a9d2-1530f9764109" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="1bb3e315-1e29-4fe9-8e24-d2ae726439a2" CvElementArea="807, 658, 620, 42" CvType="InputBox" DesignTimeRectangle="806, 659, 622, 40" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-leaveType' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='Search or select leave type' aaname='Leave Type (Annual | Medical | Emergency | Other)' /&gt;" Guid="44be7384-bbc5-4710-855d-ad4e735f2435" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="bf534e2c80b7b2d74a03fbf051883d04.png" xmlns="">0vts2zZ1afkaTDYU1DCGuKA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">CheckState</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

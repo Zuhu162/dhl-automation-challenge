@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="-EBhXUJ_BkSfhjnbTlTFog" Reference="QjS7MUzdXEWdtnxKhJV7XA/aJ6yZqLQZ02rBEjSTBBApA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="localhost/input-leave" DesignTimeRectangle="417, 246, 1400, 794" DesignTimeScaleFactor="1" FuzzySelectorArgument="&lt;webctrl tag='MAIN' type='' class='flex-1 container mx-auto px-4 py-6' aaname='' check:innerText='Input Leave Data&amp;#xA;&amp;#xA;Manually create a new leave application&amp;#xA;&amp;#xA;Leave Application Form&amp;#xA;Employee Name' /&gt;" Guid="f8f7410b-33df-4f60-9c71-2af3ef92f46e" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="1d87e6ec-b52a-47a3-81ed-1491794074c5" CvElementArea="806, 466, 621, 42" CvType="InputBox" DesignTimeRectangle="806, 467, 622, 40" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='leaveform-employeeName' tag='INPUT' type='' class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm' placeholder='e.g. John Doe' aaname='Employee Name' /&gt;" Guid="6e9a1fb9-3f8f-46c3-b18d-f868f6af0bc9" SearchSteps="FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="2da739dfc73aa4ccd054e015b51fd065.png" xmlns="">0TkLi8Bb7oEKJXGmlVOxGBQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

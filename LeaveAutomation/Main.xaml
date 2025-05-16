@@ -121,7 +121,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1309,1767" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Entry point of the automation. This orchestrates the complete process from receiving input to final reporting. Calls all key workflows in sequence." DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="684,1809" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DownloadLink" />
       <Variable x:TypeArguments="x:String" Name="LatestExcelFilePath" />
@@ -137,6 +137,7 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Main Process Start&quot;]" />
@@ -168,11 +169,14 @@
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InvalidRowsDT">[InvalidRowsDT]</OutArgument>
         <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_TotalRows">[TotalRows]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SpreadSheetLink">[SpreadSheetLink]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Login - Invoke Workflow File (Login.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[StartTime]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SpreadSheetLink">[SpreadSheetLink]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows">[TotalRows]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InputExcelData - Invoke Workflow File (InputExcelData.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="InputExcelData.xaml">

@@ -5,6 +5,7 @@
     <x:Property Name="out_InvalidRowsDT" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="in_StartTime" Type="InArgument(s:DateTime)" />
     <x:Property Name="out_TotalRows" Type="OutArgument(x:String)" />
+    <x:Property Name="in_SpreadSheetLink" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -136,7 +137,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="1309,9691" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Performs first round of data validation directly within the Excel file:&#xA;⭕ Reads data from the first sheet ⭕ Detects missing headers ⭕ Identifies rows with missing or invalid fields&#xA;⭕ Separates ValidRows from InvalidRows ⭕ Detects duplicates within valid rows ⭕ Prepares cleaned-up sets of UniqueRows and InvalidRows ⭕ Deletes the original Excel file after processing." DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="1582,9980" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="SheetName" />
       <Variable x:TypeArguments="sd:DataTable" Name="ExcelLeaveRecordsDT" />
@@ -153,6 +154,7 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="542,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Start Excel File Validation Process&quot;]" />
@@ -173,7 +175,7 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="542,957" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="542,835" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <TryCatch.Try>
         <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="Sequence_24">
           <sap:WorkflowViewStateService.ViewState>
@@ -190,18 +192,18 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,523" sap2010:WorkflowViewState.IdRef="Sequence_26">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,401" sap2010:WorkflowViewState.IdRef="Sequence_26">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_13" Message="[&quot;Error reading Excel file: &quot; &amp; exception.ToString()]" />
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ErrorHandler - Invoke Workflow File (ErrorHandler.xaml)" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ErrorHandler - Invoke Workflow File (ErrorHandler.xaml)" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
                   <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
-                  <InArgument x:TypeArguments="x:String" x:Key="in_exception">["There was an error while trying to process the excel sheett" &amp; exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_exception">["There was an error while trying to process the excel sheet" &amp; exception.Message]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
                   <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
                   <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
@@ -209,7 +211,6 @@
                   <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows" />
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
-              <Throw Exception="[New BusinessRuleException(&quot;Error reading Excel File&quot;)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </Sequence>
           </ActivityAction>
         </Catch>
@@ -288,7 +289,7 @@
               <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
               <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
               <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink" />
+              <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink">[in_SpreadSheetLink]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows">[out_TotalRows]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
@@ -333,7 +334,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="542,2392" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="542,2569" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
         <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="509,1905" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
@@ -414,13 +415,25 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="509,224" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="509,401" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message]" />
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ErrorHandler - Invoke Workflow File (ErrorHandler.xaml)" sap:VirtualizedContainerService.HintSize="475,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[ScreenshotFolder]</InArgument>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_exception">[exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
+                  <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink">[in_SpreadSheetLink]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows">[out_TotalRows]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
             </Sequence>
           </ActivityAction>
         </Catch>
@@ -459,7 +472,7 @@
         <InArgument x:TypeArguments="sd:DataTable">[ValidRowsDT.Clone()]</InArgument>
       </Assign.Value>
     </Assign>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="542,1673" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="542,1850" sap2010:WorkflowViewState.IdRef="TryCatch_4">
       <TryCatch.Try>
         <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="540,1186" sap2010:WorkflowViewState.IdRef="Sequence_43">
           <sap:WorkflowViewStateService.ViewState>
@@ -532,13 +545,25 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="540,224" sap2010:WorkflowViewState.IdRef="Sequence_45">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="540,401" sap2010:WorkflowViewState.IdRef="Sequence_45">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="506,164" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Fatal" Message="[exception.Message]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="506,173" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Fatal" Message="[exception.Message]" />
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ErrorHandler - Invoke Workflow File (ErrorHandler.xaml)" sap:VirtualizedContainerService.HintSize="506,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[ScreenshotFolder]</InArgument>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_exception">[exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_ValidRowsCount" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_InvalidRowsCount" />
+                  <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_DownloadLink">[in_SpreadSheetLink]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_TotalRows">[out_TotalRows]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
             </Sequence>
           </ActivityAction>
         </Catch>

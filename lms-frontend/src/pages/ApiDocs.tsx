@@ -248,7 +248,10 @@ Content-Type: application/json
     "endTime": "2023-11-14T09:18:30Z",
     "successRows": 15,
     "failedRows": 2,
-    "notes": "Process completed with 2 failures"
+    "remarks": "Process completed with 2 failures",
+    "totalRows": 17, 
+    "createdAt": "2023-11-14T09:18:35Z",
+    "spreadsheetLink": "https://docs.google.com/spreadsheets/d/10DW-C7t6xAd29Ozk-zAvgTbc_Q-oqdcP/edit?gid=1759902208#gid=1759902208"
   },
   {
     "id": "2",
@@ -258,7 +261,10 @@ Content-Type: application/json
     "endTime": "2023-11-13T14:23:45Z",
     "successRows": 5,
     "failedRows": 10,
-    "notes": "Process failed due to invalid data format"
+    "remarks": "Process failed due to invalid data format",
+    "totalRows": 15,
+    "createdAt": "2023-11-13T14:23:45Z",
+    "spreadsheetLink": "https://docs.google.com/spreadsheets/d/10DW-C7t6xAd29Ozk-zAvgTbc_Q-oqdcP/edit?gid=1759902208#gid=1759902208"
   }
 ]`}</code>
                       </div>
