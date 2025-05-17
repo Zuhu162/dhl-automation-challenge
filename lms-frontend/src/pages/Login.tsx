@@ -181,7 +181,7 @@ const Login = () => {
         </p>
       </div>
 
-      <div className="absolute bottom-4 right-4 flex gap-2 z-10">
+      <div className="absolute bottom-4 right-4 flex gap-2 z-10 bg-white rounded-md">
         <IconLink
           type="github"
           href="https://github.com/Zuhu162/dhl-automation-challenge"

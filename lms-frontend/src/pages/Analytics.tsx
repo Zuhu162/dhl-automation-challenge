@@ -35,11 +35,14 @@ const Analytics = () => {
     getModalTitle,
   } = useEmployeeFilter();
 
-  useEffect(() => {
-    calculateStats();
-  }, []);
+  const currentYear = new Date().getFullYear();
+  const [selectedYear, setSelectedYear] = useState(currentYear);
 
-  const calculateStats = async () => {
+  useEffect(() => {
+    calculateStats(selectedYear);
+  }, [selectedYear]);
+
+  const calculateStats = async (year = currentYear) => {
     try {
       setIsLoading(true);
       const applications = await leaveService.getAll();
@@ -68,9 +71,11 @@ const Analytics = () => {
         return acc;
       }, {} as Record<string, number>);
 
-      // Calculate monthly distribution
+      // Calculate monthly distribution (selected year only)
       const monthlyLeaves = applications.reduce((acc, app) => {
-        const month = new Date(app.startDate).getMonth();
+        const startDate = new Date(app.startDate);
+        if (startDate.getFullYear() !== year) return acc;
+        const month = startDate.getMonth();
         const monthNames = [
           "Jan",
           "Feb",
@@ -205,7 +210,24 @@ const Analytics = () => {
 
             <Card className="md:col-span-2">
               <CardHeader>
-                <CardTitle>Monthly Leave Applications</CardTitle>
+                <div className="flex items-center gap-4">
+                  <CardTitle>
+                    Monthly Leave Applications ({selectedYear})
+                  </CardTitle>
+                  <select
+                    className="ml-2 border rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-dhl-red"
+                    value={selectedYear}
+                    onChange={(e) => setSelectedYear(Number(e.target.value))}>
+                    {[...Array(3)].map((_, idx) => {
+                      const year = currentYear + idx;
+                      return (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
               </CardHeader>
               <CardContent className="h-80">
                 <BarChartComponent

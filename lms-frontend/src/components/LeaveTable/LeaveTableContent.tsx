@@ -129,7 +129,7 @@ export default function LeaveTableContent({
   };
 
   return (
-    <div className="rounded-md border" style={{ minHeight: "340px" }}>
+    <div className="rounded-md border" style={{ minHeight: "440px" }}>
       <Table>
         <TableHeader>
           <TableRow>

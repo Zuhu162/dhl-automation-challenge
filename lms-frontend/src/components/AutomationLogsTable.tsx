@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/pagination";
 import { type AutomationLog } from "@/services/automationLogService";
 import { useState } from "react";
+import PartialRestoreComponent from "./PartialRestoreComponent";
 
 interface AutomationLogsTableProps {
   logs: AutomationLog[];
@@ -264,9 +265,8 @@ export function AutomationLogsTable({
                 </TableCell>
               </TableRow>
               {expandedRows[log._id] && (
-                <TableRow
-                  className={`${getRowBgColor(log.status)} bg-opacity-50`}>
-                  <TableCell colSpan={7} className="p-4">
+                <TableRow key={log._id + "-details"}>
+                  <TableCell colSpan={7} className="bg-gray-50">
                     <div className="text-sm">
                       <h4 className="font-semibold mb-2">Details</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -344,6 +344,15 @@ export function AutomationLogsTable({
                           Last Updated:{" "}
                           {format(new Date(log.updatedAt), "PPpp")}
                         </p>
+                      </div>
+                      <div className="mt-4 flex items-center gap-4">
+                        <span className="font-semibold text-red-700">
+                          Restore system to this point:
+                        </span>
+                        <PartialRestoreComponent
+                          logId={log._id}
+                          createdAt={log.createdAt}
+                        />
                       </div>
                     </div>
                   </TableCell>

@@ -150,7 +150,7 @@
         <OutArgument x:TypeArguments="x:String">[FailedRows]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[String.Join("", in_FinalRejectedRowsDT.AsEnumerable().Select(Function(row) "&lt;tr&gt;&lt;td&gt;" &amp; row("Employee Name").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Staff ID").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Leave Type").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; If(IsDate(row("Start Date").ToString()), CDate(row("Start Date")).ToString("dd/MM/yyyy"), "Invalid") &amp; "&lt;/td&gt;&lt;td&gt;" &amp; If(IsDate(row("End Date").ToString()), CDate(row("End Date")).ToString("dd/MM/yyyy"), "Invalid") &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Status").ToString() &amp; "&lt;/td&gt;&lt;/tr&gt;"))]</InArgument>
+        <InArgument x:TypeArguments="x:String">[String.Join("", in_FinalRejectedRowsDT.AsEnumerable().Select(Function(row) "&lt;tr&gt;&lt;td&gt;" &amp; row("Employee Name").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Staff ID").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Leave Type").ToString() &amp; "&lt;/td&gt;&lt;td&gt;" &amp; If(IsDate(row("Start Date").ToString()), CDate(row("Start Date")).ToString("dd/MM/yyyy"), "Invalid") &amp; "&lt;/td&gt;&lt;td&gt;" &amp; If(IsDate(row("End Date").ToString()), CDate(row("End Date")).ToString("dd/MM/yyyy"), "Invalid") &amp; "&lt;/td&gt;&lt;td&gt;" &amp; row("Status").ToString() &amp; "&lt;/td&gt; &lt;td&gt;" &amp; row("Remarks").ToString() &amp; "&lt;/td&gt; &lt;/tr&gt;"))]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="450,115" sap2010:WorkflowViewState.IdRef="Assign_2">

@@ -6,6 +6,7 @@ const {
   getAutomationLog,
   updateAutomationLog,
   deleteAutomationLog,
+  restoreVersion,
 } = require("../controllers/automationLog");
 
 // Routes are no longer protected - no auth middleware
@@ -16,5 +17,8 @@ router
   .get(getAutomationLog)
   .put(updateAutomationLog)
   .delete(deleteAutomationLog);
+
+// Restore version endpoint
+router.post("/:id/restore", restoreVersion);
 
 module.exports = router;
