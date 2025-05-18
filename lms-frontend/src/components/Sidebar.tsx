@@ -25,31 +25,37 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
       name: "Dashboard",
       icon: <LayoutDashboard className="h-5 w-5" />,
       path: "/",
+      id: "sidebar-dashboard-link",
     },
     {
       name: "Analytics",
       icon: <BarChart className="h-5 w-5" />,
       path: "/analytics",
+      id: "sidebar-analytics-link",
     },
     {
       name: "Input Leave Data",
       icon: <ClipboardPlus className="h-5 w-5" />,
       path: "/input-leave",
+      id: "sidebar-input-leave-link",
     },
     {
       name: "Calendar",
       icon: <Calendar className="h-5 w-5" />,
       path: "/calendar",
+      id: "sidebar-calendar-link",
     },
     {
       name: "Automation Logs",
       icon: <Timer className="h-5 w-5" />,
       path: "/automation-logs",
+      id: "sidebar-automation-logs-link",
     },
     {
       name: "API Documentation",
       icon: <FileText className="h-5 w-5" />,
       path: "/api-docs",
+      id: "sidebar-api-docs-link",
     },
   ];
 
@@ -71,7 +77,8 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
         <Link
           to="/"
           className="flex flex-col items-center"
-          onClick={handleClick}>
+          onClick={handleClick}
+          id="sidebar-logo-link">
           <img src="/logo.png" alt="DHL Logo" className="h-10 w-auto mb-2" />
         </Link>
       </div>
@@ -85,6 +92,7 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
             <Link
               key={item.name}
               to={item.path}
+              id={item.id}
               className={cn(
                 "flex items-center px-4 py-3 text-sm rounded-md transition-colors",
                 location.pathname === item.path
@@ -105,14 +113,16 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
             href="https://github.com/Zuhu162/dhl-automation-challenge"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-gray-700 p-2 rounded-md transition-colors">
+            className="text-gray-500 hover:text-gray-700 p-2 rounded-md transition-colors"
+            id="sidebar-github-link">
             <Github className="h-4 w-4" />
           </a>
           <a
             href="https://zuhu.dev/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-gray-700 p-2 rounded-md transition-colors">
+            className="text-gray-500 hover:text-gray-700 p-2 rounded-md transition-colors"
+            id="sidebar-portfolio-link">
             <Heart className="h-4 w-4" />
           </a>
         </div>

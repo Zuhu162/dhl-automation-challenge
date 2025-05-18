@@ -117,7 +117,7 @@
       <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Opens browser and logs into the web system.&#xA;⭕ Uses Check App State to determine login status&#xA;⭕ Skips login if already logged in&#xA;⭕ Otherwise inputs credentials and navigates to the input form." DisplayName="Login" sap:VirtualizedContainerService.HintSize="1582,3873" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Opens browser and logs into the web system.&#xA;⭕ Uses Check App State to determine login status&#xA;⭕ Skips login if already logged in&#xA;⭕ Otherwise inputs credentials and navigates to the input form." DisplayName="Login" sap:VirtualizedContainerService.HintSize="1286,3984.9999999999995" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="LoginPassword" />
     </Sequence.Variables>
@@ -127,71 +127,71 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1128,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Login Process Started&quot;]" />
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1128,3605" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1128,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Login Process Started&quot;]" />
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1128,3715" sap2010:WorkflowViewState.IdRef="TryCatch_3">
       <TryCatch.Try>
-        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="1126,2950" sap2010:WorkflowViewState.IdRef="Sequence_21">
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="1126,3058" sap2010:WorkflowViewState.IdRef="Sequence_21">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" UiBrowser="{x:Null}" BrowserType="[BrowserType.Chrome]" DisplayName="Open Browser" Hidden="False" sap:VirtualizedContainerService.HintSize="1092,2890" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" NewSession="False" Private="False" Url="http://localhost:8080">
+          <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" UiBrowser="{x:Null}" BrowserType="[BrowserType.Chrome]" DisplayName="Open Browser" Hidden="False" sap:VirtualizedContainerService.HintSize="1092,2998" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" NewSession="False" Private="False" Url="http://localhost:8080">
             <ui:OpenBrowser.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                 </ActivityAction.Argument>
-                <Sequence sap:VirtualizedContainerService.HintSize="1058,2742" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                <Sequence sap:VirtualizedContainerService.HintSize="1058,2809" sap2010:WorkflowViewState.IdRef="Sequence_19">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State 'BUTTON radix-r8'" sap:VirtualizedContainerService.HintSize="1024,2162" sap2010:WorkflowViewState.IdRef="NCheckState_2" Version="V4">
+                  <uix:NCheckState DisplayName="Check App State 'BUTTON radix-r8'" sap:VirtualizedContainerService.HintSize="1024,2226" sap2010:WorkflowViewState.IdRef="NCheckState_2" Version="V4">
                     <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,232" sap2010:WorkflowViewState.IdRef="Sequence_15">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;User is already logged in. Skipping Login Process&quot;]" />
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;User is already logged in. Skipping Login Process&quot;]" />
                       </Sequence>
                     </uix:NCheckState.IfExists>
                     <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="520,1873" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="520,1975" sap2010:WorkflowViewState.IdRef="Sequence_16">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486,1811" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" ScopeGuid="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V2">
+                        <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(2)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486,1913" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="DebuggerApi" ScopeGuid="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V2">
                           <uix:NApplicationCard.Body>
                             <ActivityAction x:TypeArguments="x:Object">
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                               </ActivityAction.Argument>
-                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="452,1569" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="452,1670" sap2010:WorkflowViewState.IdRef="Sequence_20">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="418,1507" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="418,1608" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                   <TryCatch.Try>
-                                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="416,848" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="416,946" sap2010:WorkflowViewState.IdRef="Sequence_11">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Email address'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,286" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="hr@dhl.com" Version="V4">
+                                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Email address'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,288" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="hr@dhl.com" Version="V4">
                                         <uix:NTypeInto.Target>
-                                          <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="ea16cbb6-1a63-4370-ab2b-6ab6ee18081f" ContentHash="i9pg-IXO-0mDkgTf8M8pNg" CvElementArea="783, 554, 368, 43" CvType="InputBox" DesignTimeRectangle="785, 556, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl id='email' tag='INPUT' type='email' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='name@company.com' aaname='Email address' /&gt;" Guid="ec59f56d-cb1e-44cf-beb9-a70f2cb4c076" InformativeScreenshot="398b53ae561588852156cd1aef439c39.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/LHmNbbkQTE6biOsb-R_nyQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                          <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="3220cca3-6f0d-493e-b71a-e048e878ed88" ContentHash="Ztg6G3lF_kWnuXwSPfDCAw" CvElementArea="784, 512, 367, 42" CvType="InputBox" DesignTimeRectangle="785, 513, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='email' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='email' tag='INPUT' type='email' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='name@company.com' aaname='Email address' /&gt;" Guid="8f932bac-9895-485f-8674-628d7e64eea1" InformativeScreenshot="322ecb5abbec0bd2e9788eda7175da40.png" IsResponsive="True" Reference="QjS7MUzdXEWdtnxKhJV7XA/LHmNbbkQTE6biOsb-R_nyQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
                                             <uix:TargetAnchorable.Anchors>
                                               <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                                <uix:Target CVScreenId="ea16cbb6-1a63-4370-ab2b-6ab6ee18081f" CvTextArea="784, 531, 88, 13" CvTextArgument="Email address" CvType="Text" DesignTimeRectangle="785, 528, 366, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='block text-sm font-medium text-gray-700' aaname='Email address' check:innerText='Email address' /&gt;" Guid="f977c8d3-f924-49a5-b062-014e989fe61e" SearchSteps="FuzzySelector, CV" />
+                                                <uix:Target CVScreenId="3220cca3-6f0d-493e-b71a-e048e878ed88" CvTextArea="784, 488, 88, 13" CvTextArgument="Email address" CvType="Text" DesignTimeRectangle="785, 485, 366, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='block text-sm font-medium text-gray-700' aaname='Email address' check:innerText='Email address' /&gt;" Guid="1ba149c6-7c28-45a5-985e-da330198801e" SearchSteps="FuzzySelector, CV" />
                                               </scg:List>
                                             </uix:TargetAnchorable.Anchors>
                                           </uix:TargetAnchorable>
@@ -207,12 +207,12 @@
                                           </uix:VerifyExecutionTypeIntoOptions>
                                         </uix:NTypeInto.VerifyOptions>
                                       </uix:NTypeInto>
-                                      <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="In production, passwords should be stored securely using tools like Orchestrator Assets or Windows Credential Manager.&#xA;For this competition, they are stored locally for simplicity." ClickBeforeMode="Single" DisplayName="Type Into 'Password'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334,341" sap2010:WorkflowViewState.IdRef="NTypeInto_8" IsPassword="True" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="9A8+8|]'73w3" Version="V4">
+                                      <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="In production, passwords should be stored securely using tools like Orchestrator Assets or Windows Credential Manager.&#xA;For this competition, they are stored locally for simplicity." ClickBeforeMode="Single" DisplayName="Type Into 'Password'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,380" sap2010:WorkflowViewState.IdRef="NTypeInto_8" IsPassword="True" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Text="9A8+8|]'73w3" Version="V4">
                                         <uix:NTypeInto.Target>
-                                          <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="ce3d4f9b-7af9-4834-96e8-c0e37167cde7" ContentHash="5nBQx6VA30imS5pjBh_FJA" CvElementArea="784, 673, 367, 42" CvType="InputBox" DesignTimeRectangle="785, 648, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBoxPassword" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='••••••••' aaname='Password' /&gt;" Guid="29fe3382-c4b9-4cd8-9800-ac92474bde4b" InformativeScreenshot="74cbd80cb5bc7dafba680bc9c5fd0caa.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/ooakhjmTe0W-acoL7QdtSA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='leave-sync-automator' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+                                          <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="3220cca3-6f0d-493e-b71a-e048e878ed88" ContentHash="MEr_az16g0-9uPZKMWq7JA" CvElementArea="784, 603, 368, 42" CvType="InputBox" DesignTimeRectangle="785, 605, 366, 40" DesignTimeScaleFactor="1" ElementType="InputBoxPassword" FullSelectorArgument="&lt;webctrl id='password' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='password' tag='INPUT' type='password' class='flex h-10 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full' placeholder='••••••••' aaname='Password' /&gt;" Guid="20d26942-c568-4191-b35d-91aa8b7e748c" InformativeScreenshot="28b86b39363adcfc353603c2d98af17f.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/ooakhjmTe0W-acoL7QdtSA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
                                             <uix:TargetAnchorable.Anchors>
                                               <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                                <uix:Target CVScreenId="ce3d4f9b-7af9-4834-96e8-c0e37167cde7" CvTextArea="784, 649, 60, 13" CvTextArgument="Password" CvType="Text" DesignTimeRectangle="785, 620, 60, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Password' tag='LABEL' type='' class='block text-sm font-medium text-gray-700' check:innerText='Password' /&gt;" Guid="edaa8473-0f8c-45f0-a302-51304812ec62" SearchSteps="FuzzySelector, CV" />
+                                                <uix:Target CVScreenId="3220cca3-6f0d-493e-b71a-e048e878ed88" CvTextArea="784, 580, 60, 13" CvTextArgument="Password" CvType="Text" DesignTimeRectangle="785, 577, 60, 20" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Password' tag='LABEL' type='' class='block text-sm font-medium text-gray-700' check:innerText='Password' /&gt;" Guid="c856e485-f3f5-417b-a8a0-fde702e0174b" SearchSteps="FuzzySelector, CV" />
                                               </scg:List>
                                             </uix:TargetAnchorable.Anchors>
                                           </uix:TargetAnchorable>
@@ -233,9 +233,9 @@
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
                                       </uix:NTypeInto>
-                                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Sign in'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,216" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V4">
+                                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Sign in'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,218" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d4e5ba2c-b314-463f-988c-2bc423d8c7ce" Version="V4">
                                         <uix:NClick.Target>
-                                          <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="ea16cbb6-1a63-4370-ab2b-6ab6ee18081f" ContentHash="tKsCl8b07kOr_Df18tIkYw" CvElementArea="783, 710, 370, 43" CvTextArea="944, 725, 46, 16" CvTextArgument="Sign in" CvType="Button" DesignTimeRectangle="785, 712, 366, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full bg-dhl-red hover:bg-red-700' aaname='Sign in' check:innerText='Sign in' /&gt;" Guid="22c23b5f-237e-409d-9e02-270ae6193364" InformativeScreenshot="52d18a2b5d01b4a380b8d224572c0758.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/t_uSZyRzSUixTTgjXMp0tQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                                          <uix:TargetAnchorable BrowserURL="localhost/login" CVScreenId="3220cca3-6f0d-493e-b71a-e048e878ed88" ContentHash="c6Cj-GnuZk-KTGX0cHBOtg" CvElementArea="783, 667, 368, 43" CvTextArea="944, 682, 46, 16" CvTextArgument="Sign in" CvType="Button" DesignTimeRectangle="785, 669, 366, 40" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='loginButton' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='loginButton' tag='BUTTON' type='submit' class='inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full bg-dhl-red hover:bg-red-700' aaname='Sign in' check:innerText='Sign in' /&gt;" Guid="9a8397d0-8443-468a-aa7b-b93362837049" InformativeScreenshot="397b3991977b73821a9e0b0584c6cfb1.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/t_uSZyRzSUixTTgjXMp0tQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive" />
                                         </uix:NClick.Target>
                                         <uix:NClick.VerifyOptions>
                                           <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
@@ -256,13 +256,13 @@
                                         <ActivityAction.Argument>
                                           <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                         </ActivityAction.Argument>
-                                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,403" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,405" sap2010:WorkflowViewState.IdRef="Sequence_13">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Fatal" Message="[&quot;Error while inputting login data&quot; &amp; exception.Message]" />
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Fatal" Message="[&quot;Error while inputting login data&quot; &amp; exception.Message]" />
                                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="TakeScreenshot - Invoke Workflow File (TakeScreenshot.xaml)" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
                                             <ui:InvokeWorkflowFile.Arguments>
                                               <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
@@ -280,7 +280,7 @@
                                     </Catch>
                                   </TryCatch.Catches>
                                   <TryCatch.Finally>
-                                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="416,90" sap2010:WorkflowViewState.IdRef="Sequence_12">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -299,24 +299,24 @@
                       </Sequence>
                     </uix:NCheckState.IfNotExists>
                     <uix:NCheckState.Target>
-                      <uix:TargetAnchorable BrowserURL="localhost/analytics" CVScreenId="57b41ef6-399f-4fb3-bec6-0d8f02b540a1" ContentHash="hCvW7EG0vEu-7xeyatO9HA" CvElementArea="1854, 190, 47, 46" CvTextArea="1869, 204, 15, 16" CvType="Icon" DesignTimeRectangle="1857, 193, 40, 40" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl id='user-menu' tag='BUTTON' type='button' class='inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 hover:text-accent-foreground h-10 w-10 bg-dhl-red text-white rounded-full hover:bg-red-500 transition-colors' aaname='' /&gt;" Guid="a1c64cda-73d0-4765-9d07-d62fac2de603" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJrSURBVFhH1Vk9SwNBEE0j1ppeLWxExMLCwsYijYWVhYWFhZVoIVhZCYIQEPwJgor+CFEUAv6CEImaGEXFDzBFYhFFVt7iHpfZvY/dTe7cB48ss7Nzj7vZnblchjmGDDX8d1gL/ixcsrftHXY/t8BuxiZZKTvIir1ZToxhwxx84GsLI8Gt2wp72dhk5aFRVuzp0yLWYC1imEBL8PfLK3teXZdEmBKxEFMHsQV/7B2yKzxuxYVtiJiIHRexBHfyrgYR14iDSMHYMDR4t4hrRSFUcJJiBaNEBwpOIg2CGJYeSsHYBDRI0gzaiJJgHDPdOA10CQ2qI08SnGYqUKpSo00wqg9dlDZpRWwTjJJJF6RNaPKjTbBJb0D5ML/I6gfHnBjTeV1Ckx+eYHRS1FmX7/ldHqtxcsYJwEb9dOnv8jzBaP+oow6vRyZ4nKflNc+GMYA56q9DaJME21Y1PH6A98LC3pvlNtvU8Fc/TzAabeqow+r0DI9Tmcp5NowBzFF/HUKbJJi/KSicddg4PWetao2nAogxbNRPl9AmCW57lIYs9Q/w0+Gn2eTEGDbqp82/1Oq44K5RJdg2Jd628pz1/SOJj0srkr8OlSlhs+maFwUe46t2L4kVc/il6+JSuelsjjUg7C5iDrjLzUpzcag81kwLhxBTHh6X5gQxZyNYWThMS7MQTO2UQNhTCKOyNAMmzQ/uHjYbtVPCJ+wpBDGw+QGcay+da+ABp16RAOdeQgGnXvMF0kwNVSoIBAoGbKqfKY3/qhJIUnSUWCBSMJBEeoSlgR+xBANO/aEt4NQnAz+c+SijghOfvdKEc4J/Aeg6UNzoXGVEAAAAAElFTkSuQmCC" InformativeScreenshot="97bfba2262dd8147e444b5e8847d77b9.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/e5p71L96fUCOGy3duTHc0g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                      <uix:TargetAnchorable BrowserURL="localhost" CVScreenId="c2034f4b-597f-424b-a551-68fbd04945dc" ContentHash="D7v_6x1wbk2sdtG8JotHyg" CvElementArea="1854, 190, 46, 45" CvTextArea="1869, 204, 15, 16" CvType="Icon" DesignTimeRectangle="1857, 193, 40, 40" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='user-menu' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='user-menu' tag='BUTTON' type='button' class='inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 hover:text-accent-foreground h-10 w-10 bg-dhl-red text-white rounded-full hover:bg-red-500 transition-colors' aaname='' /&gt;" Guid="feef7272-a800-4f17-9474-f440e2cfef99" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJrSURBVFhH1Vk9SwNBEE0j1ppeLWxExMLCwsYijYWVhYWFhZVoIVhZCYIQEPwJgor+CFEUAv6CEImaGEXFDzBFYhFFVt7iHpfZvY/dTe7cB48ss7Nzj7vZnblchjmGDDX8d1gL/ixcsrftHXY/t8BuxiZZKTvIir1ZToxhwxx84GsLI8Gt2wp72dhk5aFRVuzp0yLWYC1imEBL8PfLK3teXZdEmBKxEFMHsQV/7B2yKzxuxYVtiJiIHRexBHfyrgYR14iDSMHYMDR4t4hrRSFUcJJiBaNEBwpOIg2CGJYeSsHYBDRI0gzaiJJgHDPdOA10CQ2qI08SnGYqUKpSo00wqg9dlDZpRWwTjJJJF6RNaPKjTbBJb0D5ML/I6gfHnBjTeV1Ckx+eYHRS1FmX7/ldHqtxcsYJwEb9dOnv8jzBaP+oow6vRyZ4nKflNc+GMYA56q9DaJME21Y1PH6A98LC3pvlNtvU8Fc/TzAabeqow+r0DI9Tmcp5NowBzFF/HUKbJJi/KSicddg4PWetao2nAogxbNRPl9AmCW57lIYs9Q/w0+Gn2eTEGDbqp82/1Oq44K5RJdg2Jd628pz1/SOJj0srkr8OlSlhs+maFwUe46t2L4kVc/il6+JSuelsjjUg7C5iDrjLzUpzcag81kwLhxBTHh6X5gQxZyNYWThMS7MQTO2UQNhTCKOyNAMmzQ/uHjYbtVPCJ+wpBDGw+QGcay+da+ABp16RAOdeQgGnXvMF0kwNVSoIBAoGbKqfKY3/qhJIUnSUWCBSMJBEeoSlgR+xBANO/aEt4NQnAz+c+SijghOfvdKEc4J/Aeg6UNzoXGVEAAAAAElFTkSuQmCC" InformativeScreenshot="97bfba2262dd8147e444b5e8847d77b9.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/e5p71L96fUCOGy3duTHc0g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive" />
                     </uix:NCheckState.Target>
                   </uix:NCheckState>
-                  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1024,520" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="f6020526-c971-4647-a109-54fe64767964" Version="V2">
+                  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome leave-sync-automator(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1024,523" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="f6020526-c971-4647-a109-54fe64767964" Version="V2">
                     <uix:NApplicationCard.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,280" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,282" sap2010:WorkflowViewState.IdRef="Sequence_18">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Input Leave Data'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f6020526-c971-4647-a109-54fe64767964" Version="V4">
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Input Leave Data'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,220" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f6020526-c971-4647-a109-54fe64767964" Version="V4">
                             <uix:NClick.Target>
-                              <uix:TargetAnchorable BrowserURL="localhost" CVScreenId="eb67e30f-13d1-4881-964b-bb4d96c28978" ContentHash="VnrhbzMKLkqa8g_2_AsiIg" CvTextArea="41, 352, 131, 13" CvTextArgument="+ Input Leave Data" CvType="Text" DesignTimeRectangle="20, 337, 254, 44" DesignTimeScaleFactor="1" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Input Leave Data' tag='A' type='' class='flex items-center px-4 py-3 text-sm rounded-md transition-colors text-gray-700 hover:bg-gray-100' check:innerText='Input Leave Data' /&gt;" Guid="3282a3ef-f3db-49ae-9903-9ab6f7455366" InformativeScreenshot="2e0dcb82de5d50706699bb6c5ef87e4e.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/4x8X4sw71k2XgG_tpgdePA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive" />
+                              <uix:TargetAnchorable BrowserURL="localhost" CVScreenId="affbc633-6bf9-411b-af2c-96c91238b2e2" ContentHash="MNJCtPG-c0S7fgwLLn37eg" CvTextArea="41, 420, 131, 13" CvTextArgument="+ Input Leave Data" CvType="Text" DesignTimeRectangle="20, 405, 231, 44" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl id='sidebar-input-leave-link' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl id='sidebar-input-leave-link' tag='A' type='' class='flex items-center px-4 py-3 text-sm rounded-md transition-colors text-gray-700 hover:bg-gray-100' aaname='Input Leave Data' check:innerText='Input Leave Data' /&gt;" Guid="2f436010-1196-475d-9632-6daba28fe455" InformativeScreenshot="49c259191c0dca2320fc6bed979231ed.png" Reference="QjS7MUzdXEWdtnxKhJV7XA/4x8X4sw71k2XgG_tpgdePA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='DHL | Leave Management System' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive" />
                             </uix:NClick.Target>
                             <uix:NClick.VerifyOptions>
                               <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
@@ -348,13 +348,13 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1126,401" sap2010:WorkflowViewState.IdRef="Sequence_22">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1126,403" sap2010:WorkflowViewState.IdRef="Sequence_22">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1092,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Fatal" Message="[&quot;Error while trying to open browser &quot; &amp; exception.Message]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1092,175" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Fatal" Message="[&quot;Error while trying to open browser &quot; &amp; exception.Message]" />
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Error Handler - Invoke Workflow File (TakeScreenshot.xaml)" sap:VirtualizedContainerService.HintSize="1092,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />

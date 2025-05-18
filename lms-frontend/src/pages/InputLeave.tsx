@@ -41,7 +41,9 @@ const InputLeave = () => {
         <main className="flex-1 container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <div>
-              <h1 className="text-3xl font-bold">Input Leave Data</h1>
+              <h1 id="leave-input-title" className="text-3xl font-bold">
+                Input Leave Data
+              </h1>
               <p className="text-gray-600">
                 Manually create a new leave application
               </p>
@@ -50,7 +52,9 @@ const InputLeave = () => {
 
           <Card className="max-w-2xl mx-auto" id="leave-application-card">
             <CardHeader>
-              <CardTitle>Leave Application Form</CardTitle>
+              <CardTitle id="leave-application-form-title">
+                Leave Application Form
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <LeaveForm onSuccess={handleSuccess} />

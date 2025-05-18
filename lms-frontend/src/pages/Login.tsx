@@ -122,6 +122,7 @@ const Login = () => {
               </div>
 
               <Button
+                id="loginButton"
                 type="submit"
                 className="w-full bg-dhl-red hover:bg-red-700"
                 disabled={isLoading}>
