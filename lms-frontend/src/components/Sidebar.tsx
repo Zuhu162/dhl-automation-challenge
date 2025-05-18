@@ -71,7 +71,7 @@ const Sidebar = ({ isMobile = false, onNavigate }: SidebarProps) => {
         "bg-white border-r border-gray-200 flex flex-col",
         isMobile
           ? "w-full h-full pt-6"
-          : "hidden md:flex md:sticky top-0 left-0 h-screen overflow-y-auto min-w-64"
+          : "hidden lg:flex lg:sticky top-0 left-0 h-screen overflow-y-auto min-w-64"
       )}>
       <div className="px-6 mt-4 mb-6">
         <Link

@@ -58,7 +58,7 @@ export default function LeaveTable({
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [currentApplication, setCurrentApplication] =
     useState<LeaveApplication | null>(null);
-  const [activeTab, setActiveTab] = useState("active");
+  const [activeTab, setActiveTab] = useState("all");
 
   // Date range filter states
   const [dateFilterFrom, setDateFilterFrom] = useState<Date | undefined>(
@@ -78,6 +78,7 @@ export default function LeaveTable({
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [completedPage, setCompletedPage] = useState(1);
+  const [allPage, setAllPage] = useState(1);
   const rowsPerPage = 5;
 
   useEffect(() => {
@@ -331,11 +332,18 @@ export default function LeaveTable({
 
     setActiveApplications(active);
     setCompletedApplications(completed);
-    setFilteredApplications(activeTab === "active" ? active : completed);
+
+    // Set filtered applications based on active tab
+    if (activeTab === "all") {
+      setFilteredApplications([...active, ...completed]);
+    } else {
+      setFilteredApplications(activeTab === "active" ? active : completed);
+    }
 
     // Reset to first page when filters change
     setCurrentPage(1);
     setCompletedPage(1);
+    setAllPage(1);
   };
 
   const handleEdit = (application: LeaveApplication) => {
@@ -479,12 +487,20 @@ export default function LeaveTable({
   const completedTotalPages = Math.ceil(
     completedApplications.length / rowsPerPage
   );
+  const allTotalPages = Math.ceil(filteredApplications.length / rowsPerPage);
   const totalPages =
-    activeTab === "active" ? activeTotalPages : completedTotalPages;
+    activeTab === "active"
+      ? activeTotalPages
+      : activeTab === "completed"
+      ? completedTotalPages
+      : allTotalPages;
 
   const startIndex =
-    (activeTab === "active" ? currentPage - 1 : completedPage - 1) *
-    rowsPerPage;
+    activeTab === "active"
+      ? (currentPage - 1) * rowsPerPage
+      : activeTab === "completed"
+      ? (completedPage - 1) * rowsPerPage
+      : (allPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
 
   const currentItems = filteredApplications.slice(startIndex, endIndex);
@@ -494,7 +510,11 @@ export default function LeaveTable({
     const pages = [];
     const maxVisiblePages = 3;
     const currentPageValue =
-      activeTab === "active" ? currentPage : completedPage;
+      activeTab === "active"
+        ? currentPage
+        : activeTab === "completed"
+        ? completedPage
+        : allPage;
 
     if (totalPages <= maxVisiblePages) {
       // Show all pages if total pages is less than max visible
@@ -545,8 +565,10 @@ export default function LeaveTable({
   const handlePageChange = (page: number) => {
     if (activeTab === "active") {
       setCurrentPage(page);
-    } else {
+    } else if (activeTab === "completed") {
       setCompletedPage(page);
+    } else {
+      setAllPage(page);
     }
   };
 
@@ -577,11 +599,14 @@ export default function LeaveTable({
         />
 
         <Tabs
-          defaultValue="active"
+          defaultValue="all"
           className="w-full"
           value={activeTab}
           onValueChange={handleTabChange}>
           <TabsList className="mb-4">
+            <TabsTrigger value="all" className="px-6">
+              All Leaves ({applications.length})
+            </TabsTrigger>
             <TabsTrigger value="active" className="px-6">
               Active Requests ({activeApplications.length})
             </TabsTrigger>
@@ -602,6 +627,23 @@ export default function LeaveTable({
               clearDateFilter={clearDateFilter}
             />
           )}
+
+          <TabsContent value="all">
+            <LeaveTableContent
+              isLoading={isLoading}
+              currentItems={currentItems}
+              searchQuery={searchQuery}
+              statusFilter={statusFilter}
+              sortField={sortField}
+              sortDirection={sortDirection}
+              handleSort={handleSort}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              getStatusBadgeClass={getStatusBadgeClass}
+              rowsPerPage={rowsPerPage}
+              activeTab="all"
+            />
+          </TabsContent>
 
           <TabsContent value="active">
             <LeaveTableContent
@@ -644,8 +686,10 @@ export default function LeaveTable({
             activeTab={activeTab}
             currentPage={currentPage}
             completedPage={completedPage}
+            allPage={allPage}
             activeTotalPages={activeTotalPages}
             completedTotalPages={completedTotalPages}
+            allTotalPages={allTotalPages}
             handlePageChange={handlePageChange}
             pageNumbers={getPageNumbers()}
           />

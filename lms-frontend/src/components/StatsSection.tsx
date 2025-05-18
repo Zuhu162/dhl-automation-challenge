@@ -21,7 +21,7 @@ const StatsSection: React.FC<StatsSectionProps> = ({
 }) => {
   const totalApplications = stats.pending + stats.approved + stats.rejected;
   return (
-    <div className="grid gap-4 md:grid-cols-4 mb-8">
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
       <StatsCard
         title="Total Applications"
         value={totalApplications}

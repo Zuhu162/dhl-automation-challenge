@@ -42,7 +42,7 @@ interface LeaveTableContentProps {
   handleDelete: (_id: string) => void;
   getStatusBadgeClass: (status: LeaveStatus) => string;
   rowsPerPage: number;
-  activeTab: "active" | "completed";
+  activeTab: "all" | "active" | "completed";
 }
 
 export default function LeaveTableContent({
@@ -185,6 +185,8 @@ export default function LeaveTableContent({
                 <TableCell colSpan={8} className="text-center py-4">
                   {searchQuery || statusFilter !== "all"
                     ? "No leave applications match your filters."
+                    : activeTab === "all"
+                    ? "No leave applications found."
                     : activeTab === "active"
                     ? "No active leave applications found."
                     : "No completed leave applications found."}
