@@ -130,7 +130,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sends final report via email and HTTP POST log:&#xA;⭕ Counts successful and failed entries&#xA;⭕ Sends summary email to stakeholders&#xA;⭕ Posts JSON payload to /api/automation-logs with timestamps and metrics." sap:VirtualizedContainerService.HintSize="1582,1061" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap2010:Annotation.AnnotationText="Sends final report via email and HTTP POST log:&#xA;⭕ Counts successful and failed entries&#xA;⭕ Sends summary email to stakeholders&#xA;⭕ Posts JSON payload to /api/automation-logs with timestamps and metrics." sap:VirtualizedContainerService.HintSize="1582,1091" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="FailedRows" />
       <Variable x:TypeArguments="x:String" Name="EmailBody" />
@@ -165,7 +165,7 @@
                          .Replace("{EndTime}", in_EndTime.ToString("HH:mm - dd/MM/yyyy"))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="Sequence - Final Feedback Process" sap:VirtualizedContainerService.HintSize="450,415" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Sequence - Final Feedback Process" sap:VirtualizedContainerService.HintSize="450,445" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="EmailPass" />
       </Sequence.Variables>
@@ -174,8 +174,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAj7oCPU1qPUupwHxEhc/iBAAAAAACAAAAAAAQZgAAAAEAACAAAABJ9F65DmovEixG3KjrPGQYjcqtqtqgDuE/aAA47GdnDQAAAAAOgAAAAAIAACAAAABjJL3C8XhM3RIIkFoK7H48YPJVz6Omap9z4HvEK22snSAAAAAOBDnApFuim+33vLy2uAaxvbLcNor9gkVaWdm5qVT7G0AAAABjiX+FMZaVedDNMopcOqZtN1hTyHb98DsDGQREWzErNv76u8tv6BPwKD60o+5Jh3bCvxcmJawGeM0jpmMvfULR" Result="[EmailPass]" />
-      <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Files="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="Builder" Body="[EmailBody]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,266" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Password="[EmailPass]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Data Entry Status Update - Success" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
+      <ui:SendMail Files="{x:Null}" ResourceAttachmentList="{x:Null}" sap2010:Annotation.AnnotationText="In production, passwords should be stored securely using tools like Orchestrator Assets or Windows Credential Manager.&#xA;For this competition, they are stored locally for simplicity." AttachmentInputMode="Builder" AttachmentsCollection="{x:Null}" Bcc="{x:Null}" Body="[EmailBody]" Cc="{x:Null}" ConnectionMode="LegacyConfiguration" ContinueOnError="{x:Null}" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" From="{x:Null}" sap:VirtualizedContainerService.HintSize="416,353" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" MailMessage="{x:Null}" Name="{x:Null}" Password="qvpw jtnc rcnd gwce" Port="465" ReplyTo="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecureConnection="Auto" SecurePassword="{x:Null}" Server="smtp.gmail.com" Subject="Data Entry Status Update - Success" TimeoutMS="{x:Null}" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
         <ui:SendMail.AttachmentsBackup>
           <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Builder">
             <usau:BackupSlot.BackupValues>
@@ -201,6 +200,11 @@
             </usau:BackupSlot.BackupValues>
           </usau:BackupSlot>
         </ui:SendMail.ConnectionDetailsBackupSlot>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </ui:SendMail>
     </Sequence>
     <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;  &quot;&quot;status&quot;&quot;: &quot;&quot;complete&quot;&quot;,&#xA;  &quot;&quot;timeStart&quot;&quot;: &quot;&quot;&quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;timeEnd&quot;&quot;: &quot;&quot;&quot; &amp; in_EndTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;successfulRows&quot;&quot;: &quot; &amp; in_FinalInputRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;failedRows&quot;&quot;: &quot; &amp; in_FinalRejectedRowsDT.Rows.Count().ToString() &amp; &quot;,&#xA;  &quot;&quot;spreadsheetLink&quot;&quot;: &quot;&quot;&quot; &amp; in_SpreadSheetLink &amp; &quot;&quot;&quot;,&#xA;  &quot;&quot;totalRows&quot;&quot;: &quot; &amp; in_TotalRows.ToString() &amp; &quot;,&#xA;  &quot;&quot;remarks&quot;&quot;: &quot;&quot;Leave data input automation successfully completed.&quot;&quot;&#xA;}&quot;]" BodyFormat="application/json" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:5000/api/automation-logs" sap:VirtualizedContainerService.HintSize="450,102" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" TimeoutMS="6000">

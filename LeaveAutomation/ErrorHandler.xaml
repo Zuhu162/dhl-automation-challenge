@@ -137,13 +137,12 @@
       <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Global error handler for uncaught failures in any process:&#xA;⭕ Captures and saves a screenshot&#xA;⭕ Sends error email with relevant info&#xA;⭕ Posts error report to system for logging and review." DisplayName="Take and Save Screenshot" sap:VirtualizedContainerService.HintSize="1582,2168" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Global error handler for uncaught failures in any process:&#xA;⭕ Captures and saves a screenshot&#xA;⭕ Sends error email with relevant info&#xA;⭕ Posts error report to system for logging and review." DisplayName="Take and Save Screenshot" sap:VirtualizedContainerService.HintSize="1582,2111" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="Screenshot" />
       <Variable x:TypeArguments="si:FileInfo" Name="ScreenshotFileInfo" />
       <Variable x:TypeArguments="x:String" Name="AttachmentList" />
       <Variable x:TypeArguments="s:DateTime" Name="EndTime" />
-      <Variable x:TypeArguments="x:String" Name="EmailPass" />
       <Variable x:TypeArguments="x:String" Name="EmailTemplate" />
       <Variable x:TypeArguments="x:String" Name="EmailBody" />
     </Sequence.Variables>
@@ -187,7 +186,6 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:TakeScreenshot>
-    <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="436,57" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAj7oCPU1qPUupwHxEhc/iBAAAAAACAAAAAAAQZgAAAAEAACAAAACJzVq0Pmwx7OYQ0+fey7zCk0sMykYXZO4kGkF4/Z3UVwAAAAAOgAAAAAIAACAAAACsO/d0WDpT7Lo43tQtIA2kKZkAbnV7hDkib4/CXTiQqSAAAAC4U5kV2Le+ykhQ6SeR2JOhRI0pqVg5DX6zr717TPmr+kAAAADM7TEkXUR9y1ZaBU5s4egUv663WwBP8yLFVHyZUzZeghtxXqDtBSiEFFVVTgMGaSNcaervHr/oyqwK2GaKYVyE" Result="[EmailPass]" />
     <If Condition="[String.IsNullOrEmpty(io_FilePath)]" DisplayName="If no screenshot filepath" sap:VirtualizedContainerService.HintSize="436,267" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Then>
         <Assign DisplayName="Initialize screenshot filepath" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
@@ -241,7 +239,7 @@
     </If>
     <ui:SaveImage DisplayName="Save screenshot" FileName="[io_FilePath]" sap:VirtualizedContainerService.HintSize="436,165" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[Screenshot]" />
     <ui:LogMessage DisplayName="Log message (Take screenshot)" sap:VirtualizedContainerService.HintSize="436,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Screenshot saved at: &quot;+io_FilePath]" />
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="FilePaths" Body="[EmailBody]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="436,326" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Password="[EmailPass]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Leave Update Error" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="In production, passwords should be stored securely using tools like Orchestrator Assets or Windows Credential Manager.&#xA;For this competition, they are stored locally for simplicity." AttachmentInputMode="FilePaths" Body="[EmailBody]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,381" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Password="qvpw jtnc rcnd gwce" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Leave Update Error" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
       <ui:SendMail.AttachmentsBackup>
         <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
           <usau:BackupSlot.BackupValues>
@@ -265,6 +263,11 @@
           <InArgument x:TypeArguments="x:String">[io_FilePath]</InArgument>
         </scg:List>
       </ui:SendMail.Files>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:SendMail>
     <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;&quot;&quot;status&quot;&quot;: &quot;&quot;&quot; &amp; If(in_ValidRowsCount &lt;&gt; &quot;0&quot;, &quot;partial&quot;, &quot;failed&quot;) &amp; &quot;&quot;&quot;, &quot; &amp;&#xA;&quot;&quot;&quot;timeStart&quot;&quot;: &quot;&quot;&quot; &amp; in_StartTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;, &quot; &amp;&#xA;&quot;&quot;&quot;timeEnd&quot;&quot;: &quot;&quot;&quot; &amp; EndTime.ToString(&quot;yyyy-MM-ddTHH:mm:ss.fffZ&quot;) &amp; &quot;&quot;&quot;, &quot; &amp;&#xA;&quot;&quot;&quot;successfulRows&quot;&quot;: &quot;&quot;&quot; &amp; in_ValidRowsCount &amp; &quot;&quot;&quot;, &quot; &amp;&#xA;&quot;&quot;&quot;failedRows&quot;&quot;: &quot;&quot;&quot; &amp; in_InvalidRowsCount &amp; &quot;&quot;&quot;, &quot; &amp;&#xA;&quot;&quot;&quot;spreadsheetLink&quot;&quot;: &quot;&quot;&quot; &amp; in_DownloadLink &amp; &quot;&quot;&quot;, &quot; &amp;&#xA;&quot;&quot;&quot;totalRows&quot;&quot;: &quot;&quot;&quot; &amp; in_TotalRows &amp; &quot;&quot;&quot;, &quot; &amp;&#xA;&quot;&quot;&quot;remarks&quot;&quot;: &quot;&quot;&quot; &amp; in_exception &amp; &quot;&quot;&quot;&#xA;}&quot;]" BodyFormat="application/json" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:5000/api/automation-logs" sap:VirtualizedContainerService.HintSize="436,102" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="POST" TimeoutMS="6000">
       <ui:HttpClient.Attachments>

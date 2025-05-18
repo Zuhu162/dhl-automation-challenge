@@ -20,8 +20,8 @@
         "FinalRejectedRowsDT&Sequence_1",
         "StartTime&Sequence_1",
         "EndTime&Sequence_1",
-        "TotalRows&Sequence_1",
-        "SpreadSheetLink&Sequence_1"
+        "SpreadSheetLink&Sequence_1",
+        "TotalRows&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
@@ -72,7 +72,6 @@
       "VariablesSectionElementsOrder": [
         "EmailBody&Sequence_1",
         "EmailTemplate&Sequence_1",
-        "EmailPass&Sequence_1",
         "EndTime&Sequence_1",
         "AttachmentList&Sequence_1",
         "Screenshot&Sequence_1",
