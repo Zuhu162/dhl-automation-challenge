@@ -326,7 +326,7 @@ export function AutomationLogsTable({
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-600 underline hover:text-blue-800">
-                                Download
+                                {log.spreadsheetLink.split("/").pop()}
                               </a>
                             ) : (
                               <span className="text-gray-400">

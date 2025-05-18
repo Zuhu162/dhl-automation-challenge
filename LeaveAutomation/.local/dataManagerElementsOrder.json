@@ -20,8 +20,8 @@
         "FinalRejectedRowsDT&Sequence_1",
         "StartTime&Sequence_1",
         "EndTime&Sequence_1",
-        "SpreadSheetLink&Sequence_1",
-        "TotalRows&Sequence_1"
+        "TotalRows&Sequence_1",
+        "SpreadSheetLink&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
@@ -137,7 +137,6 @@
       "Path": "ValidateExcelFile.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "Key&Sequence_46",
         "SheetName&Sequence_1",
         "ExcelLeaveRecordsDT&Sequence_1",
         "ErrorImage&Sequence_1",
@@ -148,7 +147,8 @@
         "ValidRowsDT&Sequence_1",
         "TableText&Sequence_1",
         "DuplicateRows&Sequence_1",
-        "SeenRows&Sequence_1"
+        "SeenRows&Sequence_1",
+        "Key&Sequence_46"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_SpreadSheetLink",

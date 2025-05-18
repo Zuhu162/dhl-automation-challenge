@@ -46,11 +46,13 @@
 
       .table-container {
         margin-top: 20px;
+        overflow-x: auto;
       }
 
       table {
         border-collapse: collapse;
         width: 100%;
+        min-width: 600px;
         border-radius: 6px;
         overflow: hidden;
       }
@@ -61,6 +63,7 @@
         padding: 10px;
         text-align: left;
         border: 1px solid #ddd;
+        overflow-x: auto;
       }
 
       td {
@@ -106,6 +109,20 @@
 
       .button-link:hover {
         background-color: #a00b28;
+      }
+
+      @media (max-width: 700px) {
+        .email-container {
+          padding: 5px;
+        }
+        table {
+          min-width: 0;
+          font-size: 8px;
+        }
+        th,
+        td {
+          padding: 6px;
+        }
       }
     </style>
   </head>

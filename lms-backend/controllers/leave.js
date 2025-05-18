@@ -15,6 +15,20 @@ exports.createLeave = async (req, res) => {
       isAutomated,
     } = req.body;
 
+    // Duplicate check: prevent same employeeId, startDate, and endDate
+    const duplicate = await Leave.findOne({
+      employeeId,
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+    });
+    if (duplicate) {
+      return res.status(409).json({
+        success: false,
+        message:
+          "Duplicate leave entry: This employee already has a leave for the same period.",
+      });
+    }
+
     // Create leave application
     const leave = await Leave.create({
       employeeId,
