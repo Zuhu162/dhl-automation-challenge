@@ -138,11 +138,3 @@ You can log in using the demo credentials provided on the login page or register
 ## Further Details
 
 For a more in-depth understanding of the process flow, technical specifications, and other details, please refer to the **Process Design Document (PDD)** located in the repository.
-
-## License
-
-[Specify your project's license here]
-
-## Acknowledgements
-
-[Add any acknowledgements here, e.g., for libraries or resources used]
