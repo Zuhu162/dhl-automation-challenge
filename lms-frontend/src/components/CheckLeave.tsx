@@ -30,6 +30,7 @@ type CheckLeaveProps = {
   startDate: Date | undefined;
   endDate: Date | undefined;
   onDuplicateFound?: (isDuplicate: boolean) => void;
+  onCheckingChange?: (isChecking: boolean) => void;
 };
 
 const CheckLeave = ({
@@ -37,6 +38,7 @@ const CheckLeave = ({
   startDate,
   endDate,
   onDuplicateFound,
+  onCheckingChange,
 }: CheckLeaveProps) => {
   const [isChecking, setIsChecking] = useState(false);
   const [existingLeave, setExistingLeave] = useState<LeaveApplication | null>(
@@ -99,6 +101,7 @@ const CheckLeave = ({
         if (onDuplicateFound) onDuplicateFound(false);
       } finally {
         setIsChecking(false);
+        if (onCheckingChange) onCheckingChange(false);
       }
     };
 
@@ -107,9 +110,11 @@ const CheckLeave = ({
       checkForDuplicates();
     } else {
       // Reset when fields are cleared
+      setIsChecking(false);
+      if (onCheckingChange) onCheckingChange(false);
       if (onDuplicateFound) onDuplicateFound(false);
     }
-  }, [employeeId, startDate, endDate, onDuplicateFound]);
+  }, [employeeId, startDate, endDate, onDuplicateFound, onCheckingChange]);
 
   if (isChecking) {
     return (

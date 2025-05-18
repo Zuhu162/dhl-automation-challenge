@@ -396,7 +396,6 @@ export default function LeaveForm({
       setLeaveTypeInput("Annual");
       setStatusInput("Pending");
       setIsDuplicateFound(false);
-      setDuplicateCheckPassed(false);
     } catch (error) {
       toast({
         title: "Error",
@@ -426,7 +425,6 @@ export default function LeaveForm({
     setLeaveTypeInput("Annual");
     setStatusInput("Pending");
     setIsDuplicateFound(false);
-    setDuplicateCheckPassed(false);
     toast({
       title: "Form fields cleared",
       description: "All fields have been reset.",
@@ -436,25 +434,15 @@ export default function LeaveForm({
   // Handle duplicate detection callback
   const handleDuplicateFound = (isDuplicate: boolean) => {
     setIsDuplicateFound(isDuplicate);
-    setIsCheckingDuplicate(false);
   };
+
+  // Determine if this is an edit or a new entry
+  const isEditMode = !!application?._id;
 
   // Get current form values for duplicate checking
   const employeeId = form.watch("employeeId");
   const startDate = form.watch("startDate");
   const endDate = form.watch("endDate");
-
-  // Track if duplicate check has been completed successfully
-  const [duplicateCheckPassed, setDuplicateCheckPassed] = useState(false);
-
-  // Update the duplicate check callback to also set if check passed
-  const handleDuplicateCheck = (isDuplicate: boolean) => {
-    handleDuplicateFound(isDuplicate);
-    setDuplicateCheckPassed(!isDuplicate);
-  };
-
-  // Determine if this is an edit or a new entry
-  const isEditMode = !!application?._id;
 
   return (
     <Form {...form}>
@@ -730,11 +718,9 @@ export default function LeaveForm({
               type="submit"
               disabled={
                 !form.formState.isValid ||
-                (!isEditMode &&
-                  (isDuplicateFound ||
-                    isCheckingDuplicate ||
-                    !duplicateCheckPassed)) ||
-                isSubmitting
+                isSubmitting ||
+                // Disable if checking duplicate or duplicate found, only for new entries
+                (!isEditMode && (isCheckingDuplicate || isDuplicateFound))
               }
               id="leaveform-submit-btn">
               {isSubmitting
@@ -754,20 +740,14 @@ export default function LeaveForm({
           </div>
         )}
 
-        {isDuplicateFound && !readOnly && (
-          <div className="flex items-center text-red-600 text-sm">
-            <AlertCircle className="h-4 w-4 mr-1" />
-            Cannot submit duplicate entry
-          </div>
-        )}
-
         {/* Display the duplicate check component when all required fields are filled */}
         {!readOnly && !isEditMode && employeeId && startDate && endDate && (
           <CheckLeave
             employeeId={employeeId}
             startDate={startDate}
             endDate={endDate}
-            onDuplicateFound={handleDuplicateCheck}
+            onDuplicateFound={handleDuplicateFound}
+            onCheckingChange={setIsCheckingDuplicate}
           />
         )}
 

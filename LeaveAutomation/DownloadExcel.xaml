@@ -97,7 +97,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Uses HTTP GET request to download the spreadsheet using the generated link.&#xA;Stores the downloaded file path for use in later workflows." DisplayName="DownloadExcel" sap:VirtualizedContainerService.HintSize="684,1696" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Uses HTTP GET request to download the spreadsheet using the generated link.&#xA;Stores the downloaded file path for use in later workflows." DisplayName="DownloadExcel" sap:VirtualizedContainerService.HintSize="1582,1696" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="LatestExcelFilePath" />
     </Sequence.Variables>
@@ -209,6 +209,6 @@
         </Sequence>
       </TryCatch.Finally>
     </TryCatch>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="470,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[LatestExcelFilePath]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="470,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[LatestExcelFilePath]" />
   </Sequence>
 </Activity>

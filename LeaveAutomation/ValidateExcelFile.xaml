@@ -137,7 +137,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Performs first round of data validation directly within the Excel file:&#xA;⭕ Reads data from the first sheet ⭕ Detects missing headers ⭕ Identifies rows with missing or invalid fields&#xA;⭕ Separates ValidRows from InvalidRows ⭕ Detects duplicates within valid rows ⭕ Prepares cleaned-up sets of UniqueRows and InvalidRows ⭕ Deletes the original Excel file after processing." DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="684,10555" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Performs first round of data validation directly within the Excel file:&#xA;⭕ Reads data from the first sheet ⭕ Detects missing headers ⭕ Identifies rows with missing or invalid fields&#xA;⭕ Separates ValidRows from InvalidRows ⭕ Detects duplicates within valid rows ⭕ Prepares cleaned-up sets of UniqueRows and InvalidRows ⭕ Deletes the original Excel file after processing." DisplayName="ValidateExcelFile" sap:VirtualizedContainerService.HintSize="1582,10540" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="SheetName" />
       <Variable x:TypeArguments="sd:DataTable" Name="ExcelLeaveRecordsDT" />
@@ -157,7 +157,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="542,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Start Excel File Validation Process&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="542,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Started Excel File Validation Process&quot;]" />
     <ui:ExcelApplicationScope Password="{x:Null}" SensitivityLabel="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="542,305" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" SensitivityOperation="None" WorkbookPath="[in_excelFilePath]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
@@ -241,7 +241,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Header missing, Aborting&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Fatal" Message="[&quot;Header missing, Aborting&quot;]" />
           <TryCatch DisplayName="Try Catch - Delete Excel File" sap:VirtualizedContainerService.HintSize="418,823" sap2010:WorkflowViewState.IdRef="TryCatch_5">
             <TryCatch.Try>
               <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="416,336" sap2010:WorkflowViewState.IdRef="Sequence_49">
@@ -251,7 +251,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="382,112" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[in_excelFilePath]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_17" Message="[&quot;Deleted Excel filepath: &quot; &amp; in_excelFilePath]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Deleted Excel filepath: &quot; &amp; in_excelFilePath]" />
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
@@ -266,7 +266,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Fatal" Message="[exception]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Fatal" Message="[exception.Message]" />
                   </Sequence>
                 </ActivityAction>
               </Catch>
@@ -438,7 +438,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="506,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="506,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Fatal" Message="[exception.Message]" />
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ErrorHandler - Invoke Workflow File (ErrorHandler.xaml)" sap:VirtualizedContainerService.HintSize="506,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ErrorHandler.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[ScreenshotFolder]</InArgument>
