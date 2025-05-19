@@ -130,7 +130,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sends final report via email and HTTP POST log:&#xA;⭕ Counts successful and failed entries&#xA;⭕ Sends summary email to stakeholders&#xA;⭕ Posts JSON payload to /api/automation-logs with timestamps and metrics." sap:VirtualizedContainerService.HintSize="1582,1091" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap2010:Annotation.AnnotationText="Sends final report via email and HTTP POST log:&#xA;⭕ Counts successful and failed entries&#xA;⭕ Sends summary email to stakeholders&#xA;⭕ Posts JSON payload to /api/automation-logs with timestamps and metrics." sap:VirtualizedContainerService.HintSize="1286,1091" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="FailedRows" />
       <Variable x:TypeArguments="x:String" Name="EmailBody" />
@@ -174,7 +174,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:SendMail Files="{x:Null}" ResourceAttachmentList="{x:Null}" sap2010:Annotation.AnnotationText="In production, passwords should be stored securely using tools like Orchestrator Assets or Windows Credential Manager.&#xA;For this competition, they are stored locally for simplicity." AttachmentInputMode="Builder" AttachmentsCollection="{x:Null}" Bcc="{x:Null}" Body="[EmailBody]" Cc="{x:Null}" ConnectionMode="LegacyConfiguration" ContinueOnError="{x:Null}" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" From="{x:Null}" sap:VirtualizedContainerService.HintSize="416,353" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" MailMessage="{x:Null}" Name="{x:Null}" Password="qvpw jtnc rcnd gwce" Port="465" ReplyTo="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecureConnection="Auto" SecurePassword="{x:Null}" Server="smtp.gmail.com" Subject="Data Entry Status Update - Success" TimeoutMS="{x:Null}" To="zuhu1621@gmail.com" UseISConnection="False" UseOAuth="False">
+      <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Files="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="In production, passwords should be stored securely using tools like Orchestrator Assets or Windows Credential Manager.&#xA;For this competition, they are stored locally for simplicity." AttachmentInputMode="Builder" Body="[EmailBody]" ConnectionMode="LegacyConfiguration" DisplayName="Send SMTP Email" Email="zuhayersiddique162@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,353" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Password="qvpw jtnc rcnd gwce" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="Data Entry Status Update - Success" To="sivanesan.letchumanan@dhl.com" UseISConnection="False" UseOAuth="False">
         <ui:SendMail.AttachmentsBackup>
           <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Builder">
             <usau:BackupSlot.BackupValues>
