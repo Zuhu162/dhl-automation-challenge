@@ -2,6 +2,34 @@
 
 This project is a Leave Management System (LMS) integrated with UiPath automation to streamline the process of inputting leave data from spreadsheets. It provides a web interface for managing leave applications, viewing analytics, and triggering automation processes.
 
+## Purpose and Scope
+
+This project was developed for DHL APSSC's Digital Automation Challenge 2.0. The system consists of two main components:
+
+### Web Solution
+
+- Built with ReactJS and NodeJS
+- Provides frontend and backend infrastructure for leave management
+- Enables HR to input and manage leave applications manually
+
+### Automation Solution
+
+- Developed using UiPath Studio
+- Automates data entry process by validating leave records from Excel files
+- Implements Transactional Business Process with Row-Level Fault Tolerance inspired by REFramework:
+  - Each row is treated as an independent transaction
+  - Automatic retry for transient input or validation failures
+  - Failed rows are safely logged without interrupting the process
+  - Browser-level crashes are caught and reported
+  - Generates summary reports via email and API log submission
+  - Includes failed rows and failure reasons in the email
+
+### Environment Considerations
+
+- Designed for local environment execution
+- No dependencies on environment-specific features
+- Portable and consistent behavior across devices
+
 ## Features
 
 - **User Authentication:** Secure login for users
@@ -40,35 +68,35 @@ This project is a Leave Management System (LMS) integrated with UiPath automatio
 
 ## Setup Guide
 
-Follow these steps to set up and run the project locally:
-
 ### Prerequisites
 
 - Node.js (v18 or higher recommended)
 - npm or yarn
 - MongoDB instance (local or cloud)
-- UiPath Studio (for running the automation part)
+- UiPath Studio
+- Google Chrome browser
+- UiPath Browser Automation extension for Chrome
 
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd <your-repository-directory>
+git clone https://github.com/Zuhu162/dhl-automation-challenge
+cd dhl-automation-challenge
 ```
 
-### 2. Backend Setup
-
-Navigate to the backend directory:
-
-```bash
-cd lms-backend
-```
+### 2. Project Setup
 
 Install dependencies:
 
 ```bash
-npm install # or yarn install
+npm install
 ```
+
+If the above command fails, try the following:
+
+1. Open terminal as administrator
+2. Navigate to `lms-frontend` and `lms-backend` directories
+3. Run `npm install` in both folders
 
 Create a `.env` file in the `lms-backend` directory with your MongoDB connection string and JWT secret:
 
@@ -77,41 +105,23 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-Run the backend server:
-
-```bash
-npm start # or yarn start
-```
-
-The backend API should now be running, typically on port 5000.
-
-### 3. Frontend Setup
-
-Open a new terminal and navigate to the frontend directory:
-
-```bash
-cd lms-frontend
-```
-
-Install dependencies:
-
-```bash
-npm install # or yarn install
-```
-
-Create a `.env` file in the `lms-frontend` directory. Configure the backend API URL:
+Create a `.env` file in the `lms-frontend` directory:
 
 ```env
 VITE_API_URL is not defined in .env, the api calls will be sent to localhost:5000 by default
 ```
 
-Run the frontend development server:
+### 3. Running the Application
+
+Start the application:
 
 ```bash
-npm run dev # or yarn dev
+npm run dev
 ```
 
-The frontend application should now be running, typically on port 5173 (or similar).
+This will start both the ReactJS frontend and NodeJS backend concurrently.
+
+Visit `http://localhost:8080/` to access the web application.
 
 ### 4. UiPath Automation Setup
 
@@ -125,15 +135,13 @@ Open the `LeaveAutomation` project in UiPath Studio.
 
 Ensure all necessary dependencies are installed within the UiPath project (Manage Packages).
 
-Run the `Main.xaml` workflow from UiPath Studio. This automation is designed to be triggered remotely by the backend API (`POST /api/automation/trigger`). The workflow will interact with the Leave Management System's web interface (the frontend you set up in step 3) and input data from a specified Google Spreadsheet.
+Run the `Main.xaml` workflow from UiPath Studio. This automation is designed to be triggered remotely by the backend API (`POST /api/automation/trigger`).
 
-**Note:** The automation process requires the frontend application to be running and accessible from the machine running the UiPath robot. The backend triggers the process, but the robot interacts with the frontend UI.
+**Note:** The automation process requires the frontend application to be running and accessible from the machine running the UiPath robot.
 
-### 5. Access the Application
+## Video Guide
 
-Open your web browser and go to the frontend URL (`http://localhost:8080`).
-
-You can log in using the demo credentials provided on the login page or register a new user (if registration is enabled, otherwise you might need to manually create a user in the database).
+For a detailed walkthrough of the project setup and execution, please refer to our [Video Guide/Walkthrough](https://www.youtube.com/playlist?list=PL2jbEQjDPtTywcaDEH-wKdwNYW1EB79kA).
 
 ## Further Details
 
