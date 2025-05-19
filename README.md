@@ -102,7 +102,7 @@ npm install # or yarn install
 Create a `.env` file in the `lms-frontend` directory. Configure the backend API URL:
 
 ```env
-VITE_API_URL=http://localhost:5000/api # Or your backend URL
+VITE_API_URL is not defined in .env, the api calls will be sent to localhost:5000 by default
 ```
 
 Run the frontend development server:
@@ -131,7 +131,7 @@ Run the `Main.xaml` workflow from UiPath Studio. This automation is designed to 
 
 ### 5. Access the Application
 
-Open your web browser and go to the frontend URL (e.g., `http://localhost:5173`).
+Open your web browser and go to the frontend URL (`http://localhost:8080`).
 
 You can log in using the demo credentials provided on the login page or register a new user (if registration is enabled, otherwise you might need to manually create a user in the database).
 
